@@ -15,6 +15,21 @@
     <Filter Include="Core">
       <UniqueIdentifier>{40c6a755-6c33-42e0-abb5-53c4019814c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameScene">
+      <UniqueIdentifier>{91d311aa-a060-4303-aeb7-7bf0bff322f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene\Object">
+      <UniqueIdentifier>{c1ba26c4-a45d-46e1-9a64-3297e32068e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene\Object\Unit">
+      <UniqueIdentifier>{a2d30f41-bf26-42a4-b2cb-536126b86f8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene\Object\Unit\Hero">
+      <UniqueIdentifier>{c291e248-d9d1-4c01-ba6b-6ed65fa402ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene\Object\Unit\Enemy">
+      <UniqueIdentifier>{c3e91c49-f953-45a7-969e-e1ec17dbf4e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -94,9 +109,6 @@
     <ClCompile Include="Collider.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -106,8 +118,17 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="TestObj.cpp">
-      <Filter>Core</Filter>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameScene\Object\Unit\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>GameScene\Object\Unit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,9 +153,6 @@
     <ClInclude Include="Collider.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -144,8 +162,17 @@
     <ClInclude Include="Scene.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="TestObj.h">
-      <Filter>Core</Filter>
+    <ClInclude Include="GameScene.h">
+      <Filter>GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameScene\Object\Unit\Hero</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>GameScene\Object\Unit</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

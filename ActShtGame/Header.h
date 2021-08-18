@@ -1,4 +1,8 @@
 #pragma once
+
+#define IntEnum(p) static_cast<int>(p)
+#define PlusEnum(a, b, c) static_cast<a>(IntEnum(b) + IntEnum(c))
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -18,7 +22,8 @@
 #include "Object.h"
 #include "Collider.h"
 
-#include "TestObj.h"
+#include "Unit.h"
+#include "Player.h"
 
 #include "Scene.h"
 extern Scene* nowScene;

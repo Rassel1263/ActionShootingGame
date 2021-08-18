@@ -9,7 +9,7 @@ void Camera::Init()
 	D3DXMatrixLookAtLH(&matView, &vEyePt, &vLookAtPt, &vUpVec);
 	DXUTGetD3D9Device()->SetTransform(D3DTS_VIEW, &matView);
 
-	D3DXMatrixOrthoLH(&matProj, Game::GetInstance().screenWidth, Game::GetInstance().screenHeight, 0.01f, 10000.0f);
+	D3DXMatrixOrthoLH(&matProj, Game::GetInstance().screenWidth / 4, Game::GetInstance().screenHeight / 4, 0.01f, 10000.0f);
 	DXUTGetD3D9Device()->SetTransform(D3DTS_PROJECTION, &matProj);
 }
 

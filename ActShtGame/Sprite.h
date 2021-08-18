@@ -15,7 +15,7 @@ public:
 	int szScene = 0;
 
 	float aniTime = 0.0f;
-	float aniMaxTime = 0.01f;
+	float aniMaxTime = 0.1f;
 
 	bool bAnimation = true;
 	bool bAniLoop = true;
