@@ -19,9 +19,9 @@ public:
 	float unscaleTime = 0.0f;
 
 	LPDIRECT3DVERTEXBUFFER9 pVB;
-	LPD3DXSPRITE pSprite;
 	LPD3DXLINE pLine;
 
+	Scene* nextScene = NULL;
 public:
 	~Game();
 
@@ -30,6 +30,7 @@ public:
 	void Render();
 	void DrawLine(D3DXVECTOR2 p1, D3DXVECTOR2 p2, D3DXMATRIX matrix, D3DCOLOR color = D3DCOLOR_ARGB(255, 0, 0, 0), float width = 2.0f);
 	void Check();
+	void ChangeScene(Scene* nextScene);
 	D3DXVECTOR2 ScreenSize();
 };
 

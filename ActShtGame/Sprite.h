@@ -2,14 +2,6 @@
 
 struct RenderInfo
 {
-	D3DXVECTOR3 pos = { 0, 0, 0 };
-	D3DXVECTOR3 scale = { 1, 1, 1 };
-	D3DXVECTOR3 pivot = { 0.5, 0.5 ,0.5 };
-	D3DXVECTOR3 rotate = { 0, 0, 0 };
-};
-
-struct SpriteInfo
-{
 	D3DXVECTOR2 pos = { 0, 0 };
 	D3DXVECTOR2 scale = { 1, 1 };
 	D3DXVECTOR2 pivot = { 0.5, 0.5 };
@@ -27,8 +19,16 @@ public:
 
 	bool bAnimation = true;
 	bool bAniLoop = true;
-	bool billboard = false;
+	bool bCamera = true;
 
-	// 21Ка 12УЪ
+	D3DXCOLOR color = D3DCOLOR_ARGB(255, 255, 255, 255);
+	
+	std::vector<const Texture*> textures;
+
+	virtual ~Sprite();
+	void LoadAll(std::wstring filePath);
+	void Update(float deltaTime);
+	void Render(const RenderInfo& ri);
+	const Texture* GetNowScene();
 };
 
