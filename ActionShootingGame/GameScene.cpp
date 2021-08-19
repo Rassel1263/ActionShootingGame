@@ -4,7 +4,7 @@ void GameScene::Init()
 {
 	obm.AddObject(mapManager = new MapManager(L"GameScene1/map00", L"GameScene1/map01"));
 	obm.AddObject(new Player());
-
+	obm.AddObject(mouse = new Mouse());
 }
 
 void GameScene::Update(float deltaTime)

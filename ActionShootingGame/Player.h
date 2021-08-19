@@ -9,8 +9,6 @@ public:
 		ROLL
 	} behavior;
 
-	bool haveGun = false;
-
 	CState<Player>* nowState = NULL;
 
 	Player();
@@ -19,7 +17,8 @@ public:
 	virtual void Render() override;
 
 	virtual void ImageSettings() override;
-	void SetUnitDir(D3DXVECTOR2 dir);
+	void SetNotHoldGunUnitDir(D3DXVECTOR2 dir);
+	void SetHoldGunUnitDir(D3DXVECTOR2 dir);
 	bool Move(float deltaTime);
 };
 

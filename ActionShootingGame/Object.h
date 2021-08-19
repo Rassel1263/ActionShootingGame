@@ -9,6 +9,8 @@ public:
 	D3DXVECTOR2 pos = { 0, 0 };
 	std::vector<Collider> bodies;
 
+	bool bCamera = true;
+
 	bool bRigidbody = false;
 	bool bGround = false;
 

@@ -39,7 +39,6 @@ struct MapGroup
 #include "Collider.h"
 #include "Object.h"
 
-
 #include "FileManager.h"
 
 #include "MapToolMouse.h"
@@ -48,9 +47,15 @@ struct MapGroup
 
 #include "CState.h"
 
+#include "Gun.h"
+
+#include "CBullet.h"
+
 #include "Unit.h"
 #include "Player.h"
 #include "PlayerState.h"
+
+#include "Mouse.h"
 
 #include "Scene.h"
 extern Scene* nowScene;

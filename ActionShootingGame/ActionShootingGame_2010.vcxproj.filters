@@ -44,6 +44,15 @@
     <Filter Include="GameScene\Object\Unit\Enemy">
       <UniqueIdentifier>{d325d689-7229-41c1-8ead-95e4776a4e79}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameScene\Object\Unit\Weapon">
+      <UniqueIdentifier>{420eada7-3fbf-4803-8b8f-57084d5ee67e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene\Object\Unit\Weapon\Bullet">
+      <UniqueIdentifier>{86351967-ebb8-4900-9da4-787b8e57ce15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene\Object\Unit\Weapon\Gun">
+      <UniqueIdentifier>{e2ab2ef0-a323-409b-b419-208a2f563fb3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -96,12 +105,19 @@
     <ClCompile Include="GameScene.cpp">
       <Filter>GameScene\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>GameScene\Object\Unit\Player</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="Unit.cpp">
       <Filter>GameScene\Object\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="Player.cpp">
+      <Filter>GameScene\Object\Unit\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Gun.cpp">
+      <Filter>GameScene\Object\Unit\Weapon\Gun</Filter>
+    </ClCompile>
+    <ClCompile Include="CBullet.cpp">
+      <Filter>GameScene\Object\Unit\Weapon\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +176,13 @@
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Unit.h">
       <Filter>GameScene\Object\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h" />
+    <ClInclude Include="Gun.h">
+      <Filter>GameScene\Object\Unit\Weapon\Gun</Filter>
+    </ClInclude>
+    <ClInclude Include="CBullet.h">
+      <Filter>GameScene\Object\Unit\Weapon\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

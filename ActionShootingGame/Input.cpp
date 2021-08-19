@@ -49,3 +49,8 @@ bool Input::KeyPress(int nKey)
 {
     return (m_KeyMap[nKey] == InputState::INPUT_PRESS);
 }
+
+D3DXVECTOR2 Input::GetFixedMousePos()
+{
+    return D3DXVECTOR2(mousePos.x / 4 - Game::GetInstance().screenWidth / 8, -mousePos.y / 4 + Game::GetInstance().screenHeight / 8);
+}

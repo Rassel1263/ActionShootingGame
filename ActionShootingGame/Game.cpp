@@ -101,7 +101,7 @@ void Game::Update(float deltaTime)
 void Game::Render()
 {
 	pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
-		D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
+		D3DCOLOR_XRGB(125, 125, 0), 1.0f, 0);
 
 	if (SUCCEEDED(pd3dDevice->BeginScene()))
 	{
@@ -119,7 +119,7 @@ void Game::DrawLine(D3DXVECTOR2 p1, D3DXVECTOR2 p2, D3DXMATRIX matrix, D3DCOLOR 
 	pLine->SetWidth(2.0f);
 	pLine->Begin();
 	D3DXVECTOR3 v[] = { D3DXVECTOR3(p1.x, p1.y, 0.0f), D3DXVECTOR3(p2.x, p2.y, 0.0f) };
-	D3DXMATRIX retMat = matrix * Camera::GetInstance().matView * Camera::GetInstance().matProj;
+	D3DXMATRIX retMat = matrix * Camera::GetInstance().matWorld * Camera::GetInstance().matView * Camera::GetInstance().matProj;
 	pLine->DrawTransform(v, 2, &retMat, color);
 	pLine->End();
 }

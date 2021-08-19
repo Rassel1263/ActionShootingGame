@@ -80,10 +80,13 @@ void PlayerDodgeRoll::EnterState(Player* obj)
 
 	obj->behavior = Player::PlayerBehavior::ROLL;
 
+	holdWeapon = obj->holdWeapon;
+	obj->holdWeapon = false;
+
 	D3DXVECTOR2 dir = { 0, 0 };
 	D3DXVec2Normalize(&dir, &obj->moveDir);
 
-	obj->SetUnitDir(obj->moveDir);
+	obj->SetNotHoldGunUnitDir(obj->moveDir);
 
 	obj->velocity = dir * 250;
 	obj->GetNowSprite().Reset();
@@ -100,5 +103,34 @@ void PlayerDodgeRoll::UpdateState(Player* obj, float deltaTime)
 
 void PlayerDodgeRoll::ExitState(Player* obj)
 {
+	obj->holdWeapon = holdWeapon;
+	holdWeapon = false;
 }
 
+PlayerShoot* PlayerShoot::GetInstance()
+{
+	static PlayerShoot instance;
+	return &instance;
+}
+
+void PlayerShoot::EnterState(Player* obj)
+{
+	if (obj->nowState)
+		obj->nowState->ExitState(obj);
+
+	obj->nowState = this;
+
+	obj->gun->gunSpr.Reset();
+}
+
+void PlayerShoot::UpdateState(Player* obj, float deltaTime)
+{
+	if (!obj->gun->gunSpr.bAnimation)
+	{
+
+	}
+}
+
+void PlayerShoot::ExitState(Player* obj)
+{
+}

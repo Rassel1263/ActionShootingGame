@@ -24,5 +24,6 @@ public:
 	bool KeyDown(int nKey);
 	bool KeyUp(int nKey);
 	bool KeyPress(int nKey);
+	D3DXVECTOR2 GetFixedMousePos();
 };
 
