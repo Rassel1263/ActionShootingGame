@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns:atg="http://atg.xbox.com" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{8e114980-c1a3-4ada-ad7c-83caadf5daeb}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="DXUT">
+      <UniqueIdentifier>{a43c5c25-0e86-4a20-b64a-883785ff74fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{d0fba102-3dca-4e1e-8f15-0bab03caab3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapToolScene">
+      <UniqueIdentifier>{f55f1379-6af6-433a-a541-f249c7bdad40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{6aff4687-4fd4-4bb6-b43e-ab8ae9350474}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapToolScene\Scene">
+      <UniqueIdentifier>{a5900e58-f60d-4976-ae5f-48317b2a25b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapToolScene\Object">
+      <UniqueIdentifier>{01d1516f-8878-4826-96d8-bf5d4ebd12c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Manager">
+      <UniqueIdentifier>{78e29640-fb26-445d-9af4-bcde02e93c89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene">
+      <UniqueIdentifier>{191da057-46c2-4341-b15e-6c2f1dcf7b72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene\Object">
+      <UniqueIdentifier>{538ab9c4-1e6d-44de-936c-d075d37c571c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene\Scene">
+      <UniqueIdentifier>{a28997bc-5680-4713-a2b1-af806b7b36d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene\Object\Unit">
+      <UniqueIdentifier>{da62614d-49aa-47f3-b053-adf0c4497da8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene\Object\Unit\Player">
+      <UniqueIdentifier>{72569e5c-9235-43a0-ad4a-e36f21accce1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene\Object\Unit\Enemy">
+      <UniqueIdentifier>{d325d689-7229-41c1-8ead-95e4776a4e79}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DXUT\Optional\directx.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionShootingGame.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="MapToolScene.cpp">
+      <Filter>MapToolScene\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="MapToolBlock.cpp">
+      <Filter>MapToolScene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MapToolMouse.cpp">
+      <Filter>MapToolScene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManager.cpp">
+      <Filter>Scene\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MapManager.cpp">
+      <Filter>Scene\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>GameScene\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameScene\Object\Unit\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp" />
+    <ClCompile Include="Unit.cpp">
+      <Filter>GameScene\Object\Unit</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Camera.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Header.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="MapToolScene.h">
+      <Filter>MapToolScene\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="MapToolBlock.h">
+      <Filter>MapToolScene\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="MapToolMouse.h">
+      <Filter>MapToolScene\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManager.h">
+      <Filter>Scene\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="MapManager.h">
+      <Filter>Scene\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>GameScene\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameScene\Object\Unit\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CState.h" />
+    <ClInclude Include="PlayerState.h" />
+    <ClInclude Include="Unit.h">
+      <Filter>GameScene\Object\Unit</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CLInclude Include="resource.h">
+      <Filter>Resource Files</Filter>
+    </CLInclude>
+    <ResourceCompile Include="ActionShootingGame.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
