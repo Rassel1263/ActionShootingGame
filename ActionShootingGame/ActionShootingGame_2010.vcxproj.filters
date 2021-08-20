@@ -105,7 +105,6 @@
     <ClCompile Include="GameScene.cpp">
       <Filter>GameScene\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="Unit.cpp">
       <Filter>GameScene\Object\Unit</Filter>
     </ClCompile>
@@ -113,11 +112,32 @@
     <ClCompile Include="Player.cpp">
       <Filter>GameScene\Object\Unit\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Gun.cpp">
+    <ClCompile Include="CGun.cpp">
       <Filter>GameScene\Object\Unit\Weapon\Gun</Filter>
     </ClCompile>
     <ClCompile Include="CBullet.cpp">
       <Filter>GameScene\Object\Unit\Weapon\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicBullet.cpp">
+      <Filter>GameScene\Object\Unit\Weapon\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="TestPixel.cpp">
+      <Filter>GameScene\Object\Unit\Weapon\Gun</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>GameScene\Object\Unit\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemy.cpp">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletKim.cpp">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyState.cpp">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="HandGun.cpp">
+      <Filter>GameScene\Object\Unit\Weapon\Gun</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -173,16 +193,36 @@
       <Filter>GameScene\Object\Unit\Player</Filter>
     </ClInclude>
     <ClInclude Include="CState.h" />
-    <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Unit.h">
       <Filter>GameScene\Object\Unit</Filter>
     </ClInclude>
     <ClInclude Include="Mouse.h" />
-    <ClInclude Include="Gun.h">
+    <ClInclude Include="CGun.h">
       <Filter>GameScene\Object\Unit\Weapon\Gun</Filter>
     </ClInclude>
     <ClInclude Include="CBullet.h">
       <Filter>GameScene\Object\Unit\Weapon\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicBullet.h">
+      <Filter>GameScene\Object\Unit\Weapon\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="TestPixel.h">
+      <Filter>GameScene\Object\Unit\Weapon\Gun</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
+      <Filter>GameScene\Object\Unit\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemy.h">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletKim.h">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyState.h">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="HandGun.h">
+      <Filter>GameScene\Object\Unit\Weapon\Gun</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

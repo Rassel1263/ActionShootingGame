@@ -379,13 +379,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ActionShootingGame.cpp" />
+    <ClCompile Include="BasicBullet.cpp" />
+    <ClCompile Include="BulletKim.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CBullet.cpp" />
+    <ClCompile Include="CEnemy.cpp" />
     <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="EnemyState.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="CGun.cpp" />
+    <ClCompile Include="HandGun.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="MapToolBlock.cpp" />
@@ -397,20 +402,26 @@
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="TestPixel.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BasicBullet.h" />
+    <ClInclude Include="BulletKim.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CBullet.h" />
+    <ClInclude Include="CEnemy.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CState.h" />
+    <ClInclude Include="EnemyState.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameScene.h" />
-    <ClInclude Include="Gun.h" />
+    <ClInclude Include="CGun.h" />
+    <ClInclude Include="HandGun.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="MapManager.h" />
@@ -425,6 +436,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="TestPixel.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Unit.h" />
     <ResourceCompile Include="ActionShootingGame.rc" />

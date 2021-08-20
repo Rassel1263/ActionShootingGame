@@ -4,11 +4,9 @@ Unit::Unit(D3DXVECTOR2 pos)
 {
 	this->pos = pos;
 	renderInfo.pivot = { 0.5, 0};
-
-	unitDir = Unit::DIR::IDLE_DIR_0;
+	holdWeapon = true;
 
 	shadow.LoadAll(L"Assets/Sprites/Unit/shadow.png");
-	nowScene->obm.AddObject(gun = new Gun(this));
 
 	layer = 1;
 }
@@ -16,25 +14,20 @@ Unit::Unit(D3DXVECTOR2 pos)
 void Unit::Update(float deltaTime)
 {
 	Object::Update(deltaTime);
-	sprites.at(unitDir).Update(deltaTime);
 }
 
 void Unit::Render()
 {
-	shadow.Render(RenderInfo{ D3DXVECTOR2(pos.x, pos.y + 1)});
-
-	renderInfo.pos = pos;
-	sprites.at(unitDir).Render(renderInfo);
-
 	Object::Render();
 }
 
-void Unit::SetUnitInfo(int hp, float speed, float attackPower, float attackSpeed, std::wstring team)
+void Unit::SetUnitInfo(int hp, float speed, float attackPower, float attackSpeed, bool holdWeapon, std::wstring team)
 {
 	bRigidbody = true;
-
 	ability = { hp, speed, attackPower, attackSpeed };
+	this->holdWeapon = holdWeapon;
 	this->team = team;
+	nowScene->obm.AddObject(gun = new HandGun(this));
 }
 
 void Unit::CreateCollider(D3DXVECTOR2 min, D3DXVECTOR2 max)
@@ -45,8 +38,11 @@ void Unit::CreateCollider(D3DXVECTOR2 min, D3DXVECTOR2 max)
 	bodies.push_back(Collider(this, team, &aabb));
 }
 
-Sprite& Unit::GetNowSprite()
+float Unit::GetDistanceFromTarget(D3DXVECTOR2 targetPos)
 {
-	return sprites.at(unitDir);
+	D3DXVECTOR2 distance = targetPos - pos;
+
+	return distance.x* distance.x + distance.y * distance.y;
 }
+
 

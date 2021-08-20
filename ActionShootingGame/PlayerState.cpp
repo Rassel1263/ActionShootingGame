@@ -23,6 +23,12 @@ void PlayerIdle::UpdateState(Player* obj, float deltaTime)
 		PlayerWalk::GetInstance()->EnterState(obj);
 		return;
 	}
+
+	if (Input::GetInstance().KeyDown(VK_LBUTTON))
+	{
+		PlayerShoot::GetInstance()->EnterState(obj);
+		return;
+	}
 }
 
 void PlayerIdle::ExitState(Player* obj)
@@ -59,6 +65,12 @@ void PlayerWalk::UpdateState(Player* obj, float deltaTime)
 		PlayerIdle::GetInstance()->EnterState(obj);
 		return;
 	}
+
+	if (Input::GetInstance().KeyDown(VK_LBUTTON))
+	{
+		PlayerShoot::GetInstance()->EnterState(obj);
+		return;
+	}
 }
 
 void PlayerWalk::ExitState(Player* obj)
@@ -86,7 +98,7 @@ void PlayerDodgeRoll::EnterState(Player* obj)
 	D3DXVECTOR2 dir = { 0, 0 };
 	D3DXVec2Normalize(&dir, &obj->moveDir);
 
-	obj->SetNotHoldGunUnitDir(obj->moveDir);
+	obj->SetNotHoldGunPlayerDir(obj->moveDir);
 
 	obj->velocity = dir * 250;
 	obj->GetNowSprite().Reset();
@@ -120,6 +132,10 @@ void PlayerShoot::EnterState(Player* obj)
 
 	obj->nowState = this;
 
+	D3DXVECTOR2 mouseDir = nowScene->mouse->pos;
+	D3DXVec2Normalize(&mouseDir, &mouseDir);
+
+	obj->gun->Shoot(nowScene->mouse->GetMouseAngleToDegree(false, obj->gun->pos - Camera::GetInstance().cameraPos), 1, obj->team);
 	obj->gun->gunSpr.Reset();
 }
 
@@ -127,7 +143,8 @@ void PlayerShoot::UpdateState(Player* obj, float deltaTime)
 {
 	if (!obj->gun->gunSpr.bAnimation)
 	{
-
+		PlayerIdle::GetInstance()->EnterState(obj);
+		return;
 	}
 }
 

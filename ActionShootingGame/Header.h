@@ -47,13 +47,20 @@ struct MapGroup
 
 #include "CState.h"
 
-#include "Gun.h"
+#include "TestPixel.h"
+#include "CGun.h"
+#include "HandGun.h"
 
 #include "CBullet.h"
+#include "BasicBullet.h"
 
 #include "Unit.h"
 #include "Player.h"
 #include "PlayerState.h"
+
+#include "CEnemy.h"
+#include "BulletKim.h"
+#include "EnemyState.h"
 
 #include "Mouse.h"
 

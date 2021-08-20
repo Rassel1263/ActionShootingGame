@@ -26,3 +26,25 @@ void Mouse::Render()
 
 	Object::Render();
 }
+
+D3DXVECTOR2 Mouse::GetMouseDir()
+{
+	D3DXVECTOR2 mouseDir = { 0, 0 };
+	D3DXVec2Normalize(&mouseDir, &pos);
+	return mouseDir;
+}
+
+float Mouse::GetMouseAngleToRadian(bool reverseY, D3DXVECTOR2 centerPos)
+{
+	D3DXVECTOR2 mousePos = pos - centerPos;
+	D3DXVec2Normalize(&mousePos, &mousePos);
+	float radian = atan2((reverseY) ? -mousePos.y : mousePos.y, mousePos.x);
+
+	return radian;
+}
+
+float Mouse::GetMouseAngleToDegree(bool reverseY, D3DXVECTOR2 centerPos)
+{
+	return D3DXToDegree(GetMouseAngleToRadian(reverseY, centerPos));
+}
+
