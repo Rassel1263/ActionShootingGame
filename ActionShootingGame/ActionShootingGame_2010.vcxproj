@@ -375,6 +375,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="Assets\MapData\GameScene1\map00.dat" />
+    <None Include="Assets\MapData\GameScene1\map01.dat" />
     <None Include="DXUT\Optional\directx.ico" />
   </ItemGroup>
   <ItemGroup>

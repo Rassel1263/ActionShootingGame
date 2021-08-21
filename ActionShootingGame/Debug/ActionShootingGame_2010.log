@@ -1,2 +1,6 @@
-﻿  HandGun.cpp
+﻿  CGun.cpp
+C:\Users\lomil\Desktop\Git\ActionShootingGame\ActionShootingGame\CGun.cpp(11,25): warning C4100: 'deltaTime': 참조되지 않은 정식 매개 변수입니다.
+C:\Users\lomil\Desktop\Git\ActionShootingGame\ActionShootingGame\CGun.cpp(21,24): warning C4458: 'angle' 선언은 클래스 멤버를 숨깁니다.
+C:\Users\lomil\Desktop\Git\ActionShootingGame\ActionShootingGame\CGun.h(9,27): message : 'CGun::angle' 선언을 참조하십시오.
+C:\Users\lomil\Desktop\Git\ActionShootingGame\ActionShootingGame\CGun.cpp(21,37): warning C4100: 'damage': 참조되지 않은 정식 매개 변수입니다.
   ActionShootingGame_2010.vcxproj -> C:\Users\lomil\Desktop\Git\ActionShootingGame\ActionShootingGame\Debug\ActionShootingGame.exe

@@ -13,5 +13,6 @@ public:
 	virtual void Render() override;
 
 	void BlockCheck(std::string blockNum, RenderInfo ri);
+	void Collocate();
 };
 

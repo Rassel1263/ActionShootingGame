@@ -4,11 +4,12 @@ CGun::CGun(Unit* owner)
 {
 	this->owner = owner;
 	gunRI.pivot = { 0, 0.3 };
+
+	layer = owner->layer;
 }
 
 void CGun::Update(float deltaTime)
 {
-	gunSpr.Update(deltaTime);
 }
 
 void CGun::Render()

@@ -1,10 +1,12 @@
 #include "Header.h"
 #include "Player.h"
 
-Player::Player() : Unit(D3DXVECTOR2(0, 0))
+Player::Player(D3DXVECTOR2 pos) : Unit(pos)
 {
+	this->spawnPos = pos;
+
 	ImageSettings();
-	SetUnitInfo(6, 100, 1, 0.2f, false, L"ally");
+	SetUnitInfo(6, 100, 1, 0.2f, true, L"ally");
 	CreateCollider(D3DXVECTOR2(-7, 0), D3DXVECTOR2(7, 10));
 
 	playerDir = PlayerDir::IDLE_DIR_0;
@@ -15,7 +17,11 @@ Player::Player() : Unit(D3DXVECTOR2(0, 0))
 
 void Player::Update(float deltaTime)
 {
-	Camera::GetInstance().destCameraPos = pos;
+	if(pos.x > spawnPos.x - 70 && pos.x < spawnPos.x + 70)
+		Camera::GetInstance().destCameraPos.x = pos.x;
+
+	if (pos.y > spawnPos.y - 170 && pos.y < spawnPos.y + 170)
+		Camera::GetInstance().destCameraPos.y = pos.y;
 
 	if (nowState)
 		nowState->UpdateState(this, deltaTime);

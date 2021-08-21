@@ -8,6 +8,7 @@ MapToolMouse::MapToolMouse()
 	bodies.push_back(Collider(this, L"MapToolMouse", &aabb));
 
 	spr.LoadAll(L"Assets/Sprites/tile/00.png");
+	bCamera = false;
 	spr.bCamera = false;
 
 	layer = 1000;
@@ -50,7 +51,6 @@ void MapToolMouse::Update(float deltaTime)
 			rotateNum = 0;
 	}
 
-
 	PutBlock(deltaTime);
 
 	pos.x = Input::GetInstance().mousePos.x / 4 - Game::GetInstance().screenWidth / 8;
@@ -62,6 +62,8 @@ void MapToolMouse::Update(float deltaTime)
 void MapToolMouse::Render()
 {
 	spr.Render(RenderInfo{ pos, D3DXVECTOR2(1, 1), D3DXVECTOR2(0.5f, 0.5f), (float)rotateNum * 90 });
+
+	
 
 	Object::Render();
 }

@@ -34,6 +34,8 @@ public:
 class PlayerShoot : public CState<Player>
 {
 public:
+	float timer = 0.0f;
+
 	static PlayerShoot* GetInstance();
 
 	virtual void EnterState(Player* obj) override;

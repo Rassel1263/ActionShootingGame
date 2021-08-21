@@ -12,6 +12,23 @@ void CEnemy::Update(float deltaTime)
 {
 	SetEnemyDir();
 
+	if (CheckDistanceToPlayer(playerDetectionRange))
+	{
+		restTimer += deltaTime;
+
+		if(restTimer > ability.attackSpeed)
+			gun->gunSpr.Update(deltaTime);
+
+		if (!gun->gunSpr.bAnimation)
+		{
+			float angle = D3DXToDegree(atan2(GetDirectionFromPlayer().y, GetDirectionFromPlayer().x));
+
+			restTimer = 0.0f;
+			gun->Shoot(angle, ability.attackPower, team);
+			gun->gunSpr.Reset();
+		}
+	}
+
 	if (nowState)
 		nowState->UpdateState(this, deltaTime);
 
@@ -29,7 +46,7 @@ void CEnemy::Render()
 
 bool CEnemy::Move(float deltaTime)
 {
-	if (GetDistanceFromTarget(static_cast<GameScene*>(nowScene)->player->pos) > playerDetectionRange * playerDetectionRange)
+	if (!CheckDistanceToPlayer(stopRange))
 	{
 		pos += GetDirectionFromPlayer() * ability.speed * deltaTime;
 		return true;
@@ -53,7 +70,7 @@ void CEnemy::SetEnemyDir()
 	{
 		if (dir.y > 0.6) enemyDir = EnemyDir::WALK_UP;
 		else
-			(dir.x > 0) ? enemyDir = EnemyDir::WALK_RIGHT: enemyDir = EnemyDir::WALK_LEFT;
+			(dir.x > 0) ? enemyDir = EnemyDir::WALK_RIGHT : enemyDir = EnemyDir::WALK_LEFT;
 	}
 }
 
@@ -69,13 +86,21 @@ void CEnemy::SetGunPos()
 	gun->pos = pos + D3DXVECTOR2(5 * gunScale, 7);
 }
 
+bool CEnemy::CheckDistanceToPlayer(float detectionRange)
+{
+	return GetDistanceFromTarget(static_cast<GameScene*>(nowScene)->player->pos) < detectionRange * detectionRange;
+}
+
 D3DXVECTOR2 CEnemy::GetDirectionFromPlayer()
 {
-	D3DXVECTOR2 distance = static_cast<GameScene*>(nowScene)->player->pos - pos;
+	if (nowScene->player == NULL)
+		return D3DXVECTOR2(0, 0);
+
+	D3DXVECTOR2 distance = nowScene->player->pos - pos;
 	D3DXVec2Normalize(&distance, &distance);
 
 	return distance;
-;}
+}
 
 Sprite& CEnemy::GetNowSprite()
 {

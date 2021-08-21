@@ -17,12 +17,15 @@ Mouse::Mouse()
 void Mouse::Update(float deltaTime)
 {
 	pos = Input::GetInstance().GetFixedMousePos();
+
+	
 }
 
 void Mouse::Render()
 {
 	mouseRI.pos = pos;
 	mouseSpr.Render(mouseRI);
+	
 
 	Object::Render();
 }

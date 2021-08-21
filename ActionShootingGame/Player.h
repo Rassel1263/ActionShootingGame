@@ -27,10 +27,12 @@ public:
 		ROLL
 	} behavior;
 
+	D3DXVECTOR2 spawnPos = { 0, 0 };
+
 	std::map<PlayerDir, Sprite> playerSprites;
 	CState<Player>* nowState = NULL;
 
-	Player();
+	Player(D3DXVECTOR2 pos);
 
 	virtual void Update(float deltaTime) override;
 	virtual void Render() override;

@@ -101,7 +101,7 @@ void Game::Update(float deltaTime)
 void Game::Render()
 {
 	pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
-		D3DCOLOR_XRGB(125, 125, 0), 1.0f, 0);
+		D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
 
 	if (SUCCEEDED(pd3dDevice->BeginScene()))
 	{

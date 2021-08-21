@@ -3,7 +3,7 @@
 class MapToolMouse : public Object
 {
 public:
-	float cameraSpeed = 50;
+	float cameraSpeed = 120;
 	float inputTimer = 0.0f;
 	int  rotateNum = 0;
 

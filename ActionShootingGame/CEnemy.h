@@ -23,6 +23,8 @@ public:
 	std::map<EnemyDir, Sprite> enemySprites;
 
 	float playerDetectionRange = 0.0f;
+	float stopRange = 0.0f;
+	float restTimer = 0.0f;
 
 	CEnemy(D3DXVECTOR2 pos);
 
@@ -31,6 +33,7 @@ public:
 	bool Move(float deltaTime);
 	void SetEnemyDir();
 	void SetGunPos();
+	bool CheckDistanceToPlayer(float detectionRange);
 	D3DXVECTOR2 GetDirectionFromPlayer();
 	virtual Sprite& GetNowSprite() override;
 };

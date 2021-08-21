@@ -53,10 +53,19 @@
     <Filter Include="GameScene\Object\Unit\Weapon\Gun">
       <UniqueIdentifier>{e2ab2ef0-a323-409b-b419-208a2f563fb3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MapData">
+      <UniqueIdentifier>{675a70f1-f252-4554-a070-73b15478ff55}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Assets\MapData\GameScene1\map00.dat">
+      <Filter>MapData</Filter>
+    </None>
+    <None Include="Assets\MapData\GameScene1\map01.dat">
+      <Filter>MapData</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

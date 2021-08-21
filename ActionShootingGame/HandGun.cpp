@@ -10,7 +10,6 @@ HandGun::HandGun(Unit* owner) : CGun(owner)
 
 void HandGun::Update(float deltaTime)
 {
-	CGun::Update(deltaTime);
 }
 
 void HandGun::Render()
