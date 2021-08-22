@@ -2,7 +2,7 @@
 
 CEnemy::CEnemy(D3DXVECTOR2 pos) : Unit(pos)
 {
-	enemyDir = EnemyDir::IDLE_LEFT;
+	enemyImage = EnemyImage::IDLE_LEFT;
 	behavior = EnemyBehavior::IDLE;
 
 	EnemyIdle::GetInstance()->EnterState(this);
@@ -10,24 +10,11 @@ CEnemy::CEnemy(D3DXVECTOR2 pos) : Unit(pos)
 
 void CEnemy::Update(float deltaTime)
 {
-	SetEnemyDir();
+	SetEnemyImage();
 
-	if (CheckDistanceToPlayer(playerDetectionRange))
-	{
-		restTimer += deltaTime;
-
-		if(restTimer > ability.attackSpeed)
-			gun->gunSpr.Update(deltaTime);
-
-		if (!gun->gunSpr.bAnimation)
-		{
-			float angle = D3DXToDegree(atan2(GetDirectionFromPlayer().y, GetDirectionFromPlayer().x));
-
-			restTimer = 0.0f;
-			gun->Shoot(angle, ability.attackPower, team);
-			gun->gunSpr.Reset();
-		}
-	}
+	if (behavior != EnemyBehavior::HIT)
+		if (CheckDistanceToPlayer(playerDetectionRange))
+			EnemyAttack(deltaTime);
 
 	if (nowState)
 		nowState->UpdateState(this, deltaTime);
@@ -44,6 +31,20 @@ void CEnemy::Render()
 	Unit::Render();
 }
 
+void CEnemy::OnCollision(Collider& coli)
+{
+	if (coli.tag == L"allyBullet")
+	{
+		D3DXVECTOR2 dir = pos - coli.obj->pos;
+		D3DXVec2Normalize(&dir, &dir);
+
+		force += D3DXVECTOR2(dir.x, dir.y) * 10;
+
+		if (behavior != EnemyBehavior::HIT)
+			behavior = EnemyBehavior::HIT;
+	}
+}
+
 bool CEnemy::Move(float deltaTime)
 {
 	if (!CheckDistanceToPlayer(stopRange))
@@ -55,22 +56,27 @@ bool CEnemy::Move(float deltaTime)
 	return false;
 }
 
-void CEnemy::SetEnemyDir()
+void CEnemy::SetEnemyImage()
 {
 	D3DXVECTOR2 dir = GetDirectionFromPlayer();
 
 	if (behavior == EnemyBehavior::IDLE)
 	{
-		if (dir.y > 0.6) enemyDir = EnemyDir::IDLE_UP;
+		if (dir.y > 0.6) enemyImage = EnemyImage::IDLE_UP;
 		else
-			(dir.x > 0) ? enemyDir = EnemyDir::IDLE_RIGHT : enemyDir = EnemyDir::IDLE_LEFT;
+			(dir.x > 0) ? enemyImage = EnemyImage::IDLE_RIGHT : enemyImage = EnemyImage::IDLE_LEFT;
 	}
 
 	if (behavior == EnemyBehavior::WALK)
 	{
-		if (dir.y > 0.6) enemyDir = EnemyDir::WALK_UP;
+		if (dir.y > 0.6) enemyImage = EnemyImage::WALK_UP;
 		else
-			(dir.x > 0) ? enemyDir = EnemyDir::WALK_RIGHT : enemyDir = EnemyDir::WALK_LEFT;
+			(dir.x > 0) ? enemyImage = EnemyImage::WALK_RIGHT : enemyImage = EnemyImage::WALK_LEFT;
+	}
+
+	if (behavior == EnemyBehavior::HIT)
+	{
+		enemyImage = EnemyImage::HIT;
 	}
 }
 
@@ -104,5 +110,22 @@ D3DXVECTOR2 CEnemy::GetDirectionFromPlayer()
 
 Sprite& CEnemy::GetNowSprite()
 {
-	return enemySprites.at(enemyDir);
+	return enemySprites.at(enemyImage);
+}
+
+void CEnemy::EnemyAttack(float deltaTime)
+{
+	restTimer += deltaTime;
+
+	if (restTimer > ability.attackSpeed)
+		gun->gunSpr.Update(deltaTime);
+
+	if (!gun->gunSpr.bAnimation)
+	{
+		float angle = D3DXToDegree(atan2(GetDirectionFromPlayer().y, GetDirectionFromPlayer().x));
+
+		restTimer = 0.0f;
+		gun->Shoot(angle, ability.attackPower, team);
+		gun->gunSpr.Reset();
+	}
 }

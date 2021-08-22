@@ -39,6 +39,7 @@ public:
 
 	virtual void ImageSettings() override;
 	virtual Sprite& GetNowSprite() override;
+	void SpawnEnemy();
 	void SetNotHoldGunPlayerDir(D3DXVECTOR2 dir);
 	void SetHoldGunPlayerDir(D3DXVECTOR2 dir);
 	bool Move(float deltaTime);

@@ -25,7 +25,7 @@ void Sprite::LoadAll(std::wstring filePath, float aniMaxTime, bool bAniLoop)
         if (auto texture = TextureManager::GetInstance().GetTexture(filePath))
             textures.push_back(texture);
         else
-            textures.push_back(TextureManager::GetInstance().GetTexture(L"ActShtGame.jpg"));
+            textures.push_back(TextureManager::GetInstance().GetTexture(L"banana.bmp"));
     }
 
     this->aniMaxTime = aniMaxTime;

@@ -132,10 +132,7 @@ void PlayerShoot::EnterState(Player* obj)
 
 	obj->nowState = this;
 
-	D3DXVECTOR2 mouseDir = nowScene->mouse->pos;
-	D3DXVec2Normalize(&mouseDir, &mouseDir);
-
-	obj->gun->Shoot(nowScene->mouse->GetMouseAngleToDegree(false, obj->gun->pos - Camera::GetInstance().cameraPos), 1, obj->team);
+	obj->gun->Shoot(nowScene->mouse->GetMouseAngleToDegree(false, obj->pos), 1, obj->team);
 	obj->gun->gunSpr.scene = 1;
 }
 

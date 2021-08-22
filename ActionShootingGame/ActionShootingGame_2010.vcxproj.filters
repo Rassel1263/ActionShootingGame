@@ -56,6 +56,9 @@
     <Filter Include="MapData">
       <UniqueIdentifier>{675a70f1-f252-4554-a070-73b15478ff55}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameScene\Object\Effect">
+      <UniqueIdentifier>{c84544de-4ca9-4e4e-9a97-0a378525ac06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -136,17 +139,29 @@
     <ClCompile Include="PlayerState.cpp">
       <Filter>GameScene\Object\Unit\Player</Filter>
     </ClCompile>
-    <ClCompile Include="CEnemy.cpp">
-      <Filter>GameScene\Object\Unit\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="BulletKim.cpp">
-      <Filter>GameScene\Object\Unit\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyState.cpp">
       <Filter>GameScene\Object\Unit\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="HandGun.cpp">
       <Filter>GameScene\Object\Unit\Weapon\Gun</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ShotgunKin.cpp">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletKim.cpp">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemy.cpp">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ShotGun.cpp">
+      <Filter>GameScene\Object\Unit\Weapon\Gun</Filter>
+    </ClCompile>
+    <ClCompile Include="CEffect.cpp">
+      <Filter>GameScene\Object\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -221,17 +236,29 @@
     <ClInclude Include="PlayerState.h">
       <Filter>GameScene\Object\Unit\Player</Filter>
     </ClInclude>
-    <ClInclude Include="CEnemy.h">
-      <Filter>GameScene\Object\Unit\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="BulletKim.h">
-      <Filter>GameScene\Object\Unit\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyState.h">
       <Filter>GameScene\Object\Unit\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="HandGun.h">
       <Filter>GameScene\Object\Unit\Weapon\Gun</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ShotgunKin.h">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletKim.h">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemy.h">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ShotGun.h">
+      <Filter>GameScene\Object\Unit\Weapon\Gun</Filter>
+    </ClInclude>
+    <ClInclude Include="CEffect.h">
+      <Filter>GameScene\Object\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

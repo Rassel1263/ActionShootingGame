@@ -27,7 +27,6 @@ void Unit::SetUnitInfo(int hp, float speed, float attackPower, float attackSpeed
 	ability = { hp, speed, attackPower, attackSpeed };
 	this->holdWeapon = holdWeapon;
 	this->team = team;
-	nowScene->obm.AddObject(gun = new HandGun(this));
 }
 
 void Unit::CreateCollider(D3DXVECTOR2 min, D3DXVECTOR2 max)

@@ -22,6 +22,12 @@ void EnemyIdle::UpdateState(CEnemy* obj, float deltaTime)
 		EnemyWalk::GetInstance()->EnterState(obj);
 		return;
 	}
+
+	if (obj->behavior == CEnemy::EnemyBehavior::HIT)
+	{
+		EnemyHit::GetInstance()->EnterState(obj);
+		return;
+	}
 }
 
 void EnemyIdle::ExitState(CEnemy* obj)
@@ -42,21 +48,55 @@ void EnemyWalk::EnterState(CEnemy* obj)
 	obj->nowState = this;
 	obj->behavior = CEnemy::EnemyBehavior::WALK;
 
-	obj->SetEnemyDir();
+	obj->SetEnemyImage();
 	obj->GetNowSprite().Reset();
 }
 
 void EnemyWalk::UpdateState(CEnemy* obj, float deltaTime)
 {
-	std::cout << obj->GetNowSprite().scene << std::endl;
-
 	if (!obj->Move(deltaTime))
+	{
+		EnemyIdle::GetInstance()->EnterState(obj);
+		return;
+	}
+
+	if (obj->behavior == CEnemy::EnemyBehavior::HIT)
+	{
+		EnemyHit::GetInstance()->EnterState(obj);
+		return;
+	}
+}
+
+void EnemyWalk::ExitState(CEnemy* obj)
+{
+}
+
+EnemyHit* EnemyHit::GetInstance()
+{
+	static EnemyHit instance;
+	return &instance;
+}
+
+void EnemyHit::EnterState(CEnemy* obj)
+{
+	if (obj->nowState)
+		obj->nowState->ExitState(obj);
+
+	obj->nowState = this;
+
+	obj->SetEnemyImage();
+	obj->GetNowSprite().Reset();
+}
+
+void EnemyHit::UpdateState(CEnemy* obj, float deltaTime)
+{
+	if (!obj->GetNowSprite().bAnimation)
 	{
 		EnemyIdle::GetInstance()->EnterState(obj);
 		return;
 	}
 }
 
-void EnemyWalk::ExitState(CEnemy* obj)
+void EnemyHit::ExitState(CEnemy* obj)
 {
 }

@@ -7,6 +7,8 @@ Player::Player(D3DXVECTOR2 pos) : Unit(pos)
 
 	ImageSettings();
 	SetUnitInfo(6, 100, 1, 0.2f, true, L"ally");
+	nowScene->obm.AddObject(gun = new HandGun(this));
+
 	CreateCollider(D3DXVECTOR2(-7, 0), D3DXVECTOR2(7, 10));
 
 	playerDir = PlayerDir::IDLE_DIR_0;
@@ -17,6 +19,10 @@ Player::Player(D3DXVECTOR2 pos) : Unit(pos)
 
 void Player::Update(float deltaTime)
 {
+	if (Input::GetInstance().KeyDown('Z'))
+		nowScene->obm.AddObject(new CEffect(L"Spawn/before", pos, D3DXVECTOR2(1, 1), SpawnEnemy));
+
+
 	if(pos.x > spawnPos.x - 70 && pos.x < spawnPos.x + 70)
 		Camera::GetInstance().destCameraPos.x = pos.x;
 
@@ -31,7 +37,7 @@ void Player::Update(float deltaTime)
 		SetHoldGunPlayerDir(nowScene->mouse->GetMouseDir());
 		float gunScale = (nowScene->mouse->GetMouseDir().x > 0) ? 1 : -1;
 
-		gun->gunRI.rotate = nowScene->mouse->GetMouseAngleToDegree(true);
+		gun->gunRI.rotate = nowScene->mouse->GetMouseAngleToDegree(true, pos);
 		gun->gunRI.scale.y = gunScale;
 		gun->pos = pos + D3DXVECTOR2(5 * gunScale, 7);
 	}
@@ -76,6 +82,11 @@ void Player::ImageSettings()
 Sprite& Player::GetNowSprite()
 {
 	return playerSprites.at(playerDir);
+}
+
+void Player::SpawnEnemy()
+{
+	nowScene->obm.AddObject(new ShotgunKin(pos));
 }
 
 void Player::SetNotHoldGunPlayerDir(D3DXVECTOR2 dir)

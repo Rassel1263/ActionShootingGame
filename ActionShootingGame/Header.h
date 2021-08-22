@@ -16,6 +16,8 @@
 #include <map>
 #include <fstream>
 #include <filesystem>
+#include <functional>
+#include <random>
 
 typedef std::vector<std::vector<std::string>> StringGroupGroup;
 
@@ -50,6 +52,7 @@ struct MapGroup
 #include "TestPixel.h"
 #include "CGun.h"
 #include "HandGun.h"
+#include "ShotGun.h"
 
 #include "CBullet.h"
 #include "BasicBullet.h"
@@ -60,7 +63,11 @@ struct MapGroup
 
 #include "CEnemy.h"
 #include "BulletKim.h"
+#include "ShotgunKin.h"
 #include "EnemyState.h"
+#include "EnemyManager.h"
+
+#include "CEffect.h"
 
 #include "Mouse.h"
 

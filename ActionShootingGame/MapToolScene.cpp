@@ -6,7 +6,7 @@ void MapToolScene::Init()
 	gameScene = false;
 	obm.AddObject(new MapToolMouse());
 
-	obm.AddObject(mapManager = new MapManager(L"GameScene1/map00", L"GameScene1/map01"));
+	obm.AddObject(mapManager = new MapManager(L"GameScene1/room2/map00", L"GameScene1/room2/map01"));
 
 	obm.AddObject(new MapToolBlock(L"00", D3DXVECTOR2(-218, 0)));
 	obm.AddObject(new MapToolBlock(L"01", D3DXVECTOR2(-200, 0)));
@@ -28,6 +28,9 @@ void MapToolScene::Init()
 
 	obm.AddObject(new MapToolBlock(L"14", D3DXVECTOR2(-218, -72)));
 	obm.AddObject(new MapToolBlock(L"15", D3DXVECTOR2(-200, -72)));
+
+	obm.AddObject(new MapToolBlock(L"16", D3DXVECTOR2(-218, -90)));
+	obm.AddObject(new MapToolBlock(L"17", D3DXVECTOR2(-200, -90)));
 
 }
 

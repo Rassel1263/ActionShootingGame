@@ -2,8 +2,8 @@
 
 Mouse::Mouse()
 {
-	bCamera = false;
-	mouseSpr.bCamera = false;
+	//bCamera = false;
+	//mouseSpr.bCamera = false;
 	mouseSpr.LoadAll(L"Assets/Sprites/UI/MousePointer.png");
 
 	Collider::AABB aabb;
@@ -18,14 +18,13 @@ void Mouse::Update(float deltaTime)
 {
 	pos = Input::GetInstance().GetFixedMousePos();
 
-	
+	std::cout << pos.x << "   " << pos.y << std::endl;
 }
 
 void Mouse::Render()
 {
 	mouseRI.pos = pos;
 	mouseSpr.Render(mouseRI);
-	
 
 	Object::Render();
 }
@@ -33,7 +32,8 @@ void Mouse::Render()
 D3DXVECTOR2 Mouse::GetMouseDir()
 {
 	D3DXVECTOR2 mouseDir = { 0, 0 };
-	D3DXVec2Normalize(&mouseDir, &pos);
+	D3DXVec2Normalize(&mouseDir, &(pos - nowScene->player->pos));
+
 	return mouseDir;
 }
 

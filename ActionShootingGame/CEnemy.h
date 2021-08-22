@@ -2,7 +2,7 @@
 class CEnemy : public Unit
 {
 public:
-	enum class EnemyDir
+	enum class EnemyImage
 	{
 		IDLE_LEFT,
 		IDLE_RIGHT,
@@ -10,17 +10,20 @@ public:
 
 		WALK_LEFT,
 		WALK_RIGHT,
-		WALK_UP
-	} enemyDir;
+		WALK_UP,
+
+		HIT
+	} enemyImage;
 
 	enum class EnemyBehavior
 	{
 		IDLE,
-		WALK
+		WALK,
+		HIT
 	} behavior;
 
 	CState<CEnemy>* nowState = NULL;
-	std::map<EnemyDir, Sprite> enemySprites;
+	std::map<EnemyImage, Sprite> enemySprites;
 
 	float playerDetectionRange = 0.0f;
 	float stopRange = 0.0f;
@@ -30,11 +33,13 @@ public:
 
 	virtual void Update(float deltaTime) override;
 	virtual void Render() override;
+	virtual void OnCollision(Collider& coli) override;
+	virtual Sprite& GetNowSprite() override;
+	virtual void EnemyAttack(float deltaTime);
 	bool Move(float deltaTime);
-	void SetEnemyDir();
+	void SetEnemyImage();
 	void SetGunPos();
 	bool CheckDistanceToPlayer(float detectionRange);
 	D3DXVECTOR2 GetDirectionFromPlayer();
-	virtual Sprite& GetNowSprite() override;
 };
 

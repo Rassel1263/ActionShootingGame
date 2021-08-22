@@ -6,7 +6,7 @@ MapManager::MapManager(const std::wstring map1, const std::wstring map2)
 	bck_1_Group = FileManager::GetInstance().ReadFile(L"Assets/MapData/" + map1 + L".dat");
 	bck_2_Group = FileManager::GetInstance().ReadFile(L"Assets/MapData/" + map2 + L".dat");
 
-	sprites.resize(16);
+	sprites.resize(18);
 	
 	int size = sprites.size();
 	for (int i = 0; i < size; ++i)
@@ -28,6 +28,13 @@ void MapManager::Update(float deltaTime)
 {
 	if (nowScene->gameScene)
 	{
+		if (Input::GetInstance().KeyDown('X'))
+		{
+			Camera::GetInstance().cameraQuaken = { 100, 100 };
+
+			bck_1_Group = FileManager::GetInstance().ReadFile(L"Assets/MapData/GameScene1/room1/map00.dat");
+			bck_2_Group = FileManager::GetInstance().ReadFile(L"Assets/MapData/GameScene1/room1/map01.dat");
+		}
 	}
 	else
 	{
@@ -56,7 +63,6 @@ void MapManager::Render()
 			bck_1_Group.mapGroup[y][x] = mapString + rotateNum;
 
 			BlockCheck(mapString, tempInfo);
-
 		}
 	}
 
@@ -86,7 +92,7 @@ void MapManager::Render()
 void MapManager::BlockCheck(std::string mapString, RenderInfo ri)
 {
 	if (nowScene->gameScene)
-		if (mapString == "14")
+		if (mapString == "14" || mapString == "16" || mapString == "17")
 			return;
 
 	sprites.at(std::stoi(mapString)).Render(ri);
@@ -108,6 +114,12 @@ void MapManager::Collocate()
 
 			if (mapString == "14")
 				nowScene->obm.AddObject(nowScene->player = new Player(D3DXVECTOR2(x * 18, y * 18)));
+
+			if (mapString == "16")
+				nowScene->obm.AddObject(new EnemyManager());
+
+			if (mapString == "17")
+				nowScene->obm.AddObject(new EnemyManager());
 		}
 	}
 }

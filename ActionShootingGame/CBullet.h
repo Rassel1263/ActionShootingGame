@@ -6,6 +6,8 @@ public:
 	float damage = 0.0f;
 	float speed = 0.0f;
 
+	std::wstring team = L"";
+
 	Sprite bulletSpr;
 	RenderInfo bulletRI;
 
@@ -14,5 +16,6 @@ public:
 	virtual void Update(float deltaTime) override;
 	virtual void Render() override;
 	virtual void MoveBullet(float deltaTime);
+	virtual void OnCollision(Collider& coli) override;
 };
 

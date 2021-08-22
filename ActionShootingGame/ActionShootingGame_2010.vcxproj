@@ -385,8 +385,10 @@
     <ClCompile Include="BulletKim.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CBullet.cpp" />
+    <ClCompile Include="CEffect.cpp" />
     <ClCompile Include="CEnemy.cpp" />
     <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="EnemyState.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -403,6 +405,8 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="ShotGun.cpp" />
+    <ClCompile Include="ShotgunKin.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TestPixel.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -415,9 +419,11 @@
     <ClInclude Include="BulletKim.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CBullet.h" />
+    <ClInclude Include="CEffect.h" />
     <ClInclude Include="CEnemy.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CState.h" />
+    <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="EnemyState.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="Game.h" />
@@ -436,6 +442,8 @@
     <ClInclude Include="PlayerState.h" />
     <CLInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="ShotGun.h" />
+    <ClInclude Include="ShotgunKin.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="TestPixel.h" />

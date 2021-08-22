@@ -25,7 +25,7 @@ void CGun::Shoot(float angle, float damage, std::wstring team)
 	float bulletInterval = bulletCnt > 1 ? this->angle / (float)(bulletCnt - 1) : 0;
 	for (int i = 0; i < bulletCnt; ++i)
 	{
-		float theta = startAngle + bulletInterval * (float)i;
+		float theta = (startAngle + bulletInterval * ((float)i - 1)) - bulletInterval / 2; // 0 + 15
 		theta = D3DXToRadian(theta);
 
 		CreateBullet(theta);
