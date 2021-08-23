@@ -1,20 +1,22 @@
 #include "Header.h"
 
-CEffect::CEffect(std::wstring filePath, D3DXVECTOR2 pos, D3DXVECTOR2 scale, void (*Func)())
+CEffect::CEffect(std::wstring filePath, D3DXVECTOR2 pos, float aniTime, D3DXVECTOR2 scale, std::function<void()> func)
 {
 	std::wstring path = L"Assets/Sprites/Effect/" + filePath;
-	effectSpr.LoadAll(path, 0.1f, false);
+	effectSpr.LoadAll(path, aniTime, false);
 
 	this->pos = pos;
 	effectRI.scale = scale;
-	func = Func;
+	this->func = func;
+
+	layer = 1;
 }
 
 void CEffect::Update(float deltaTime)
 {
 	if (!effectSpr.bAnimation)
 	{
-		func();
+		if(func) func();
 
 		destroy = true;
 	}

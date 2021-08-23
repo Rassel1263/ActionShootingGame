@@ -17,8 +17,6 @@ Mouse::Mouse()
 void Mouse::Update(float deltaTime)
 {
 	pos = Input::GetInstance().GetFixedMousePos();
-
-	std::cout << pos.x << "   " << pos.y << std::endl;
 }
 
 void Mouse::Render()

@@ -1,6 +1,10 @@
 #include "Header.h"
 #include "Object.h"
 
+Object::~Object()
+{
+}
+
 void Object::Update(float deltaTime)
 {
 	if (bRigidbody)

@@ -34,10 +34,5 @@ void CGun::Shoot(float angle, float damage, std::wstring team)
 
 void CGun::CreateBullet(float theta)
 {
-	if(owner->team == L"ally")
-		nowScene->obm.AddObject(new BasicBullet(pos, theta, owner->ability.attackPower, 200, owner->team));
-
-	if(owner->team == L"enemy")
-		nowScene->obm.AddObject(new BasicBullet(pos, theta, owner->ability.attackPower, 200, owner->team));
-
+	nowScene->obm.AddObject(new BasicBullet(pos, theta, owner->ability.attackPower, 200, owner->team));
 }

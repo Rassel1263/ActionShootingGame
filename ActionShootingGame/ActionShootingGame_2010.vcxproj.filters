@@ -59,16 +59,31 @@
     <Filter Include="GameScene\Object\Effect">
       <UniqueIdentifier>{c84544de-4ca9-4e4e-9a97-0a378525ac06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MapData\GameScene1">
+      <UniqueIdentifier>{7827f649-8f96-418b-904f-46353dbc38c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapData\GameScene1\room1">
+      <UniqueIdentifier>{f2154727-87aa-4040-8d5b-4e52a489e9e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapData\GameScene1\room2">
+      <UniqueIdentifier>{57d4bb6d-5296-4c13-a933-1f8c86cda07e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="Assets\MapData\GameScene1\map00.dat">
-      <Filter>MapData</Filter>
+    <None Include="Assets\MapData\GameScene1\room1\map00.dat">
+      <Filter>MapData\GameScene1\room1</Filter>
     </None>
-    <None Include="Assets\MapData\GameScene1\map01.dat">
-      <Filter>MapData</Filter>
+    <None Include="Assets\MapData\GameScene1\room1\map01.dat">
+      <Filter>MapData\GameScene1\room1</Filter>
+    </None>
+    <None Include="Assets\MapData\GameScene1\room2\map00.dat">
+      <Filter>MapData\GameScene1\room2</Filter>
+    </None>
+    <None Include="Assets\MapData\GameScene1\room2\map01.dat">
+      <Filter>MapData\GameScene1\room2</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +177,16 @@
     </ClCompile>
     <ClCompile Include="CEffect.cpp">
       <Filter>GameScene\Object\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Elevator.cpp">
+      <Filter>GameScene\Object\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Fade.cpp" />
+    <ClCompile Include="TutorialScroll.cpp">
+      <Filter>GameScene\Object\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerUI.cpp">
+      <Filter>GameScene\Object\Unit\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +284,16 @@
     </ClInclude>
     <ClInclude Include="CEffect.h">
       <Filter>GameScene\Object\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Elevator.h">
+      <Filter>GameScene\Object\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Fade.h" />
+    <ClInclude Include="TutorialScroll.h">
+      <Filter>GameScene\Object\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerUI.h">
+      <Filter>GameScene\Object\Unit\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

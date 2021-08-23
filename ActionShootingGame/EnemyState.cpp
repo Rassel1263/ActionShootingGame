@@ -8,10 +8,7 @@ EnemyIdle* EnemyIdle::GetInstance()
 
 void EnemyIdle::EnterState(CEnemy* obj)
 {
-	if (obj->nowState)
-		obj->nowState->ExitState(obj);
-
-	obj->nowState = this;
+	
 	obj->behavior = CEnemy::EnemyBehavior::IDLE;
 }
 
@@ -19,13 +16,13 @@ void EnemyIdle::UpdateState(CEnemy* obj, float deltaTime)
 {
 	if (obj->Move(deltaTime))
 	{
-		EnemyWalk::GetInstance()->EnterState(obj);
+		obj->SetState(EnemyWalk::GetInstance());
 		return;
 	}
 
 	if (obj->behavior == CEnemy::EnemyBehavior::HIT)
 	{
-		EnemyHit::GetInstance()->EnterState(obj);
+		obj->SetState(EnemyHit::GetInstance());
 		return;
 	}
 }
@@ -42,10 +39,7 @@ EnemyWalk* EnemyWalk::GetInstance()
 
 void EnemyWalk::EnterState(CEnemy* obj)
 {
-	if (obj->nowState)
-		obj->nowState->ExitState(obj);
-
-	obj->nowState = this;
+	
 	obj->behavior = CEnemy::EnemyBehavior::WALK;
 
 	obj->SetEnemyImage();
@@ -56,13 +50,13 @@ void EnemyWalk::UpdateState(CEnemy* obj, float deltaTime)
 {
 	if (!obj->Move(deltaTime))
 	{
-		EnemyIdle::GetInstance()->EnterState(obj);
+		obj->SetState(EnemyIdle::GetInstance());
 		return;
 	}
 
 	if (obj->behavior == CEnemy::EnemyBehavior::HIT)
 	{
-		EnemyHit::GetInstance()->EnterState(obj);
+		obj->SetState(EnemyHit::GetInstance());
 		return;
 	}
 }
@@ -79,10 +73,8 @@ EnemyHit* EnemyHit::GetInstance()
 
 void EnemyHit::EnterState(CEnemy* obj)
 {
-	if (obj->nowState)
-		obj->nowState->ExitState(obj);
-
-	obj->nowState = this;
+	obj->ability.hp -= obj->hitDamage;
+	obj->behavior = CEnemy::EnemyBehavior::HIT;
 
 	obj->SetEnemyImage();
 	obj->GetNowSprite().Reset();
@@ -90,13 +82,49 @@ void EnemyHit::EnterState(CEnemy* obj)
 
 void EnemyHit::UpdateState(CEnemy* obj, float deltaTime)
 {
+	if (obj->ability.hp <= 0.0f)
+	{
+		obj->SetState(EnemyDie::GetInstance());
+		return;
+	}
+
 	if (!obj->GetNowSprite().bAnimation)
 	{
-		EnemyIdle::GetInstance()->EnterState(obj);
+		obj->SetState(EnemyIdle::GetInstance());
 		return;
 	}
 }
 
 void EnemyHit::ExitState(CEnemy* obj)
 {
+}
+
+EnemyDie* EnemyDie::GetInstance()
+{
+	static EnemyDie instance;
+	return &instance;
+}
+
+void EnemyDie::EnterState(CEnemy* obj)
+{
+	obj->behavior = CEnemy::EnemyBehavior::DIE;
+	obj->SetEnemyImage();
+}
+
+void EnemyDie::UpdateState(CEnemy* obj, float deltaTime)
+{
+	if (!obj->GetNowSprite().bAnimation)
+	{
+		timer -= deltaTime;
+
+		if (timer <= 0.0)
+		{
+			obj->Die();
+		}
+	}
+}
+
+void EnemyDie::ExitState(CEnemy* obj)
+{
+	timer = 0.3f;
 }

@@ -43,10 +43,6 @@ struct MapGroup
 
 #include "FileManager.h"
 
-#include "MapToolMouse.h"
-#include "MapManager.h"
-#include "MapToolBlock.h"
-
 #include "CState.h"
 
 #include "TestPixel.h"
@@ -68,6 +64,15 @@ struct MapGroup
 #include "EnemyManager.h"
 
 #include "CEffect.h"
+#include "Elevator.h"
+#include "TutorialScroll.h"
+
+#include "PlayerUI.h"
+#include "Fade.h"
+
+#include "MapToolMouse.h"
+#include "MapManager.h"
+#include "MapToolBlock.h"
 
 #include "Mouse.h"
 

@@ -67,13 +67,13 @@ void Sprite::Render(const RenderInfo& ri)
     pVertices[1].color = color;
     pVertices[1].uv = D3DXVECTOR2(0.0f, 0.0f);
 
-    pVertices[2].pos = D3DXVECTOR3(GetNowScene()->info.Width, 0.0f, 0.0f);
+    pVertices[2].pos = D3DXVECTOR3(GetNowScene()->info.Width * widthRatio, 0.0f, 0.0f);
     pVertices[2].color = color;
-    pVertices[2].uv = D3DXVECTOR2(1.0f, 1.0f);
+    pVertices[2].uv = D3DXVECTOR2(1.0f * widthRatio, 1.0f);
 
-    pVertices[3].pos = D3DXVECTOR3(GetNowScene()->info.Width, GetNowScene()->info.Height, 0.0f);
+    pVertices[3].pos = D3DXVECTOR3(GetNowScene()->info.Width * widthRatio, GetNowScene()->info.Height, 0.0f);
     pVertices[3].color = color;
-    pVertices[3].uv = D3DXVECTOR2(1.0f, 0.0f);
+    pVertices[3].uv = D3DXVECTOR2(1.0f * widthRatio, 0.0f);
 
     Game::GetInstance().pVB->Unlock();
 

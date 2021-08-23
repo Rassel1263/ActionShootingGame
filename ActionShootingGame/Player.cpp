@@ -4,24 +4,31 @@
 Player::Player(D3DXVECTOR2 pos) : Unit(pos)
 {
 	this->spawnPos = pos;
+	nowScene->obm.AddObject(new Elevator(pos));
 
 	ImageSettings();
-	SetUnitInfo(6, 100, 1, 0.2f, true, L"ally");
+	SetUnitInfo(6, 100, 5, 0.2f, true, L"ally"); level = 1;
 	nowScene->obm.AddObject(gun = new HandGun(this));
+	nowScene->obm.AddObject(new PlayerUI(this));
 
 	CreateCollider(D3DXVECTOR2(-7, 0), D3DXVECTOR2(7, 10));
+
+	myMap = nowScene->mapManager;
 
 	playerDir = PlayerDir::IDLE_DIR_0;
 	behavior = PlayerBehavior::WALK;
 
-	PlayerIdle::GetInstance()->EnterState(this);
+	SetState(PlayerIdle::GetInstance());
 }
 
 void Player::Update(float deltaTime)
 {
+	
 	if (Input::GetInstance().KeyDown('Z'))
-		nowScene->obm.AddObject(new CEffect(L"Spawn/before", pos, D3DXVECTOR2(1, 1), SpawnEnemy));
+		ability.hp--;
 
+	if (Input::GetInstance().KeyDown('C'))
+		PlusExp(10);
 
 	if(pos.x > spawnPos.x - 70 && pos.x < spawnPos.x + 70)
 		Camera::GetInstance().destCameraPos.x = pos.x;
@@ -82,6 +89,41 @@ void Player::ImageSettings()
 Sprite& Player::GetNowSprite()
 {
 	return playerSprites.at(playerDir);
+}
+
+D3DXVECTOR2 Player::CheckPos(D3DXVECTOR2 moveDir)
+{
+	D3DXVec2Normalize(&moveDir, &moveDir);
+
+	int X = (pos.x + 9 + moveDir.x * 7 - myMap->pos.x) / 18;
+	int Y = (pos.y + 9 + moveDir.y - myMap->pos.y) / 18;
+
+	if (Y <= 0)
+		pos.y += 1;
+
+	if (X < 0 || Y < 0)
+		return D3DXVECTOR2(0, 0);
+
+
+	if (X >= myMap->bck_1_Group.xSize || Y >= myMap->bck_1_Group.ySize)
+		return D3DXVECTOR2(0, 0);
+
+	std::string upString = myMap->bck_1_Group.mapGroup[Y][X];
+	std::string downString = myMap->bck_1_Group.mapGroup[Y][X];
+	std::string mapString;
+
+	mapString.insert(mapString.end(), upString.begin(), upString.begin() + 2);
+
+	if (mapString == "03" || mapString == "04" || mapString == "05" || mapString == "06" || mapString == "07" || mapString == "09")
+		return D3DXVECTOR2(0, 0);
+
+	mapString.clear();
+	mapString.insert(mapString.end(), downString.begin(), downString.begin() + 2);
+
+	if (mapString == "03" || mapString == "04" || mapString == "05" || mapString == "06" || mapString == "07" || mapString == "09")
+		return D3DXVECTOR2(0, 0);
+
+	return moveDir;
 }
 
 void Player::SpawnEnemy()
@@ -148,6 +190,24 @@ void Player::SetHoldGunPlayerDir(D3DXVECTOR2 dir)
 	}
 }
 
+void Player::PlusExp(float exp)
+{
+	this->exp += exp;
+
+	CheckExp();
+}
+
+void Player::CheckExp()
+{
+	if (exp >= 100)
+	{
+		exp = 0.0f;
+		level++;
+		Camera::GetInstance().cameraQuaken = { 5, 5 };
+		nowScene->obm.AddObject(new CEffect(L"LevelUp/Effect", pos + D3DXVECTOR2(0, 15), 0.02f));
+	}
+}
+
 
 bool Player::Move(float deltaTime)
 {
@@ -170,5 +230,14 @@ bool Player::Move(float deltaTime)
 	pos += moveDir * 100 * deltaTime;
 
 	return true;
+}
+
+void Player::SetState(CState<Player>* nextState)
+{
+	if (nowState)
+		nowState->ExitState(this);
+
+	nowState = nextState;
+	nowState->EnterState(this);
 }
 

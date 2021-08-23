@@ -1,4 +1,7 @@
 #pragma once
+
+
+class MapManager;
 class Player : public Unit
 {
 public:
@@ -32,6 +35,11 @@ public:
 	std::map<PlayerDir, Sprite> playerSprites;
 	CState<Player>* nowState = NULL;
 
+	MapManager* myMap = NULL;
+
+	int level = 0;
+	float exp = 0.0f;
+
 	Player(D3DXVECTOR2 pos);
 
 	virtual void Update(float deltaTime) override;
@@ -39,9 +47,13 @@ public:
 
 	virtual void ImageSettings() override;
 	virtual Sprite& GetNowSprite() override;
+	D3DXVECTOR2 CheckPos(D3DXVECTOR2 moveDir);
 	void SpawnEnemy();
 	void SetNotHoldGunPlayerDir(D3DXVECTOR2 dir);
 	void SetHoldGunPlayerDir(D3DXVECTOR2 dir);
+	void PlusExp(float exp);
+	void CheckExp();
 	bool Move(float deltaTime);
+	void SetState(CState<Player>* nextState);
 };
 

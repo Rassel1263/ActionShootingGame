@@ -21,10 +21,10 @@ void Unit::Render()
 	Object::Render();
 }
 
-void Unit::SetUnitInfo(int hp, float speed, float attackPower, float attackSpeed, bool holdWeapon, std::wstring team)
+void Unit::SetUnitInfo(float hp, float speed, float attackPower, float attackSpeed, bool holdWeapon, std::wstring team)
 {
 	bRigidbody = true;
-	ability = { hp, speed, attackPower, attackSpeed };
+	ability = { hp, hp, speed, attackPower, attackSpeed };
 	this->holdWeapon = holdWeapon;
 	this->team = team;
 }

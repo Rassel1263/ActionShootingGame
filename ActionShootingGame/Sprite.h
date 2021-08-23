@@ -21,6 +21,8 @@ public:
 	bool bAnimation = true;
 	bool bCamera = true;
 
+	float widthRatio = 1.0f;
+
 	std::vector<const Texture*> textures;
 
 	D3DXCOLOR color = D3DCOLOR_ARGB(255, 255, 255, 255);

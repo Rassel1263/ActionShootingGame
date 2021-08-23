@@ -8,11 +8,6 @@ PlayerIdle* PlayerIdle::GetInstance()
 
 void PlayerIdle::EnterState(Player* obj)
 {
-	if (obj->nowState)
-		obj->nowState->ExitState(obj);
-
-	obj->nowState = this;
-
 	obj->behavior = Player::PlayerBehavior::IDLE;
 }
 
@@ -20,13 +15,13 @@ void PlayerIdle::UpdateState(Player* obj, float deltaTime)
 {
 	if (obj->Move(deltaTime))
 	{
-		PlayerWalk::GetInstance()->EnterState(obj);
+		obj->SetState(PlayerWalk::GetInstance());
 		return;
 	}
 
 	if (Input::GetInstance().KeyPress(VK_LBUTTON))
 	{
-		PlayerShoot::GetInstance()->EnterState(obj);
+		obj->SetState(PlayerShoot::GetInstance());
 		return;
 	}
 }
@@ -44,11 +39,6 @@ PlayerWalk* PlayerWalk::GetInstance()
 
 void PlayerWalk::EnterState(Player* obj)
 {
-	if (obj->nowState)
-		obj->nowState->ExitState(obj);
-
-	obj->nowState = this;
-
 	obj->behavior = Player::PlayerBehavior::WALK;
 }
 
@@ -56,19 +46,19 @@ void PlayerWalk::UpdateState(Player* obj, float deltaTime)
 {
 	if (Input::GetInstance().KeyDown(VK_RBUTTON))
 	{
-		PlayerDodgeRoll::GetInstance()->EnterState(obj);
+		obj->SetState(PlayerDodgeRoll::GetInstance());
 		return;
 	}
 
 	if (!obj->Move(deltaTime))
 	{
-		PlayerIdle::GetInstance()->EnterState(obj);
+		obj->SetState(PlayerIdle ::GetInstance());
 		return;
 	}
 
 	if (Input::GetInstance().KeyPress(VK_LBUTTON))
 	{
-		PlayerShoot::GetInstance()->EnterState(obj);
+		obj->SetState(PlayerShoot::GetInstance());
 		return;
 	}
 }
@@ -85,11 +75,6 @@ PlayerDodgeRoll* PlayerDodgeRoll::GetInstance()
 
 void PlayerDodgeRoll::EnterState(Player* obj)
 {
-	if (obj->nowState)
-		obj->nowState->ExitState(obj);
-
-	obj->nowState = this;
-
 	obj->behavior = Player::PlayerBehavior::ROLL;
 
 	holdWeapon = obj->holdWeapon;
@@ -108,7 +93,7 @@ void PlayerDodgeRoll::UpdateState(Player* obj, float deltaTime)
 {
 	if (!obj->GetNowSprite().bAnimation)
 	{
-		PlayerIdle::GetInstance()->EnterState(obj);
+		obj->SetState(PlayerIdle::GetInstance());
 		return;
 	}
 }
@@ -127,12 +112,7 @@ PlayerShoot* PlayerShoot::GetInstance()
 
 void PlayerShoot::EnterState(Player* obj)
 {
-	if (obj->nowState)
-		obj->nowState->ExitState(obj);
-
-	obj->nowState = this;
-
-	obj->gun->Shoot(nowScene->mouse->GetMouseAngleToDegree(false, obj->pos), 1, obj->team);
+	 obj->gun->Shoot(nowScene->mouse->GetMouseAngleToDegree(false, obj->pos), 1, obj->team);
 	obj->gun->gunSpr.scene = 1;
 }
 
@@ -145,7 +125,7 @@ void PlayerShoot::UpdateState(Player* obj, float deltaTime)
 
 	if (timer > obj->ability.attackSpeed)
 	{
-		PlayerIdle::GetInstance()->EnterState(obj);
+		obj->SetState(PlayerIdle::GetInstance());
 		return;
 	}
 }

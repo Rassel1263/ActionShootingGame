@@ -14,5 +14,6 @@ public:
 
 	void BlockCheck(std::string blockNum, RenderInfo ri);
 	void Collocate();
+	void ChangeMap(const std::wstring map1, const std::wstring map2);
 };
 

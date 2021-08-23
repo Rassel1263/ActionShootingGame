@@ -19,6 +19,7 @@ public:
 	D3DXVECTOR2 force = { 0, 0 };
 	D3DXVECTOR2 velocity = { 0, 0 };
 
+	virtual ~Object();
 	virtual void Update(float deltaTime);
 	virtual void Render();
 	virtual void OnCollision(Collider& coll);

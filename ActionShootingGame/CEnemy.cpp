@@ -2,17 +2,25 @@
 
 CEnemy::CEnemy(D3DXVECTOR2 pos) : Unit(pos)
 {
+	nowScene->obm.AddObject(new CEffect(L"Spawn/after", pos, 0.05f));
+
 	enemyImage = EnemyImage::IDLE_LEFT;
 	behavior = EnemyBehavior::IDLE;
 
-	EnemyIdle::GetInstance()->EnterState(this);
+	SetState(EnemyIdle::GetInstance());
+}
+
+CEnemy::~CEnemy()
+{
+	if (gun)
+		gun->destroy = true;
 }
 
 void CEnemy::Update(float deltaTime)
 {
 	SetEnemyImage();
 
-	if (behavior != EnemyBehavior::HIT)
+	if (behavior != EnemyBehavior::HIT && behavior != EnemyBehavior::DIE)
 		if (CheckDistanceToPlayer(playerDetectionRange))
 			EnemyAttack(deltaTime);
 
@@ -33,8 +41,12 @@ void CEnemy::Render()
 
 void CEnemy::OnCollision(Collider& coli)
 {
+	if (behavior == EnemyBehavior::DIE) return;
+
 	if (coli.tag == L"allyBullet")
 	{
+		hitDamage = static_cast<CBullet*>(coli.obj)->damage;
+
 		D3DXVECTOR2 dir = pos - coli.obj->pos;
 		D3DXVec2Normalize(&dir, &dir);
 
@@ -56,6 +68,12 @@ bool CEnemy::Move(float deltaTime)
 	return false;
 }
 
+void CEnemy::Die()
+{
+	nowScene->obm.AddObject(new CEffect(L"Boom", pos + D3DXVECTOR2(0, 20), 0.05f));
+	destroy = true;
+}
+
 void CEnemy::SetEnemyImage()
 {
 	D3DXVECTOR2 dir = GetDirectionFromPlayer();
@@ -75,9 +93,19 @@ void CEnemy::SetEnemyImage()
 	}
 
 	if (behavior == EnemyBehavior::HIT)
-	{
 		enemyImage = EnemyImage::HIT;
-	}
+
+	if (behavior == EnemyBehavior::DIE)
+		enemyImage = EnemyImage::DIE;
+}
+
+void CEnemy::SetState(CState<CEnemy>* nextState)
+{
+	if (nowState)
+		nowState->ExitState(this);
+
+	nowState = nextState;
+	nowState->EnterState(this);
 }
 
 void CEnemy::SetGunPos()

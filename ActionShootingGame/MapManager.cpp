@@ -28,13 +28,7 @@ void MapManager::Update(float deltaTime)
 {
 	if (nowScene->gameScene)
 	{
-		if (Input::GetInstance().KeyDown('X'))
-		{
-			Camera::GetInstance().cameraQuaken = { 100, 100 };
-
-			bck_1_Group = FileManager::GetInstance().ReadFile(L"Assets/MapData/GameScene1/room1/map00.dat");
-			bck_2_Group = FileManager::GetInstance().ReadFile(L"Assets/MapData/GameScene1/room1/map01.dat");
-		}
+	
 	}
 	else
 	{
@@ -116,10 +110,18 @@ void MapManager::Collocate()
 				nowScene->obm.AddObject(nowScene->player = new Player(D3DXVECTOR2(x * 18, y * 18)));
 
 			if (mapString == "16")
-				nowScene->obm.AddObject(new EnemyManager());
+				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), EnemyName::BULLET_KIM));
 
 			if (mapString == "17")
-				nowScene->obm.AddObject(new EnemyManager());
+				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), EnemyName::SHOTGUN_KIN));
 		}
 	}
+}
+
+void MapManager::ChangeMap(const std::wstring map1, const std::wstring map2)
+{
+	bck_1_Group = FileManager::GetInstance().ReadFile(L"Assets/MapData/" + map1 + L".dat");
+	bck_2_Group = FileManager::GetInstance().ReadFile(L"Assets/MapData/" + map2 + L".dat");
+
+	Collocate();
 }
