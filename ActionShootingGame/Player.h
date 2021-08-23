@@ -40,10 +40,14 @@ public:
 	int level = 0;
 	float exp = 0.0f;
 
+	bool bHit = false;
+	float hitTimer = 0.0f;
+
 	Player(D3DXVECTOR2 pos);
 
 	virtual void Update(float deltaTime) override;
 	virtual void Render() override;
+	virtual void OnCollision(Collider& coli) override;
 
 	virtual void ImageSettings() override;
 	virtual Sprite& GetNowSprite() override;

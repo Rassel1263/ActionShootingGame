@@ -68,6 +68,12 @@
     <Filter Include="MapData\GameScene1\room2">
       <UniqueIdentifier>{57d4bb6d-5296-4c13-a933-1f8c86cda07e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameScene\Object\UI">
+      <UniqueIdentifier>{372a6cab-7052-4dc0-90f9-94f2c5c8e20a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene\Object\Unit\Boss">
+      <UniqueIdentifier>{975de674-4e54-4a17-832c-dc9eb35abbc7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -188,6 +194,15 @@
     <ClCompile Include="PlayerUI.cpp">
       <Filter>GameScene\Object\Unit\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>GameScene\Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GatlingGull.cpp">
+      <Filter>GameScene\Object\Unit\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss.cpp">
+      <Filter>GameScene\Object\Unit\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -294,6 +309,15 @@
     </ClInclude>
     <ClInclude Include="PlayerUI.h">
       <Filter>GameScene\Object\Unit\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>GameScene\Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="GatlingGull.h">
+      <Filter>GameScene\Object\Unit\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss.h">
+      <Filter>GameScene\Object\Unit\Boss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

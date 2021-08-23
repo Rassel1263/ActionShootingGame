@@ -120,7 +120,7 @@ void PlayerShoot::UpdateState(Player* obj, float deltaTime)
 {
 	timer += deltaTime;
 
-	if (timer > obj->ability.attackSpeed - 0.1f)
+	if (timer > obj->ability.attackSpeed / 2.0f)
 		obj->gun->gunSpr.Reset();
 
 	if (timer > obj->ability.attackSpeed)

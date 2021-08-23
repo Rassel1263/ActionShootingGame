@@ -63,12 +63,16 @@ struct MapGroup
 #include "EnemyState.h"
 #include "EnemyManager.h"
 
+#include "CBoss.h"
+#include "GatlingGull.h"
+
 #include "CEffect.h"
 #include "Elevator.h"
 #include "TutorialScroll.h"
 
 #include "PlayerUI.h"
 #include "Fade.h"
+#include "Font.h"
 
 #include "MapToolMouse.h"
 #include "MapManager.h"

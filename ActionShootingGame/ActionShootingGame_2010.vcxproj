@@ -388,6 +388,7 @@
     <ClCompile Include="BasicBullet.cpp" />
     <ClCompile Include="BulletKim.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CBoss.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CEffect.cpp" />
     <ClCompile Include="CEnemy.cpp" />
@@ -397,9 +398,11 @@
     <ClCompile Include="EnemyState.cpp" />
     <ClCompile Include="Fade.cpp" />
     <ClCompile Include="FileManager.cpp" />
+    <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="CGun.cpp" />
+    <ClCompile Include="GatlingGull.cpp" />
     <ClCompile Include="HandGun.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="MapManager.cpp" />
@@ -426,6 +429,7 @@
     <ClInclude Include="BasicBullet.h" />
     <ClInclude Include="BulletKim.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CBoss.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CEffect.h" />
     <ClInclude Include="CEnemy.h" />
@@ -436,9 +440,11 @@
     <ClInclude Include="EnemyState.h" />
     <ClInclude Include="Fade.h" />
     <ClInclude Include="FileManager.h" />
+    <ClInclude Include="Font.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="CGun.h" />
+    <ClInclude Include="GatlingGull.h" />
     <ClInclude Include="HandGun.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Input.h" />

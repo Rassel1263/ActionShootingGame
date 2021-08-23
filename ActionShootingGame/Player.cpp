@@ -7,7 +7,10 @@ Player::Player(D3DXVECTOR2 pos) : Unit(pos)
 	nowScene->obm.AddObject(new Elevator(pos));
 
 	ImageSettings();
-	SetUnitInfo(6, 100, 5, 0.2f, true, L"ally"); level = 1;
+	SetUnitInfo(6, 100, 5, 0.1f, true, L"ally"); 
+	level = 1;
+	hitTimer = 1.5f;
+
 	nowScene->obm.AddObject(gun = new HandGun(this));
 	nowScene->obm.AddObject(new PlayerUI(this));
 
@@ -23,9 +26,8 @@ Player::Player(D3DXVECTOR2 pos) : Unit(pos)
 
 void Player::Update(float deltaTime)
 {
-	
 	if (Input::GetInstance().KeyDown('Z'))
-		ability.hp--;
+		bHit = true;
 
 	if (Input::GetInstance().KeyDown('C'))
 		PlusExp(10);
@@ -50,6 +52,17 @@ void Player::Update(float deltaTime)
 	}
 	else SetNotHoldGunPlayerDir(moveDir);
 
+	if (bHit)
+	{
+		hitTimer -= deltaTime;
+
+		if (hitTimer <= 0.0f)
+		{
+			hitTimer = 2.0f;
+			bHit = false;
+		}
+	}
+
 	if (Input::GetInstance().KeyDown('R'))
 		holdWeapon = !holdWeapon;
 
@@ -64,6 +77,19 @@ void Player::Render()
 	GetNowSprite().Render(renderInfo);
 
 	Unit::Render();
+}
+
+void Player::OnCollision(Collider& coli)
+{
+	if (coli.tag == L"enemyBullet")
+	{
+		if (!bHit)
+		{
+			bHit = true;
+			ability.hp--;
+			Camera::GetInstance().cameraQuaken = { 4, 4 };
+		}
+	}
 }
 
 void Player::ImageSettings()
