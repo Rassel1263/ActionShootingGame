@@ -19,6 +19,7 @@ void TutorialScroll::Update(float deltaTime)
 	{
 		Camera::GetInstance().cameraQuaken = { 100, 100 };
 		nowScene->mapManager->ChangeMap(L"GameScene1/room2/map00", L"GameScene1/room2/map01");
+		static_cast<GameScene*>(nowScene)->tutorial = false;
 		destroy = true;
 	}
 

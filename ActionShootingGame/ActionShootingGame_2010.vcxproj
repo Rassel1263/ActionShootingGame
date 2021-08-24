@@ -385,9 +385,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ActionShootingGame.cpp" />
+    <ClCompile Include="BanBulletKin.cpp" />
     <ClCompile Include="BasicBullet.cpp" />
+    <ClCompile Include="BossState.cpp" />
+    <ClCompile Include="BossUI.cpp" />
     <ClCompile Include="BulletKim.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Card.cpp" />
     <ClCompile Include="CBoss.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CEffect.cpp" />
@@ -402,9 +406,12 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="CGun.cpp" />
+    <ClCompile Include="GameScene2.cpp" />
+    <ClCompile Include="GameScene3.cpp" />
     <ClCompile Include="GatlingGull.cpp" />
     <ClCompile Include="HandGun.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="LevelUpEvent.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="MapToolBlock.cpp" />
     <ClCompile Include="MapToolScene.cpp" />
@@ -415,9 +422,12 @@
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PlayerUI.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Shotgat.cpp" />
+    <ClCompile Include="ShotgatBullet.cpp" />
     <ClCompile Include="ShotGun.cpp" />
     <ClCompile Include="ShotgunKin.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SubMachineGun.cpp" />
     <ClCompile Include="TestPixel.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TutorialScroll.cpp" />
@@ -426,9 +436,13 @@
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BanBulletKin.h" />
     <ClInclude Include="BasicBullet.h" />
+    <ClInclude Include="BossState.h" />
+    <ClInclude Include="BossUI.h" />
     <ClInclude Include="BulletKim.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Card.h" />
     <ClInclude Include="CBoss.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CEffect.h" />
@@ -444,10 +458,13 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="CGun.h" />
+    <ClInclude Include="GameScene2.h" />
+    <ClInclude Include="GameScene3.h" />
     <ClInclude Include="GatlingGull.h" />
     <ClInclude Include="HandGun.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="LevelUpEvent.h" />
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="MapToolBlock.h" />
     <ClInclude Include="MapToolScene.h" />
@@ -459,10 +476,13 @@
     <ClInclude Include="PlayerUI.h" />
     <CLInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Shotgat.h" />
+    <ClInclude Include="ShotgatBullet.h" />
     <ClInclude Include="ShotGun.h" />
     <ClInclude Include="ShotgunKin.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="SubMachineGun.h" />
     <ClInclude Include="TestPixel.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TutorialScroll.h" />

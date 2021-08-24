@@ -3,7 +3,8 @@
 enum class EnemyName
 {
 	BULLET_KIM,
-	SHOTGUN_KIN
+	BANBULLET_KIN,
+	SHOTGUN_KIN,
 };
 
 class CEnemy : public Unit
@@ -52,7 +53,6 @@ public:
 	void SetEnemyImage();
 	void SetState(CState<CEnemy>* nextState);
 	void SetGunPos();
-	bool CheckDistanceToPlayer(float detectionRange);
-	D3DXVECTOR2 GetDirectionFromPlayer();
+
 };
 

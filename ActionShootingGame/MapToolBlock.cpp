@@ -3,7 +3,7 @@
 
 MapToolBlock::MapToolBlock(const std::wstring& filePath, D3DXVECTOR2 pos)
 {
-	spr.LoadAll(L"Assets/Sprites/Tile/" + filePath + L".png");
+	spr.LoadAll(L"Assets/Sprites/Tile/" + nowScene->curStage + filePath + L".png");
 	spr.bCamera = false;
 	bCamera = false;
 	mapNum = filePath;

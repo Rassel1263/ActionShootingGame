@@ -7,7 +7,7 @@ MapToolMouse::MapToolMouse()
 	aabb.max = { 1, 1 };
 	bodies.push_back(Collider(this, L"MapToolMouse", &aabb));
 
-	spr.LoadAll(L"Assets/Sprites/tile/00.png");
+	spr.LoadAll(L"Assets/Sprites/Tile/" + nowScene->curStage + L"00.png");
 	bCamera = false;
 	spr.bCamera = false;
 
@@ -30,7 +30,7 @@ void MapToolMouse::Update(float deltaTime)
 		if (Input::GetInstance().KeyDown(c))
 		{
 			mapBlockNum = L"0" + std::to_wstring(c - '1');
-			spr.LoadAll(L"Assets/Sprites/tile/" + mapBlockNum + L".png");
+			spr.LoadAll(L"Assets/Sprites/Tile/" + nowScene->curStage + mapBlockNum + L".png");
 			rotateNum = 0;
 
 		}

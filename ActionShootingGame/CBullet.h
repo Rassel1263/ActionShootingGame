@@ -1,4 +1,6 @@
 #pragma once
+
+class MapManager;
 class CBullet : public Object
 {
 public:
@@ -12,6 +14,7 @@ public:
 	RenderInfo bulletRI;
 
 	CBullet(D3DXVECTOR2 pos, float theta, float damage, float speed, std::wstring ownerTeam);
+	void CheckPos(D3DXVECTOR2 moveDir);
 
 	virtual void Update(float deltaTime) override;
 	virtual void Render() override;

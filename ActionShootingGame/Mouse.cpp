@@ -11,7 +11,7 @@ Mouse::Mouse()
 	aabb.max = { 1, 1 };
 	bodies.push_back(Collider(this, L"mouse", &aabb));
 
-	layer = 10;
+	layer = 1300;
 }
 
 void Mouse::Update(float deltaTime)

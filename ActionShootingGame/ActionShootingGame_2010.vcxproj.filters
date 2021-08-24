@@ -203,6 +203,36 @@
     <ClCompile Include="CBoss.cpp">
       <Filter>GameScene\Object\Unit\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="BossState.cpp">
+      <Filter>GameScene\Object\Unit\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Card.cpp">
+      <Filter>GameScene\Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelUpEvent.cpp">
+      <Filter>GameScene\Object\Unit\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="BossUI.cpp">
+      <Filter>GameScene\Object\Unit\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="BanBulletKin.cpp">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="SubMachineGun.cpp">
+      <Filter>GameScene\Object\Unit\Weapon\Gun</Filter>
+    </ClCompile>
+    <ClCompile Include="Shotgat.cpp">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ShotgatBullet.cpp">
+      <Filter>GameScene\Object\Unit\Weapon\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene2.cpp">
+      <Filter>GameScene\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene3.cpp">
+      <Filter>GameScene\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -318,6 +348,36 @@
     </ClInclude>
     <ClInclude Include="CBoss.h">
       <Filter>GameScene\Object\Unit\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="BossState.h">
+      <Filter>GameScene\Object\Unit\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Card.h">
+      <Filter>GameScene\Object\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelUpEvent.h">
+      <Filter>GameScene\Object\Unit\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="BossUI.h">
+      <Filter>GameScene\Object\Unit\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="BanBulletKin.h">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="SubMachineGun.h">
+      <Filter>GameScene\Object\Unit\Weapon\Gun</Filter>
+    </ClInclude>
+    <ClInclude Include="Shotgat.h">
+      <Filter>GameScene\Object\Unit\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ShotgatBullet.h">
+      <Filter>GameScene\Object\Unit\Weapon\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene2.h">
+      <Filter>GameScene\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene3.h">
+      <Filter>GameScene\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

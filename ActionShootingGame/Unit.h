@@ -23,6 +23,7 @@ public:
 
 	Sprite shadow;
 
+
 	Unit(D3DXVECTOR2 pos);
 	virtual ~Unit() {};
 
@@ -34,5 +35,7 @@ public:
 	void CreateCollider(D3DXVECTOR2 min, D3DXVECTOR2 max);
 	float GetDistanceFromTarget(D3DXVECTOR2 targetPos);
 
+	bool CheckDistanceToPlayer(float detectionRange);
+	D3DXVECTOR2 GetDirectionFromPlayer();
 };
 

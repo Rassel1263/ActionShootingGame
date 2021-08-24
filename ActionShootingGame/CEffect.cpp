@@ -12,6 +12,21 @@ CEffect::CEffect(std::wstring filePath, D3DXVECTOR2 pos, float aniTime, D3DXVECT
 	layer = 1;
 }
 
+CEffect::CEffect(std::wstring filePath, D3DXVECTOR2 pos, float visibleTime, bool bCamera)
+{
+	std::wstring path = L"Assets/Sprites/Effect/" + filePath;
+	effectSpr.LoadAll(path);
+
+	this->pos = pos;
+	this->visibleTime = visibleTime;
+	this->maxVisibleTime = visibleTime;
+
+	fadeEft = true;
+	effectSpr.bCamera = bCamera;
+
+	layer = 1;
+}
+
 void CEffect::Update(float deltaTime)
 {
 	if (!effectSpr.bAnimation)
@@ -19,6 +34,15 @@ void CEffect::Update(float deltaTime)
 		if(func) func();
 
 		destroy = true;
+	}
+
+	if (fadeEft)
+	{
+		visibleTime -= deltaTime;
+		effectSpr.color.a = visibleTime / maxVisibleTime;
+
+		if (visibleTime <= 0.0f)
+			destroy = true;
 	}
 
 	effectSpr.Update(deltaTime);

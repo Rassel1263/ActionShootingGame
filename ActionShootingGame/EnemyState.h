@@ -42,3 +42,4 @@ public:
 	virtual void UpdateState(CEnemy* obj, float deltaTime) override;
 	virtual void ExitState(CEnemy* obj) override;
 };
+

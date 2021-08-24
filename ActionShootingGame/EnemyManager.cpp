@@ -15,6 +15,9 @@ void EnemyManager::Update(float deltaTime)
 		nowScene->obm.AddObject(new CEffect(L"Spawn/before", pos, 0.05f, D3DXVECTOR2(1, 1), [&] {SpawnEnemy(); }));
 		spawnTimer = 0.0f;
 	}
+
+	if (nowScene->spawnBoss)
+		destroy = true;
 }
 
 void EnemyManager::Render()
@@ -28,4 +31,7 @@ void EnemyManager::SpawnEnemy()
 
 	if (name == EnemyName::SHOTGUN_KIN)
 		nowScene->obm.AddObject(new ShotgunKin(pos));
+
+	if(name == EnemyName::BANBULLET_KIN)
+		nowScene->obm.AddObject(new BanBulletKin(pos));
 }

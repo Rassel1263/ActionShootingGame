@@ -45,3 +45,22 @@ float Unit::GetDistanceFromTarget(D3DXVECTOR2 targetPos)
 }
 
 
+bool Unit::CheckDistanceToPlayer(float detectionRange)
+{
+	return GetDistanceFromTarget(static_cast<GameScene*>(nowScene)->player->pos) < detectionRange * detectionRange;
+}
+
+D3DXVECTOR2 Unit::GetDirectionFromPlayer()
+{
+	if (nowScene->player == NULL)
+		return D3DXVECTOR2(0, 0);
+
+	D3DXVECTOR2 distance = (nowScene->player->pos + D3DXVECTOR2(0, 15)) - (pos + D3DXVECTOR2(0, GetNowSprite().textures[0]->info.Height / 2));
+
+	D3DXVec2Normalize(&distance, &distance);
+
+	std::cout << distance.x << "  " << distance.y << std::endl;
+
+	return distance;
+}
+

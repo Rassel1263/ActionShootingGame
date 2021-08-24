@@ -6,14 +6,14 @@ MapManager::MapManager(const std::wstring map1, const std::wstring map2)
 	bck_1_Group = FileManager::GetInstance().ReadFile(L"Assets/MapData/" + map1 + L".dat");
 	bck_2_Group = FileManager::GetInstance().ReadFile(L"Assets/MapData/" + map2 + L".dat");
 
-	sprites.resize(18);
+	sprites.resize(19);
 	
 	int size = sprites.size();
 	for (int i = 0; i < size; ++i)
 	{
 		WCHAR temp[50];
-		wsprintf(temp, L"Assets/Sprites/Tile/%02d.png", i);
-		sprites.at(i).LoadAll(temp);
+		wsprintf(temp, L"%02d.png", i);
+		sprites.at(i).LoadAll(L"Assets/Sprites/Tile/" + nowScene->curStage + temp);
 	}
 
 	if (nowScene->gameScene)
@@ -86,7 +86,7 @@ void MapManager::Render()
 void MapManager::BlockCheck(std::string mapString, RenderInfo ri)
 {
 	if (nowScene->gameScene)
-		if (mapString == "14" || mapString == "16" || mapString == "17")
+		if (mapString == "14" || mapString == "16" || mapString == "17" || mapString == "18")
 			return;
 
 	sprites.at(std::stoi(mapString)).Render(ri);
@@ -114,6 +114,9 @@ void MapManager::Collocate()
 
 			if (mapString == "17")
 				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), EnemyName::SHOTGUN_KIN));
+
+			if (mapString == "18")
+				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), EnemyName::BANBULLET_KIN));
 		}
 	}
 }

@@ -6,6 +6,7 @@ public:
 
 	Sprite mouseSpr;
 	RenderInfo mouseRI;
+	std::wstring cardName = L"";
 
 	virtual void Update(float deltaTime) override;
 	virtual void Render() override;

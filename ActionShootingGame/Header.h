@@ -49,9 +49,11 @@ struct MapGroup
 #include "CGun.h"
 #include "HandGun.h"
 #include "ShotGun.h"
+#include "SubMachineGun.h"
 
 #include "CBullet.h"
 #include "BasicBullet.h"
+#include "ShotgatBullet.h"
 
 #include "Unit.h"
 #include "Player.h"
@@ -59,18 +61,25 @@ struct MapGroup
 
 #include "CEnemy.h"
 #include "BulletKim.h"
+#include "BanBulletKin.h"
 #include "ShotgunKin.h"
+#include "Shotgat.h"
 #include "EnemyState.h"
 #include "EnemyManager.h"
 
 #include "CBoss.h"
 #include "GatlingGull.h"
+#include "BossState.h"
 
 #include "CEffect.h"
 #include "Elevator.h"
 #include "TutorialScroll.h"
 
+#include "LevelUpEvent.h"
+#include "Card.h"
+
 #include "PlayerUI.h"
+#include "BossUI.h"
 #include "Fade.h"
 #include "Font.h"
 
@@ -83,6 +92,8 @@ struct MapGroup
 #include "Scene.h"
 extern Scene* nowScene;
 #include "GameScene.h"
+#include "GameScene2.h"
+#include "GameScene3.h"
 #include "MapToolScene.h"
 
 

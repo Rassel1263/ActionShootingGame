@@ -70,7 +70,8 @@ bool CEnemy::Move(float deltaTime)
 
 void CEnemy::Die()
 {
-	nowScene->obm.AddObject(new CEffect(L"Boom", pos + D3DXVECTOR2(0, 20), 0.05f));
+	nowScene->obm.AddObject(new CEffect(L"Boom", pos + D3DXVECTOR2(0, 20), 0.05f ));
+	nowScene->AddScore(rand() % 200 + 100);
 	destroy = true;
 }
 
@@ -118,22 +119,6 @@ void CEnemy::SetGunPos()
 	gun->gunRI.rotate = degree;
 	gun->gunRI.scale.y = gunScale;
 	gun->pos = pos + D3DXVECTOR2(5 * gunScale, 7);
-}
-
-bool CEnemy::CheckDistanceToPlayer(float detectionRange)
-{
-	return GetDistanceFromTarget(static_cast<GameScene*>(nowScene)->player->pos) < detectionRange * detectionRange;
-}
-
-D3DXVECTOR2 CEnemy::GetDirectionFromPlayer()
-{
-	if (nowScene->player == NULL)
-		return D3DXVECTOR2(0, 0);
-
-	D3DXVECTOR2 distance = nowScene->player->pos - pos;
-	D3DXVec2Normalize(&distance, &distance);
-
-	return distance;
 }
 
 Sprite& CEnemy::GetNowSprite()

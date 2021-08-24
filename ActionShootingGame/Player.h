@@ -35,11 +35,10 @@ public:
 	std::map<PlayerDir, Sprite> playerSprites;
 	CState<Player>* nowState = NULL;
 
-	MapManager* myMap = NULL;
-
 	int level = 0;
 	float exp = 0.0f;
 
+	bool intro = false;
 	bool bHit = false;
 	float hitTimer = 0.0f;
 
@@ -57,6 +56,8 @@ public:
 	void SetHoldGunPlayerDir(D3DXVECTOR2 dir);
 	void PlusExp(float exp);
 	void CheckExp();
+	void LevelUp();
+	void Hit();
 	bool Move(float deltaTime);
 	void SetState(CState<Player>* nextState);
 };
