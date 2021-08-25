@@ -11,12 +11,12 @@ public:
 
     float timer = 0.0f;
 
-    std::vector<std::wstring> nameGroup = { L"00", L"01", L"02", L"03", L"04", L"05" };
+    std::vector<std::wstring> nameGroup = { L"00", L"01", L"02", L"03", L"04", L"05", L"06", L"07"};
     std::random_device rd;
 
     LevelUpEvent();
 
     virtual void Update(float deltaTime) override;
     virtual void Render() override;
-    void Effective();
+    void Effective(int index);
 };

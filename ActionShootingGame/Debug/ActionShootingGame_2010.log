@@ -1,6 +1,0 @@
-﻿  GameScene.cpp
-C:\Users\lomil\Desktop\Git\ActionShootingGame\ActionShootingGame\GameScene.cpp(8,12): warning C4244: '인수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  GameScene2.cpp
-C:\Users\lomil\Desktop\Git\ActionShootingGame\ActionShootingGame\GameScene2.cpp(8,12): warning C4244: '인수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  코드를 생성하고 있습니다...
-  ActionShootingGame_2010.vcxproj -> C:\Users\lomil\Desktop\Git\ActionShootingGame\ActionShootingGame\Debug\ActionShootingGame.exe

@@ -100,6 +100,8 @@ void ObjectManager::Collision()
 	{
 		for (auto it2 = it + 1; it2 != objects.end(); ++it2)
 		{
+			if (!(*it)->bCollider || !(*it2)->bCollider) continue;
+
 			for (auto body1 : (*it)->bodies)
 			{
 				for (auto body2 : (*it2)->bodies)

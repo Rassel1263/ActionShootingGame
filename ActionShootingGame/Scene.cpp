@@ -16,6 +16,15 @@ void Scene::Update(float deltaTime)
 		score += tempNum - destScore;
 	}
 
+	if (Input::GetInstance().KeyDown(VK_F5))
+		Game::GetInstance().ChangeScecne(new GameScene());
+
+	if (Input::GetInstance().KeyDown(VK_F6))
+		Game::GetInstance().ChangeScecne(new GameScene2());
+
+	if (Input::GetInstance().KeyDown(VK_F7))
+		Game::GetInstance().ChangeScecne(new GameScene3());
+
 	obm.Collision();
 	obm.Update(deltaTime);
 }
@@ -28,4 +37,9 @@ void Scene::Render()
 void Scene::AddScore(float score)
 {
 	destScore = score;
+}
+
+void Scene::SortEnemyVector(CEnemy* enemy)
+{
+	enemyVecs.erase(std::find(enemyVecs.begin(), enemyVecs.end(), enemy));
 }

@@ -25,10 +25,17 @@ void Card::Update(float deltaTime)
     {
         changeSpr = true;
         spr.Reset();
-        spr.LoadAll(L"Assets/Sprites/UI/Card/" + name + L".png");
+        spr.LoadAll(L"Assets/Sprites/UI/Card/" + name);
     }
 
-    spr.Update(Game::GetInstance().unscaleTime);
+    if (changeSpr)
+    {
+        if (name == nowScene->mouse->cardName)
+            spr.scene = 1;
+        else
+            spr.scene = 0;
+    }
+    else spr.Update(Game::GetInstance().unscaleTime);
 }
 
 void Card::Render()
@@ -45,7 +52,7 @@ void Card::OnCollision(Collider& coll)
         {
             if (Input::GetInstance().KeyDown(VK_LBUTTON))
             {
-                levelUp->Effective();
+                levelUp->Effective(std::stoi(name));
                 destroy = true;
             }
 

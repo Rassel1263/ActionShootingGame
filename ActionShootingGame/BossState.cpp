@@ -227,6 +227,9 @@ void BossDie::EnterState(CBoss* obj)
 	Camera::GetInstance().destCameraPos = { obj->pos + D3DXVECTOR2(0, 50) };
 
 	obj->behavior = CBoss::BossBehavior::DIE;
+	obj->bCollider = false;
+	obj->ability.hp = 0;
+	obj->poison = false;
 	obj->SetBossImage();
 }
 

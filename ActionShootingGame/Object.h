@@ -5,7 +5,7 @@ class Object
 public:
 	int layer = 0;
 	bool destroy = false;
-	bool bCollider = false;
+	bool bCollider = true;
 	D3DXVECTOR2 pos = { 0, 0 };
 	std::vector<Collider> bodies;
 

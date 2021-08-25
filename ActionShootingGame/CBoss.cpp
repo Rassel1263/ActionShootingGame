@@ -4,13 +4,47 @@ CBoss::CBoss(D3DXVECTOR2 pos) : Unit(pos)
 {
 	bossImage = BossImage::IDLE_DIR_0;
 	behavior = BossBehavior::IDLE;
+	
+	hitTimer = 0.1f;
 
 	shadow.LoadAll(L"Assets/Sprites/Unit/Boss/shadow.png");
 	nowScene->obm.AddObject(new BossUI(this));
+
+	whiteShader = new ColorShader();
+	poisonShader = new ColorShader();
 }
 
 void CBoss::Update(float deltaTime)
 {
+	if (poison)
+	{
+		poisonTime -= deltaTime;
+		tickTime -= deltaTime;
+
+		if (tickTime <= 0.0f)
+		{
+			ability.hp -= 1;
+			bHit = true;
+			tickTime = 1.0f;
+		}
+
+		if (poisonTime <= 0.0f)
+		{
+			poisonTime = 2.0f;
+			poison = false;
+		}
+	}
+
+	if (bHit)
+	{
+		hitTimer -= deltaTime;
+
+		if (hitTimer <= 0.0f)
+		{
+			hitTimer = 0.1f;
+			bHit = false;
+		}
+	}
 	if (nowState)
 		nowState->UpdateState(this, deltaTime);
 
@@ -22,7 +56,13 @@ void CBoss::Render()
 {
 	renderInfo.pos = pos;
 	shadow.Render(RenderInfo{ D3DXVECTOR2(pos.x, pos.y + 25) });
-	GetNowSprite().Render(renderInfo);
+
+	if(bHit)
+		whiteShader->Render(whiteShader, GetNowSprite(), renderInfo);
+	else if(poison)
+		poisonShader->Render(poisonShader, GetNowSprite(), renderInfo, D3DXVECTOR4(0.25f, 0.35f, 0.2f, 0.0f));
+	else
+		GetNowSprite().Render(renderInfo);
 
 	Unit::Render();
 }
@@ -31,7 +71,8 @@ void CBoss::OnCollision(Collider& coli)
 {
 	if (coli.tag == L"allyBullet")
 	{
-		ability.hp--;
+		if (!bHit)
+			 Hit(static_cast<CBullet*>(coli.obj)->damage);
 	}
 }
 
@@ -60,6 +101,13 @@ bool CBoss::Move(float deltaTime)
 	}
 
 	return false;
+}
+
+void CBoss::Hit(float damage)
+{
+	bHit = true;
+	ability.hp -= damage;
+	Camera::GetInstance().cameraQuaken = { 4, 4 };
 }
 
 void CBoss::SetState(CState<CBoss>* nextState)

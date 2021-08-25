@@ -8,7 +8,6 @@ EnemyIdle* EnemyIdle::GetInstance()
 
 void EnemyIdle::EnterState(CEnemy* obj)
 {
-	
 	obj->behavior = CEnemy::EnemyBehavior::IDLE;
 }
 
@@ -39,7 +38,6 @@ EnemyWalk* EnemyWalk::GetInstance()
 
 void EnemyWalk::EnterState(CEnemy* obj)
 {
-	
 	obj->behavior = CEnemy::EnemyBehavior::WALK;
 
 	obj->SetEnemyImage();
@@ -108,6 +106,7 @@ EnemyDie* EnemyDie::GetInstance()
 void EnemyDie::EnterState(CEnemy* obj)
 {
 	obj->behavior = CEnemy::EnemyBehavior::DIE;
+	obj->bCollider = false;
 	obj->SetEnemyImage();
 }
 

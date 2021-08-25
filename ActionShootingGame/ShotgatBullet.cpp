@@ -3,7 +3,7 @@
 ShotgatBullet::ShotgatBullet(D3DXVECTOR2 pos, float theta, float damage, float speed)
 	:CBullet(pos, theta, damage, speed, L"enemy")
 {
-	bulletSpr.LoadAll(L"Assets/Sprites/Weapon/Bullet/Enemy/Basic");
+	bulletSpr.LoadAll(L"Assets/Sprites/Weapon/Bullet/Enemy/Shotgat");
 
 	Collider::AABB aabb;
 	aabb.min = { -3.5, -3.5 };

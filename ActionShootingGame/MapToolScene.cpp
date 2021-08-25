@@ -3,7 +3,7 @@
 
 void MapToolScene::Init()
 {
-	nowScene->curStage = L"GameScene3/";
+	nowScene->curStage = L"GameScene1/";
 
 	gameScene = false;
 	obm.AddObject(new MapToolMouse());
@@ -34,6 +34,8 @@ void MapToolScene::Init()
 	obm.AddObject(new MapToolBlock(L"16", D3DXVECTOR2(-218, -90)));
 	obm.AddObject(new MapToolBlock(L"17", D3DXVECTOR2(-200, -90)));
 	obm.AddObject(new MapToolBlock(L"18", D3DXVECTOR2(-182, -90)));
+
+	obm.AddObject(new MapToolBlock(L"19", D3DXVECTOR2(-218, -108)));
 }
 
 void MapToolScene::Update(float deltaTime)

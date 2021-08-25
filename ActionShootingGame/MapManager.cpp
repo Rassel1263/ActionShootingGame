@@ -6,7 +6,7 @@ MapManager::MapManager(const std::wstring map1, const std::wstring map2)
 	bck_1_Group = FileManager::GetInstance().ReadFile(L"Assets/MapData/" + map1 + L".dat");
 	bck_2_Group = FileManager::GetInstance().ReadFile(L"Assets/MapData/" + map2 + L".dat");
 
-	sprites.resize(19);
+	sprites.resize(20);
 	
 	int size = sprites.size();
 	for (int i = 0; i < size; ++i)
@@ -117,6 +117,9 @@ void MapManager::Collocate()
 
 			if (mapString == "18")
 				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), EnemyName::BANBULLET_KIN));
+
+			if (mapString == "19")
+				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), EnemyName::SHOTGAT));
 		}
 	}
 }

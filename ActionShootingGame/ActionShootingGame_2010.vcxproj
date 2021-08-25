@@ -409,19 +409,24 @@
     <ClCompile Include="GameScene2.cpp" />
     <ClCompile Include="GameScene3.cpp" />
     <ClCompile Include="GatlingGull.cpp" />
+    <ClCompile Include="GlowShader.cpp" />
     <ClCompile Include="HandGun.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="LevelUpEvent.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="MapToolBlock.cpp" />
     <ClCompile Include="MapToolScene.cpp" />
     <ClCompile Include="MapToolMouse.cpp" />
+    <ClCompile Include="Minimap.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PlayerUI.cpp" />
+    <ClCompile Include="PoisonBullet.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="Shotgat.cpp" />
     <ClCompile Include="ShotgatBullet.cpp" />
     <ClCompile Include="ShotGun.cpp" />
@@ -432,8 +437,15 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TutorialScroll.cpp" />
     <ClCompile Include="Unit.cpp" />
+    <ClCompile Include="ColorShader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Shader\glowShader.fx">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="Assets\Shader\whiteShader.fx">
+      <FileType>Document</FileType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BanBulletKin.h" />
@@ -461,21 +473,26 @@
     <ClInclude Include="GameScene2.h" />
     <ClInclude Include="GameScene3.h" />
     <ClInclude Include="GatlingGull.h" />
+    <ClInclude Include="GlowShader.h" />
     <ClInclude Include="HandGun.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="LevelUpEvent.h" />
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="MapToolBlock.h" />
     <ClInclude Include="MapToolScene.h" />
     <ClInclude Include="MapToolMouse.h" />
+    <ClInclude Include="Minimap.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="PlayerUI.h" />
+    <ClInclude Include="PoisonBullet.h" />
     <CLInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="Shotgat.h" />
     <ClInclude Include="ShotgatBullet.h" />
     <ClInclude Include="ShotGun.h" />
@@ -487,6 +504,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TutorialScroll.h" />
     <ClInclude Include="Unit.h" />
+    <ClInclude Include="ColorShader.h" />
     <ResourceCompile Include="ActionShootingGame.rc" />
   </ItemGroup>
   <ItemGroup>

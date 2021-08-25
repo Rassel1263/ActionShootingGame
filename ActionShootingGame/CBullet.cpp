@@ -8,6 +8,7 @@ CBullet::CBullet(D3DXVECTOR2 pos, float theta, float damage, float speed, std::w
 	this->speed = speed;
 
 	this->team = ownerTeam;
+	bulletRI.rotate = D3DXToDegree(-theta);
 }
 
 void CBullet::CheckPos(D3DXVECTOR2 moveDir)
@@ -39,23 +40,20 @@ void CBullet::CheckPos(D3DXVECTOR2 moveDir)
 	mapString.insert(mapString.end(), upString.begin(), upString.begin() + 2);
 
 	if (mapString == "03" || mapString == "04" || mapString == "05" || mapString == "06" || mapString == "07" || mapString == "09")
-		destroy = true;
+		Destroy();
 
 	mapString.clear();
 	mapString.insert(mapString.end(), downString.begin(), downString.begin() + 2);
 
 	if (mapString == "03" || mapString == "04" || mapString == "05" || mapString == "06" || mapString == "07" || mapString == "09")
-		destroy = true;
+		Destroy();
 }
 
 void CBullet::Update(float deltaTime)
 {
 	MoveBullet(deltaTime);
 
-	D3DXVECTOR2 centerPos = nowScene->player->spawnPos;
-	if (pos.x > centerPos.x + 500 || pos.x < centerPos.x - 500 ||
-		pos.y > centerPos.y + 400 || pos.y < centerPos.y - 400)
-		destroy = true;
+	bulletSpr.Update(deltaTime);
 }
 
 void CBullet::Render()
@@ -74,7 +72,12 @@ void CBullet::MoveBullet(float deltaTime)
 
 void CBullet::OnCollision(Collider& coli)
 {
-	if (coli.tag == L"allyBullet" || coli.tag == L"enemyBullet" || coli.tag == L"mouse") return;
-	if (coli.tag != team)
-		destroy = true;
+	if ((team == L"ally" && coli.tag == L"enemy") || (team == L"enemy" && coli.tag == L"ally"))
+		Destroy();
+}
+
+void CBullet::Destroy()
+{
+	nowScene->obm.AddObject(new CEffect(L"Bullet", pos, 0.05f));
+	destroy = true;
 }

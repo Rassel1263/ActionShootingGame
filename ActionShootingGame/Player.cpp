@@ -6,7 +6,7 @@ Player::Player(D3DXVECTOR2 pos) : Unit(pos)
 	this->spawnPos = pos;
 
 	ImageSettings();
-	SetUnitInfo(6, 100, 5, 0.1f, true, L"ally"); 
+	SetUnitInfo(6, 100, 5, 0.1f, true, L"ally");
 	level = 1;
 	hitTimer = 1.5f;
 	intro = true;
@@ -14,12 +14,14 @@ Player::Player(D3DXVECTOR2 pos) : Unit(pos)
 	Camera::GetInstance().destCameraPos = pos;
 
 	nowScene->obm.AddObject(gun = new HandGun(this));
-	nowScene->obm.AddObject(new PlayerUI(this));
+	nowScene->obm.AddObject(playerUI = new PlayerUI(this));
 
 	CreateCollider(D3DXVECTOR2(-7, 0), D3DXVECTOR2(7, 10));
 
 	playerDir = PlayerDir::IDLE_DIR_0;
 	behavior = PlayerBehavior::WALK;
+
+	poisonShader = new ColorShader();
 
 	SetState(PlayerIdle::GetInstance());
 }
@@ -33,9 +35,21 @@ void Player::Update(float deltaTime)
 
 	if (Input::GetInstance().KeyDown('C'))
 		PlusExp(10);
-	
-	if(Input::GetInstance().KeyDown('V'))
-		nowScene->obm.AddObject(new Elevator(pos + D3DXVECTOR2(100, 0), false));
+
+	if (ultimateTime > 0.0f)
+		ultimateTime -= deltaTime;
+	else
+	{
+		if (Input::GetInstance().KeyDown('Q'))
+		{
+			ultimateTime = ultimateCoolTime;
+			Ultimate(30);
+		}
+	}
+
+	if (rollTime > 0.0f)
+		rollTime -= deltaTime;
+
 
 	if (!nowScene->bossZoom)
 	{
@@ -71,9 +85,6 @@ void Player::Update(float deltaTime)
 		}
 	}
 
-	if (Input::GetInstance().KeyDown('R'))
-		holdWeapon = !holdWeapon;
-
 	GetNowSprite().Update(deltaTime);
 	Unit::Update(deltaTime);
 }
@@ -82,7 +93,11 @@ void Player::Render()
 {
 	renderInfo.pos = pos;
 	shadow.Render(RenderInfo{ D3DXVECTOR2(pos.x, pos.y + 1) });
-	GetNowSprite().Render(renderInfo);
+
+	if (poison)
+		poisonShader->Render(poisonShader, GetNowSprite(), renderInfo, D3DXVECTOR4(0.25f, 0.35f, 0.2f, 0.0f));
+	else
+		GetNowSprite().Render(renderInfo);
 
 	Unit::Render();
 }
@@ -92,9 +107,7 @@ void Player::OnCollision(Collider& coli)
 	if (coli.tag == L"enemyBullet")
 	{
 		if (!bHit)
-		{
 			Hit();
-		}
 	}
 }
 
@@ -106,12 +119,12 @@ void Player::ImageSettings()
 	playerSprites[PlayerDir::IDLE_DIR_45].LoadAll(filePath + L"Idle/45", 0.15f);
 	playerSprites[PlayerDir::IDLE_DIR_90].LoadAll(filePath + L"Idle/90", 0.15f);
 	playerSprites[PlayerDir::IDLE_DIR_270].LoadAll(filePath + L"Idle/270", 0.15f);
-	
+
 	playerSprites[PlayerDir::MOVE_DIR_0].LoadAll(filePath + L"Move/0", 0.15f);
 	playerSprites[PlayerDir::MOVE_DIR_45].LoadAll(filePath + L"Move/45", 0.15f);
 	playerSprites[PlayerDir::MOVE_DIR_90].LoadAll(filePath + L"Move/90", 0.15f);
 	playerSprites[PlayerDir::MOVE_DIR_270].LoadAll(filePath + L"Move/270", 0.15f);
-	
+
 	playerSprites[PlayerDir::ROLL_DIR_0].LoadAll(filePath + L"Roll/0", 0.07f, false);
 	playerSprites[PlayerDir::ROLL_DIR_45].LoadAll(filePath + L"Roll/45", 0.07f, false);
 	playerSprites[PlayerDir::ROLL_DIR_90].LoadAll(filePath + L"Roll/90", 0.07f, false);
@@ -156,11 +169,6 @@ D3DXVECTOR2 Player::CheckPos(D3DXVECTOR2 moveDir)
 		return D3DXVECTOR2(0, 0);
 
 	return moveDir;
-}
-
-void Player::SpawnEnemy()
-{
-	nowScene->obm.AddObject(new ShotgunKin(pos));
 }
 
 void Player::SetNotHoldGunPlayerDir(D3DXVECTOR2 dir)
@@ -222,18 +230,48 @@ void Player::SetHoldGunPlayerDir(D3DXVECTOR2 dir)
 	}
 }
 
+void Player::SetEffect(int index)
+{
+	switch (index)
+	{
+	case 0:
+	{
+		ability.maxHp++;
+		ability.hp += 2;
+		break;
+	}
+	case 1:
+		ability.attackPower += 5;
+		break;
+	case 2:
+		gun->bulletType = CGun::BulletType::Poison;
+		break;
+	case 3:
+		gun->bulletType = CGun::BulletType::Basic;
+		break;
+	case 4:
+		shield += 3;
+		break;
+	case 5:
+		ultimateCoolTime -= 1.0f;
+		break;
+	case 6:
+		ability.attackSpeed *= 0.8f;
+		break;
+	case 7:
+		gun->bulletCnt = 3;
+		break;
+	}
+	playerUI->AddAblitySpr(index);
+}
+
 void Player::PlusExp(float exp)
 {
 	this->exp += exp;
 
-	CheckExp();
-}
-
-void Player::CheckExp()
-{
-	if (exp >= 100)
+	if (this->exp >= 100)
 	{
-		exp = 0.0f;
+		this->exp = 0.0f;
 		LevelUp();
 	}
 }
@@ -244,15 +282,36 @@ void Player::LevelUp()
 	auto Func = []() { nowScene->obm.AddObject(new LevelUpEvent()); };
 	std::function<void()> func;
 	Camera::GetInstance().cameraQuaken = { 5, 5 };
-	nowScene->obm.AddObject(new CEffect(L"LevelUp/Effect", pos + D3DXVECTOR2(0, 15), 0.02f, D3DXVECTOR2(1, 1), Func));
+	nowScene->obm.AddObject(new CEffect(L"LevelUp/Effect", pos + D3DXVECTOR2(0, 15), 0.02f, D3DXVECTOR2(0.5, 0.5), Func));
 }
 
 void Player::Hit()
 {
-	nowScene->obm.AddObject(new CEffect(L"ouch.png", D3DXVECTOR2(0, 0), 0.3f, false));
 	bHit = true;
-	ability.hp--;
+	nowScene->obm.AddObject(new CEffect(L"ouch.png", D3DXVECTOR2(0, 0), 0.3f, false));
 	Camera::GetInstance().cameraQuaken = { 4, 4 };
+
+	if (shield > 0)
+	{
+		Ultimate(10);
+		shield--;
+	}
+	else
+		ability.hp--;
+}
+
+void Player::Ultimate(float damage)
+{
+	nowScene->obm.AddObject(new CEffect(L"LevelUp/Effect", pos + D3DXVECTOR2(0, 15), 0.02f, D3DXVECTOR2(2.0f, 2.0f)));
+	for (auto enemy : nowScene->enemyVecs)
+	{
+		enemy->behavior = CEnemy::EnemyBehavior::HIT;
+		D3DXVECTOR2 dir = enemy->GetDirectionFromPlayer();
+		enemy->force = 30 * -dir;
+		enemy->hitDamage = damage;
+	}
+
+	ultimateTime = 1.0f;
 }
 
 

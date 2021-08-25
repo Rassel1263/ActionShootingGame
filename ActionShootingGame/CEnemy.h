@@ -5,6 +5,7 @@ enum class EnemyName
 	BULLET_KIM,
 	BANBULLET_KIN,
 	SHOTGUN_KIN,
+	SHOTGAT
 };
 
 class CEnemy : public Unit

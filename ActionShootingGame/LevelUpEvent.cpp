@@ -46,9 +46,10 @@ void LevelUpEvent::Render()
     font.Render(RenderInfo{ D3DXVECTOR2(0, -100) });
 }
 
-void LevelUpEvent::Effective()
+void LevelUpEvent::Effective(int index)
 {
     Game::GetInstance().timeScale = 1.0f;
+    nowScene->player->SetEffect(index);
     destroy = true;
 
     for (auto& card : cards)

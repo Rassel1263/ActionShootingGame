@@ -20,5 +20,6 @@ public:
 	virtual void Render() override;
 	virtual void MoveBullet(float deltaTime);
 	virtual void OnCollision(Collider& coli) override;
+	virtual void Destroy();
 };
 

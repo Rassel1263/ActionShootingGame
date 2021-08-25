@@ -4,22 +4,33 @@ void GameScene::Init()
 {
 	nextScene = new GameScene2();
 
+	ShaderManager::GetInstance().CreateEffect("Glow", L"Assets/Shader/glowShader.fx", 1);
+	ShaderManager::GetInstance().CreateEffect("Color", L"Assets/Shader/whiteShader.fx", 1);
+
 	curStage = L"GameScene1/";
 	srand(time(NULL));
 
 	obm.AddObject(new Fade(false));
 	obm.AddObject(mapManager = new MapManager(curStage + L"room1/map00", curStage + L"room1/map01"));
 	obm.AddObject(new Elevator(player->spawnPos, true));
+	obm.AddObject(new Minimap());
 	obm.AddObject(new Font(L"Number", D3DXVECTOR2(-10, 110), gameTime, D3DXVECTOR2(1.6, 1.6), 15));
 	obm.AddObject(new Font(L"Number", D3DXVECTOR2(200, 110), score, D3DXVECTOR2(1.0, 1.0), 10));
 	//obm.AddObject(new GatlingGull(D3DXVECTOR2(400, 200)));
-	//obm.AddObject(new BanBulletKin(D3DXVECTOR2(400, 100)));
+	
 	//obm.AddObject(player = new Player(D3DXVECTO));
 	obm.AddObject(mouse = new Mouse());
 }
 
 void GameScene::Update(float deltaTime)
 {
+	if (Input::GetInstance().KeyDown('G'))
+	{
+		CEnemy* enemy;
+		obm.AddObject(enemy = new BulletKim(player->spawnPos));
+		enemyVecs.push_back(enemy);
+	}
+
 	if (tutorial)
 	{
 		tutorialTimer += deltaTime;
@@ -53,3 +64,4 @@ void GameScene::SpawnBoss()
 {
 	obm.AddObject(new GatlingGull(player->spawnPos + D3DXVECTOR2(0, -50)));
 }
+

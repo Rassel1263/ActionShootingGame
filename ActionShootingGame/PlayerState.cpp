@@ -46,8 +46,11 @@ void PlayerWalk::UpdateState(Player* obj, float deltaTime)
 {
 	if (Input::GetInstance().KeyDown(VK_RBUTTON))
 	{
-		obj->SetState(PlayerDodgeRoll::GetInstance());
-		return;
+		if (obj->rollTime <= 0.0f)
+		{
+			obj->SetState(PlayerDodgeRoll::GetInstance());
+			return;
+		}
 	}
 
 	if (!obj->Move(deltaTime))
@@ -85,22 +88,27 @@ void PlayerDodgeRoll::EnterState(Player* obj)
 
 	obj->SetNotHoldGunPlayerDir(obj->moveDir);
 
+	obj->bCollider = false;
 	obj->velocity = dir * 250;
 	obj->GetNowSprite().Reset();
 }
 
 void PlayerDodgeRoll::UpdateState(Player* obj, float deltaTime)
 {
+	if (obj->GetNowSprite().scene > 4)
+		obj->bCollider = true;
+
 	if (!obj->GetNowSprite().bAnimation)
 	{
 		obj->SetState(PlayerIdle::GetInstance());
-		return;
+		return; 
 	}
 }
 
 void PlayerDodgeRoll::ExitState(Player* obj)
 {
 	obj->holdWeapon = holdWeapon;
+	obj->rollTime = obj->rollCoolTime;
 	holdWeapon = false;
 }
 

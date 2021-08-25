@@ -1,7 +1,7 @@
 #pragma once
 
 
-class MapManager;
+class PlayerUI;
 class Player : public Unit
 {
 public:
@@ -32,15 +32,22 @@ public:
 
 	D3DXVECTOR2 spawnPos = { 0, 0 };
 
+	PlayerUI* playerUI = NULL;
+
 	std::map<PlayerDir, Sprite> playerSprites;
 	CState<Player>* nowState = NULL;
 
 	int level = 0;
+	int shield = 0;
 	float exp = 0.0f;
 
+	float ultimateTime = 0.0f;
+	float ultimateCoolTime = 1.0f;
+
+	float rollTime = 0.0f;
+	float rollCoolTime = 1.0f;
+
 	bool intro = false;
-	bool bHit = false;
-	float hitTimer = 0.0f;
 
 	Player(D3DXVECTOR2 pos);
 
@@ -51,14 +58,14 @@ public:
 	virtual void ImageSettings() override;
 	virtual Sprite& GetNowSprite() override;
 	D3DXVECTOR2 CheckPos(D3DXVECTOR2 moveDir);
-	void SpawnEnemy();
+	bool Move(float deltaTime);
 	void SetNotHoldGunPlayerDir(D3DXVECTOR2 dir);
 	void SetHoldGunPlayerDir(D3DXVECTOR2 dir);
+	void SetEffect(int index);
 	void PlusExp(float exp);
-	void CheckExp();
 	void LevelUp();
 	void Hit();
-	bool Move(float deltaTime);
+	void Ultimate(float damage);
 	void SetState(CState<Player>* nextState);
 };
 

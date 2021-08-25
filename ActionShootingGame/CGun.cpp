@@ -5,6 +5,8 @@ CGun::CGun(Unit* owner)
 	this->owner = owner;
 	gunRI.pivot = { 0, 0.3 };
 
+	bulletType = BulletType::Basic;
+
 	layer = owner->layer;
 }
 
@@ -34,5 +36,9 @@ void CGun::Shoot(float angle, float damage, std::wstring team)
 
 void CGun::CreateBullet(float theta)
 {
-	nowScene->obm.AddObject(new BasicBullet(pos, theta, owner->ability.attackPower, 200, owner->team));
+	if(bulletType == BulletType::Basic)
+		nowScene->obm.AddObject(new BasicBullet(pos, theta, owner->ability.attackPower, 200, owner->team));
+
+	if(bulletType == BulletType::Poison)
+		nowScene->obm.AddObject(new PoisonBullet(pos, theta, owner->ability.attackPower, 200, owner->team));
 }

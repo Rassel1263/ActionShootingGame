@@ -15,7 +15,18 @@ public:
 	CGun* gun = NULL;
 
 	std::wstring team = L"";
+	bool bHit = false;
+	float hitTimer = 0.0f;
+
 	bool holdWeapon = false;
+
+	bool poison = false;
+	float poisonTime = 3.0f;
+	float tickTime = 1.0f;
+
+	GlowShader* glowShader = NULL;
+	ColorShader* whiteShader = NULL;
+	ColorShader* poisonShader = NULL;
 
 	D3DXVECTOR2 moveDir = { 0, 0 };
 

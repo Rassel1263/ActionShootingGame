@@ -54,6 +54,7 @@ public:
 	virtual void SetPattern(int index) = 0;
 
 	bool Move(float deltaTime);
+	void Hit(float damage);
 	void SetState(CState<CBoss>* nextState);
 	void SetBossImage();
 };

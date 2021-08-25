@@ -128,6 +128,7 @@ void Game::DrawLine(D3DXVECTOR2 p1, D3DXVECTOR2 p2, D3DXMATRIX matrix, D3DCOLOR 
 
 void Game::ChangeScecne(Scene* nextScene)
 {
+	SAFE_DELETE(nowScene);
 	this->nextScene = nextScene;
 }
 

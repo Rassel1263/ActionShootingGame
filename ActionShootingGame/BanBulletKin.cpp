@@ -9,6 +9,8 @@ BanBulletKin::BanBulletKin(D3DXVECTOR2 pos) : CEnemy(pos)
 	CreateCollider(D3DXVECTOR2(-7, 0), D3DXVECTOR2(7, 10));
 	playerDetectionRange = 200;
 	stopRange = 100;
+
+	SetState(EnemyIdle::GetInstance());
 }
 
 void BanBulletKin::Update(float deltaTime)

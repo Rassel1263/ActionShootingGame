@@ -4,6 +4,12 @@ class Unit;
 class CGun : public Object
 {
 public:
+	enum class BulletType
+	{
+		Basic,
+		Poison,
+	}bulletType;
+
 	Unit* owner = NULL;
 
 	float startAngle = 0.0f, angle = 0.0f;

@@ -7,18 +7,39 @@ CEnemy::CEnemy(D3DXVECTOR2 pos) : Unit(pos)
 	enemyImage = EnemyImage::IDLE_LEFT;
 	behavior = EnemyBehavior::IDLE;
 
-	SetState(EnemyIdle::GetInstance());
+	poisonShader = new ColorShader();
 }
 
 CEnemy::~CEnemy()
 {
 	if (gun)
 		gun->destroy = true;
+
+	nowScene->SortEnemyVector(this);
 }
 
 void CEnemy::Update(float deltaTime)
 {
 	SetEnemyImage();
+
+	if (poison)
+	{
+		poisonTime -= deltaTime;
+		tickTime -= deltaTime;
+
+		if (tickTime <= 0.0f)
+		{
+			behavior = EnemyBehavior::HIT;
+			hitDamage = 1;
+			tickTime = 1.0f;
+		}
+		
+		if (poisonTime <= 0.0f)
+		{
+			poisonTime = 2.0f;
+			poison = false;
+		}
+	}
 
 	if (behavior != EnemyBehavior::HIT && behavior != EnemyBehavior::DIE)
 		if (CheckDistanceToPlayer(playerDetectionRange))
@@ -35,13 +56,17 @@ void CEnemy::Render()
 {
 	renderInfo.pos = pos;
 	shadow.Render(RenderInfo{ D3DXVECTOR2(pos.x, pos.y + 1) });
-	GetNowSprite().Render(renderInfo);
+
+	if (poison)
+		poisonShader->Render(poisonShader, GetNowSprite(), renderInfo, D3DXVECTOR4(0.25f, 0.35f, 0.2f, 0.0f));
+	else
+		GetNowSprite().Render(renderInfo);
+
 	Unit::Render();
 }
 
 void CEnemy::OnCollision(Collider& coli)
 {
-	if (behavior == EnemyBehavior::DIE) return;
 
 	if (coli.tag == L"allyBullet")
 	{
@@ -70,7 +95,13 @@ bool CEnemy::Move(float deltaTime)
 
 void CEnemy::Die()
 {
+	std::default_random_engine rnd(nowScene->rd());
+	std::uniform_int_distribution<int> dis(0, 4);
+
 	nowScene->obm.AddObject(new CEffect(L"Boom", pos + D3DXVECTOR2(0, 20), 0.05f ));
+	if (!dis(rnd))
+		nowScene->obm.AddObject(new Item(pos));
+
 	nowScene->AddScore(rand() % 200 + 100);
 	destroy = true;
 }

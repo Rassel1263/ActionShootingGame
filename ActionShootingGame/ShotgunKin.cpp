@@ -14,6 +14,8 @@ ShotgunKin::ShotgunKin(D3DXVECTOR2 pos) : CEnemy(pos)
 
 	gun->angle = 50;
 	gun->bulletCnt = 5;
+
+	SetState(EnemyIdle::GetInstance());
 }
 
 void ShotgunKin::Update(float deltaTime)

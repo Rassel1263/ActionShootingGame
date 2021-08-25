@@ -22,6 +22,7 @@ public:
 	bool bCamera = true;
 
 	float widthRatio = 1.0f;
+	float heightRatio = 0.0f;
 
 	std::vector<const Texture*> textures;
 

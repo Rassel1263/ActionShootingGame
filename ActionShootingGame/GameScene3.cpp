@@ -29,8 +29,6 @@ void GameScene3::Update(float deltaTime)
 	}
 
 	Scene::Update(deltaTime);
-
-	Scene::Update(deltaTime);
 }
 
 void GameScene3::Render()

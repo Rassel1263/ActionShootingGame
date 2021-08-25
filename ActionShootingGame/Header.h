@@ -41,6 +41,9 @@ struct MapGroup
 #include "Collider.h"
 #include "Object.h"
 
+#include "ShaderManager.h"
+#include "ColorShader.h"
+#include "GlowShader.h"
 #include "FileManager.h"
 
 #include "CState.h"
@@ -53,6 +56,7 @@ struct MapGroup
 
 #include "CBullet.h"
 #include "BasicBullet.h"
+#include "PoisonBullet.h"
 #include "ShotgatBullet.h"
 
 #include "Unit.h"
@@ -82,6 +86,9 @@ struct MapGroup
 #include "BossUI.h"
 #include "Fade.h"
 #include "Font.h"
+#include "Minimap.h"
+
+#include "Item.h"
 
 #include "MapToolMouse.h"
 #include "MapManager.h"
@@ -95,6 +102,5 @@ extern Scene* nowScene;
 #include "GameScene2.h"
 #include "GameScene3.h"
 #include "MapToolScene.h"
-
 
 #include "Game.h"

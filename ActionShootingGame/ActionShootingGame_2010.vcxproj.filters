@@ -74,6 +74,15 @@
     <Filter Include="GameScene\Object\Unit\Boss">
       <UniqueIdentifier>{975de674-4e54-4a17-832c-dc9eb35abbc7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{6fd138ba-cc19-4185-8934-52f6d3191002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\fx">
+      <UniqueIdentifier>{f5453161-953b-4f20-9060-a44576a7f56c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene\Object\Item">
+      <UniqueIdentifier>{102a546f-7298-4956-8eda-18bf8e2d4b41}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -90,6 +99,9 @@
     </None>
     <None Include="Assets\MapData\GameScene1\room2\map01.dat">
       <Filter>MapData\GameScene1\room2</Filter>
+    </None>
+    <None Include="Assets\Shader\glowShader.fx">
+      <Filter>Shader\fx</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -232,6 +244,24 @@
     </ClCompile>
     <ClCompile Include="GameScene3.cpp">
       <Filter>GameScene\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="PoisonBullet.cpp">
+      <Filter>GameScene\Object\Unit\Weapon\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderManager.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorShader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="GlowShader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>GameScene\Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Minimap.cpp">
+      <Filter>GameScene\Object\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -379,6 +409,24 @@
     <ClInclude Include="GameScene3.h">
       <Filter>GameScene\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="PoisonBullet.h">
+      <Filter>GameScene\Object\Unit\Weapon\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderManager.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorShader.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="GlowShader.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>GameScene\Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Minimap.h">
+      <Filter>GameScene\Object\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -389,5 +437,8 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="Assets\Shader\whiteShader.fx">
+      <Filter>Shader\fx</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

@@ -11,6 +11,8 @@ public:
 	Scene* nextScene = NULL;
 	Mouse* mouse = NULL;
 	Player* player = NULL;
+	std::vector<CEnemy*> enemyVecs;
+	std::random_device rd;
 
 	std::wstring curStage = L"";
 
@@ -25,5 +27,6 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void Render();
 	void AddScore(float score);
+	void SortEnemyVector(CEnemy* enemy);
 };
 

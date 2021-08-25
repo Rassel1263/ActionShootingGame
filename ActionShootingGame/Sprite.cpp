@@ -59,21 +59,24 @@ void Sprite::Render(const RenderInfo& ri)
 
     Game::GetInstance().pVB->Lock(0, 0, (void**)&pVertices, 0);
 
+    if (heightRatio <= 0.0f)
+        heightRatio = 0.0f;
+
     pVertices[0].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
     pVertices[0].color = color;
     pVertices[0].uv = D3DXVECTOR2(0.0f, 1.0f);
 
-    pVertices[1].pos = D3DXVECTOR3(0.0f, GetNowScene()->info.Height, 0.0f);
+    pVertices[1].pos = D3DXVECTOR3(0.0f, GetNowScene()->info.Height * (1.0f - heightRatio), 0.0f);
     pVertices[1].color = color;
-    pVertices[1].uv = D3DXVECTOR2(0.0f, 0.0f);
+    pVertices[1].uv = D3DXVECTOR2(0.0f, heightRatio);
 
     pVertices[2].pos = D3DXVECTOR3(GetNowScene()->info.Width * widthRatio, 0.0f, 0.0f);
     pVertices[2].color = color;
-    pVertices[2].uv = D3DXVECTOR2(1.0f * widthRatio, 1.0f);
+    pVertices[2].uv = D3DXVECTOR2(1.0f * widthRatio, 1.0f );
 
-    pVertices[3].pos = D3DXVECTOR3(GetNowScene()->info.Width * widthRatio, GetNowScene()->info.Height, 0.0f);
+    pVertices[3].pos = D3DXVECTOR3(GetNowScene()->info.Width * widthRatio, GetNowScene()->info.Height * (1.0f - heightRatio), 0.0f);
     pVertices[3].color = color;
-    pVertices[3].uv = D3DXVECTOR2(1.0f * widthRatio, 0.0f);
+    pVertices[3].uv = D3DXVECTOR2(1.0f * widthRatio, heightRatio);
 
     Game::GetInstance().pVB->Unlock();
 
