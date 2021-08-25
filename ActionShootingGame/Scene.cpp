@@ -16,6 +16,33 @@ void Scene::Update(float deltaTime)
 		score += tempNum - destScore;
 	}
 
+	if (Input::GetInstance().KeyDown(VK_F1))
+	{
+		nowScene->player->god = !nowScene->player->god;
+	}
+
+	if (Input::GetInstance().KeyDown(VK_F2))
+	{
+		nowScene->player->LevelUp();
+	}
+
+	if (Input::GetInstance().KeyDown(VK_F3))
+	{
+		for (auto enemy : enemyVecs)
+		{
+			if (enemy->pos.x > Camera::GetInstance().cameraPos.x - 240 &&
+				enemy->pos.x < Camera::GetInstance().cameraPos.x + 240 &&
+				enemy->pos.y > Camera::GetInstance().cameraPos.y - 135 &&
+				enemy->pos.y < Camera::GetInstance().cameraPos.y + 135)
+			{
+				enemy->Die();
+			}
+		}
+	}
+
+	if (Input::GetInstance().KeyDown(VK_F4))
+		Game::GetInstance().ChangeScecne(new MainScene());
+
 	if (Input::GetInstance().KeyDown(VK_F5))
 		Game::GetInstance().ChangeScecne(new GameScene());
 
@@ -25,6 +52,15 @@ void Scene::Update(float deltaTime)
 	if (Input::GetInstance().KeyDown(VK_F7))
 		Game::GetInstance().ChangeScecne(new GameScene3());
 
+
+	if (Input::GetInstance().KeyDown(VK_ESCAPE))
+	{
+		auto& pause = Game::GetInstance().pause;
+		pause = !pause;
+	}
+
+
+	if (Game::GetInstance().pause) return;
 	obm.Collision();
 	obm.Update(deltaTime);
 }

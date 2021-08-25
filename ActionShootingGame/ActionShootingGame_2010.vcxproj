@@ -414,6 +414,8 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="LevelUpEvent.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="MapToolBlock.cpp" />
     <ClCompile Include="MapToolScene.cpp" />
@@ -479,6 +481,8 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="LevelUpEvent.h" />
+    <ClInclude Include="Main.h" />
+    <ClInclude Include="MainScene.h" />
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="MapToolBlock.h" />
     <ClInclude Include="MapToolScene.h" />

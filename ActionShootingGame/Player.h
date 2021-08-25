@@ -48,6 +48,7 @@ public:
 	float rollCoolTime = 1.0f;
 
 	bool intro = false;
+	bool god = false;
 
 	Player(D3DXVECTOR2 pos);
 

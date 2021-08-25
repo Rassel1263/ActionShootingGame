@@ -13,7 +13,8 @@ public:
 	};
 
 	Sprite border;
-	std::vector<Unit*> units;
+	std::vector<Sprite> units;
+	Sprite spr;
 
 	Minimap();
 

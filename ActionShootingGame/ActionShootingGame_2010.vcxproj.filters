@@ -83,6 +83,9 @@
     <Filter Include="GameScene\Object\Item">
       <UniqueIdentifier>{102a546f-7298-4956-8eda-18bf8e2d4b41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainScene">
+      <UniqueIdentifier>{3ef939b7-7b11-4f52-8d4b-79c838af2ccf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -103,6 +106,7 @@
     <None Include="Assets\Shader\glowShader.fx">
       <Filter>Shader\fx</Filter>
     </None>
+    <None Include="Assets\Shader\whiteShader.fx" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -262,6 +266,12 @@
     </ClCompile>
     <ClCompile Include="Minimap.cpp">
       <Filter>GameScene\Object\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>MainScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MainScene.cpp">
+      <Filter>MainScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -427,6 +437,12 @@
     <ClInclude Include="Minimap.h">
       <Filter>GameScene\Object\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Main.h">
+      <Filter>MainScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MainScene.h">
+      <Filter>MainScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -435,10 +451,5 @@
     <ResourceCompile Include="ActionShootingGame.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Assets\Shader\whiteShader.fx">
-      <Filter>Shader\fx</Filter>
-    </FxCompile>
   </ItemGroup>
 </Project>

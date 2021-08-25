@@ -94,10 +94,13 @@ struct MapGroup
 #include "MapManager.h"
 #include "MapToolBlock.h"
 
+#include "Main.h"
+
 #include "Mouse.h"
 
 #include "Scene.h"
 extern Scene* nowScene;
+#include "MainScene.h"
 #include "GameScene.h"
 #include "GameScene2.h"
 #include "GameScene3.h"

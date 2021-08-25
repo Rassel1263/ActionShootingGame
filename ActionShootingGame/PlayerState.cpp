@@ -51,6 +51,8 @@ void PlayerWalk::UpdateState(Player* obj, float deltaTime)
 			obj->SetState(PlayerDodgeRoll::GetInstance());
 			return;
 		}
+		else
+			nowScene->obm.AddObject(new CEffect(L"coolTime.png", D3DXVECTOR2(180, -75), 1.0f, false));
 	}
 
 	if (!obj->Move(deltaTime))

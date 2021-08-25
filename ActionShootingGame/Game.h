@@ -15,6 +15,7 @@ public:
 	int screenWidth = 1920;
 	int screenHeight = 1080;
 
+	bool pause = false;
 	float timeScale = 1.0f;
 
 	float unscaleTime = 0.0f;

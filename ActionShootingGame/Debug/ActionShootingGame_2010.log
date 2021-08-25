@@ -1,0 +1,9 @@
+﻿  Player.cpp
+C:\Users\GimGimGim\Desktop\Git\ActionShootingGame\ActionShootingGame\Player.cpp(73,18): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\GimGimGim\Desktop\Git\ActionShootingGame\ActionShootingGame\Player.cpp(145,42): warning C4458: 'moveDir' 선언은 클래스 멤버를 숨깁니다.
+C:\Users\GimGimGim\Desktop\Git\ActionShootingGame\ActionShootingGame\Unit.h(31,14): message : 'Unit::moveDir' 선언을 참조하십시오.
+C:\Users\GimGimGim\Desktop\Git\ActionShootingGame\ActionShootingGame\Player.cpp(149,8): warning C4244: '초기화 중': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\GimGimGim\Desktop\Git\ActionShootingGame\ActionShootingGame\Player.cpp(150,8): warning C4244: '초기화 중': 'FLOAT'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\GimGimGim\Desktop\Git\ActionShootingGame\ActionShootingGame\Player.cpp(274,28): warning C4458: 'exp' 선언은 클래스 멤버를 숨깁니다.
+C:\Users\GimGimGim\Desktop\Git\ActionShootingGame\ActionShootingGame\Player.h(42,8): message : 'Player::exp' 선언을 참조하십시오.
+  ActionShootingGame_2010.vcxproj -> C:\Users\GimGimGim\Desktop\Git\ActionShootingGame\ActionShootingGame\Debug\ActionShootingGame.exe

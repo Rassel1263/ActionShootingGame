@@ -22,6 +22,7 @@ Player::Player(D3DXVECTOR2 pos) : Unit(pos)
 	behavior = PlayerBehavior::WALK;
 
 	poisonShader = new ColorShader();
+	glowShader = new GlowShader();
 
 	SetState(PlayerIdle::GetInstance());
 }
@@ -38,13 +39,16 @@ void Player::Update(float deltaTime)
 
 	if (ultimateTime > 0.0f)
 		ultimateTime -= deltaTime;
-	else
+
+	if (Input::GetInstance().KeyDown('Q'))
 	{
-		if (Input::GetInstance().KeyDown('Q'))
+		if (ultimateTime <= 0.0f)
 		{
 			ultimateTime = ultimateCoolTime;
 			Ultimate(30);
 		}
+		else
+			nowScene->obm.AddObject(new CEffect(L"coolTime.png", D3DXVECTOR2(180, -75), 1.0f, false));
 	}
 
 	if (rollTime > 0.0f)
@@ -93,8 +97,10 @@ void Player::Render()
 {
 	renderInfo.pos = pos;
 	shadow.Render(RenderInfo{ D3DXVECTOR2(pos.x, pos.y + 1) });
-
-	if (poison)
+	
+	if(god)
+		glowShader->Render(glowShader, GetNowSprite(), renderInfo);
+	else if (poison)
 		poisonShader->Render(poisonShader, GetNowSprite(), renderInfo, D3DXVECTOR4(0.25f, 0.35f, 0.2f, 0.0f));
 	else
 		GetNowSprite().Render(renderInfo);
@@ -106,7 +112,7 @@ void Player::OnCollision(Collider& coli)
 {
 	if (coli.tag == L"enemyBullet")
 	{
-		if (!bHit)
+		if (!bHit && !god)
 			Hit();
 	}
 }
@@ -267,6 +273,8 @@ void Player::SetEffect(int index)
 
 void Player::PlusExp(float exp)
 {
+	if (level > 4) return;
+
 	this->exp += exp;
 
 	if (this->exp >= 100)

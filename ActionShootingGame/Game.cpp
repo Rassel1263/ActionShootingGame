@@ -47,7 +47,7 @@ HRESULT Game::Init(HWND hWnd)
 
 #endif
 
-	ChangeScecne(new GameScene());
+	ChangeScecne(new MainScene());
 
 	if (FAILED(pd3dDevice->CreateVertexBuffer(sizeof(CUSTOMVERTEX) * 4, 0,
 		D3DFVF_CUSTOMVERTEX, D3DPOOL_DEFAULT, &pVB, 0)))
@@ -78,11 +78,6 @@ HRESULT Game::Init(HWND hWnd)
 
 void Game::Update(float deltaTime)
 {
-	if (Input::GetInstance().KeyDown(VK_ESCAPE))
-	{
-		PostQuitMessage(0);
-	}
-
 	Input::GetInstance().Update();
 
 	if (nextScene)
@@ -128,7 +123,6 @@ void Game::DrawLine(D3DXVECTOR2 p1, D3DXVECTOR2 p2, D3DXMATRIX matrix, D3DCOLOR 
 
 void Game::ChangeScecne(Scene* nextScene)
 {
-	SAFE_DELETE(nowScene);
 	this->nextScene = nextScene;
 }
 
