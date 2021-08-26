@@ -13,6 +13,8 @@ Unit::Unit(D3DXVECTOR2 pos)
 
 void Unit::Update(float deltaTime)
 {
+	layer = -pos.y + 1000;
+
 	Object::Update(deltaTime);
 }
 
@@ -59,7 +61,6 @@ D3DXVECTOR2 Unit::GetDirectionFromPlayer()
 
 	D3DXVec2Normalize(&distance, &distance);
 
-	std::cout << distance.x << "  " << distance.y << std::endl;
 
 	return distance;
 }

@@ -15,7 +15,7 @@ Elevator::Elevator(D3DXVECTOR2 pos, bool stageStart)
 
 	this->stageStart = stageStart;
 
-	layer = 2;
+	layer = 1010;
 }
 
 void Elevator::Update(float deltaTime)
@@ -44,7 +44,7 @@ void Elevator::Update(float deltaTime)
 			{
 				nowScene->player->intro = true;
 				renderNum = 1;
-				auto func = [] { Game::GetInstance().ChangeScecne(nowScene->nextScene); };
+				auto func = [] { nowScene->obm.AddObject(new CalcPage()); };
 				nowScene->obm.AddObject(new Fade(true, 1.0f, func));
 
 				drawFade = true;

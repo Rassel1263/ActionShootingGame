@@ -16,6 +16,7 @@ public:
 
 	std::wstring team = L"";
 	bool bHit = false;
+	bool bFall = false;
 	float hitTimer = 0.0f;
 
 	bool holdWeapon = false;

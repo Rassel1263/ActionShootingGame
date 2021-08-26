@@ -4,7 +4,7 @@ CBoss::CBoss(D3DXVECTOR2 pos) : Unit(pos)
 {
 	bossImage = BossImage::IDLE_DIR_0;
 	behavior = BossBehavior::IDLE;
-	
+
 	hitTimer = 0.1f;
 
 	shadow.LoadAll(L"Assets/Sprites/Unit/Boss/shadow.png");
@@ -16,6 +16,8 @@ CBoss::CBoss(D3DXVECTOR2 pos) : Unit(pos)
 
 void CBoss::Update(float deltaTime)
 {
+	layer = -pos.y + 1000;
+
 	if (poison)
 	{
 		poisonTime -= deltaTime;
@@ -55,7 +57,7 @@ void CBoss::Update(float deltaTime)
 void CBoss::Render()
 {
 	renderInfo.pos = pos;
-	shadow.Render(RenderInfo{ D3DXVECTOR2(pos.x, pos.y + 25) });
+	shadow.Render(RenderInfo{ D3DXVECTOR2(pos.x, pos.y)});
 
 	if(bHit)
 		whiteShader->Render(whiteShader, GetNowSprite(), renderInfo);
@@ -84,7 +86,7 @@ Sprite& CBoss::GetNowSprite()
 void CBoss::Die()
 {
 	nowScene->AddScore(1000);
-	nowScene->obm.AddObject(new CEffect(L"Boom", pos + D3DXVECTOR2(0, 50), 0.05f, D3DXVECTOR2(2, 2)));
+	nowScene->obm.AddObject(new CEffect(L"Boom", pos, 0.05f, D3DXVECTOR2(2, 2)));
 	nowScene->obm.AddObject(new Elevator(nowScene->player->spawnPos, false));
 	nowScene->bossZoom = false;
 	nowScene->stageClear = true;
@@ -107,7 +109,6 @@ void CBoss::Hit(float damage)
 {
 	bHit = true;
 	ability.hp -= damage;
-	Camera::GetInstance().cameraQuaken = { 4, 4 };
 }
 
 void CBoss::SetState(CState<CBoss>* nextState)
@@ -118,43 +119,3 @@ void CBoss::SetState(CState<CBoss>* nextState)
 	nowState = nextState;
 	nowState->EnterState(this);
 }
-
-void CBoss::SetBossImage()
-{
-	D3DXVECTOR2 dir = GetDirectionFromPlayer();
-
-	if (behavior == BossBehavior::IDLE)
-	{
-		if (abs(dir.x) > 0.4)
-		{
-			if (dir.y > 0.4) bossImage = BossImage::IDLE_DIR_45;
-			else if (dir.y < -0.4) bossImage = BossImage::IDLE_DIR_315;
-			else bossImage = BossImage::IDLE_DIR_0;
-
-			(dir.x > 0) ? renderInfo.scale.x = 1 : renderInfo.scale.x = -1;
-		}
-		else if (abs(dir.x <= 0.4))
-			(dir.y > 0) ? bossImage = BossImage::IDLE_DIR_90 : bossImage = BossImage::IDLE_DIR_270;
-	}
-
-	if (behavior == BossBehavior::WALK)
-	{
-		if (abs(dir.x) > 0.4)
-		{
-			if (dir.y > 0.4) bossImage = BossImage::WALK_DIR_45;
-			else if (dir.y < -0.4) bossImage = BossImage::WALK_DIR_315;
-			else bossImage = BossImage::WALK_DIR_0;
-
-			(dir.x > 0) ? renderInfo.scale.x = 1 : renderInfo.scale.x = -1;
-		}
-		else if (abs(dir.x <= 0.4))
-			(dir.y > 0) ? bossImage = BossImage::WALK_DIR_90 : bossImage = BossImage::WALK_DIR_270;
-	}
-
-	if (behavior == BossBehavior::ATTACK)
-		bossImage = BossImage::ATTACK;
-
-	if (behavior == BossBehavior::DIE)
-		bossImage = BossImage::DIE;
-}
-

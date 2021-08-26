@@ -46,7 +46,7 @@ PlayerUI::PlayerUI(Player* player)
 	ultiRI.pos = { 175, -100 };
 	rollRI.pos = { 155, -100 };
 
-	layer = 1;
+	layer = 1050;
 }
 
 void PlayerUI::Update(float deltaTime)

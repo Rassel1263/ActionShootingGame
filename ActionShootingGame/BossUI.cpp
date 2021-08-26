@@ -13,6 +13,8 @@ BossUI::BossUI(CBoss* boss)
 	hpBorderSpr.color.a = 0.0f;
 
 	pos = { 0, -120 };
+
+	layer = 1050;
 }
 
 void BossUI::Update(float deltaTime)

@@ -2,9 +2,12 @@
 
 void GameScene3::Init()
 {
-	nextScene = new GameScene();
+	srand(time(NULL));
+
+	nextScene = new RankingScene();
 
 	curStage = L"GameScene3/";
+	stage = 3;
 	srand(time(NULL));
 
 	obm.AddObject(new Fade(false));
@@ -13,16 +16,15 @@ void GameScene3::Init()
 	obm.AddObject(new Font(L"Number", D3DXVECTOR2(-10, 110), gameTime, D3DXVECTOR2(1.6, 1.6), 15));
 	obm.AddObject(new Font(L"Number", D3DXVECTOR2(200, 110), score, D3DXVECTOR2(1.0, 1.0), 10));
 	//obm.AddObject(new GatlingGull(D3DXVECTOR2(400, 200)));
-	obm.AddObject(new BanBulletKin(D3DXVECTOR2(400, 100)));
 	//obm.AddObject(player = new Player(D3DXVECTO));
 	obm.AddObject(mouse = new Mouse());
 }
 
 void GameScene3::Update(float deltaTime)
 {
-	if (!stageClear) gameTime -= deltaTime;
+	if (!stageClear && !nowScene->player->intro) gameTime -= deltaTime;
 
-	if (gameTime <= 170 && !spawnBoss)
+	if (gameTime <= 60 && !spawnBoss)
 	{
 		spawnBoss = true;
 		obm.AddObject(new CEffect(L"Spawn/before", player->spawnPos, 0.05f, D3DXVECTOR2(2, 2), [&]() { SpawnBoss(); }));
@@ -38,5 +40,5 @@ void GameScene3::Render()
 
 void GameScene3::SpawnBoss()
 {
-	obm.AddObject(new GatlingGull(player->spawnPos + D3DXVECTOR2(0, -50)));
+	obm.AddObject(new HighPriest(player->spawnPos + D3DXVECTOR2(0, -50)));
 }

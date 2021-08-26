@@ -13,7 +13,7 @@ Minimap::Minimap()
 void Minimap::Update(float deltaTime)
 {
 	if (nowScene->player)
-		pos = D3DXVECTOR2(nowScene->player->pos.x / 7, nowScene->player->pos.y / 4);
+		pos = D3DXVECTOR2(-227 + nowScene->player->pos.x / 9.65f, 17 + nowScene->player->pos.y / 8.86f);
 }
 
 void Minimap::Render()
@@ -22,10 +22,9 @@ void Minimap::Render()
 	spr.Render({pos});
 }
 
-void Minimap::AddUnit(D3DXVECTOR2* pos, UnitType unitType)
+void Minimap::AddUnit(Unit* unit, UnitType unitType)
 {
 	Sprite spr;
 	spr.LoadAll(L"Assets/Sprites/UI/Minimap/Unit/" + std::to_wstring(IntEnum(unitType)) + L".png");
-	
-	units.push_back(spr);
+	unitSpr.push_back(spr);
 }

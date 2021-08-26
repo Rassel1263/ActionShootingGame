@@ -11,7 +11,7 @@ Fade::Fade(bool fill, float timer, std::function<void()> func)
 	(fill) ? fade.color.a = 0.0 : fade.color.a = 1.0f;
 	this->func = func;
 
-	layer = 99;
+	layer = 1050;
 }
 
 void Fade::Update(float deltaTime)

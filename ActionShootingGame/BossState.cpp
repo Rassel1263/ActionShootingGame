@@ -28,10 +28,11 @@ void BossIdle::UpdateState(CBoss* obj, float deltaTime)
 	{
 		std::random_device rd;
 		std::default_random_engine rnd(rd());
-		std::uniform_int_distribution<int> dis(1, 2);
+		std::uniform_int_distribution<int> dis(1, 3);
 
 		obj->behavior = CBoss::BossBehavior::ATTACK;
-		int patternIdx = 3;
+		int patternIdx = dis(rnd);
+		obj->SetPattern(patternIdx);
 
 		switch (patternIdx)
 		{
@@ -45,10 +46,10 @@ void BossIdle::UpdateState(CBoss* obj, float deltaTime)
 		case 3:
 			obj->SetState(BossPattern3::GetInstance());
 			return;
-			
 		}
 	}
 
+	if(obj->bossIndex == 1)
 	if (obj->Move(deltaTime))
 	{
 		obj->SetState(BossWalk::GetInstance());
@@ -77,6 +78,8 @@ void BossWalk::EnterState(CBoss* obj)
 
 void BossWalk::UpdateState(CBoss* obj, float deltaTime)
 {
+	std::cout << obj->GetNowSprite().scene << std::endl;
+
 	if (obj->ability.hp <= 0)
 	{
 		obj->SetState(BossDie::GetInstance());
@@ -89,9 +92,9 @@ void BossWalk::UpdateState(CBoss* obj, float deltaTime)
 	{
 		std::random_device rd;
 		std::default_random_engine rnd(rd());
-		std::uniform_int_distribution<int> dis(1, 2);
+		std::uniform_int_distribution<int> dis(1, 3);
 
-		int patternIdx = 3;
+		int patternIdx = dis(rnd);
 		obj->SetPattern(patternIdx);
 
 		switch (patternIdx)

@@ -2,6 +2,7 @@
 
 
 class PlayerUI;
+class PlayerData;
 class Player : public Unit
 {
 public:
@@ -20,14 +21,18 @@ public:
 		ROLL_DIR_0,
 		ROLL_DIR_45,
 		ROLL_DIR_90,
-		ROLL_DIR_270
+		ROLL_DIR_270,
 
+		FALL,
+		DIE
 	} playerDir;
 	enum class PlayerBehavior
 	{
 		IDLE,
 		WALK,
-		ROLL
+		ROLL,
+		FALL,
+		DIE,
 	} behavior;
 
 	D3DXVECTOR2 spawnPos = { 0, 0 };

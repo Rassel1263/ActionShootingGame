@@ -13,13 +13,13 @@ public:
 	};
 
 	Sprite border;
-	std::vector<Sprite> units;
+	std::vector<Sprite> unitSpr;
 	Sprite spr;
 
 	Minimap();
 
 	virtual void Update(float deltaTime) override;
 	virtual void Render() override;
-	void AddUnit(D3DXVECTOR2* pos, UnitType unitType);
+	void AddUnit(Unit* pos, UnitType unitType);
 };
 

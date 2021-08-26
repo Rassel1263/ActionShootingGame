@@ -67,7 +67,6 @@ void CEnemy::Render()
 
 void CEnemy::OnCollision(Collider& coli)
 {
-
 	if (coli.tag == L"allyBullet")
 	{
 		hitDamage = static_cast<CBullet*>(coli.obj)->damage;
@@ -76,6 +75,14 @@ void CEnemy::OnCollision(Collider& coli)
 		D3DXVec2Normalize(&dir, &dir);
 
 		force += D3DXVECTOR2(dir.x, dir.y) * 10;
+
+		if (behavior != EnemyBehavior::HIT)
+			behavior = EnemyBehavior::HIT;
+	}
+
+	if (coli.tag == L"dog")
+	{
+		hitDamage = 1.0f;
 
 		if (behavior != EnemyBehavior::HIT)
 			behavior = EnemyBehavior::HIT;
@@ -103,6 +110,7 @@ void CEnemy::Die()
 		nowScene->obm.AddObject(new Item(pos));
 
 	nowScene->AddScore(rand() % 200 + 100);
+	nowScene->player->PlusExp(2.5f);
 	destroy = true;
 }
 

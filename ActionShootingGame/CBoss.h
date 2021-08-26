@@ -18,7 +18,10 @@ public:
 		WALK_DIR_270,
 		WALK_DIR_315,
 
-		ATTACK,
+		PATTERN1,
+		PATTERN2,
+		PATTERN3,
+
 		DIE,
 	} bossImage;
 
@@ -35,9 +38,12 @@ public:
 	float patternTime = 0.0f;
 	float shootInterval = 0.0f;
 
+	float bulletAngle = 0.0f;
+
+	int bossIndex = 0;
+
 	CState<CBoss>* nowState = NULL;
 	std::map<BossImage, Sprite> bossSprites;
-	RenderInfo bossRI;
 
 	CBoss(D3DXVECTOR2 pos);
 	virtual ~CBoss() {};
@@ -52,10 +58,10 @@ public:
 	virtual bool Pattern2(float deltaTime) = 0;
 	virtual bool Pattern3(float deltaTime) = 0;
 	virtual void SetPattern(int index) = 0;
+	virtual void SetBossImage() = 0;
 
 	bool Move(float deltaTime);
 	void Hit(float damage);
 	void SetState(CState<CBoss>* nextState);
-	void SetBossImage();
 };
 

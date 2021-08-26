@@ -41,4 +41,7 @@ void CGun::CreateBullet(float theta)
 
 	if(bulletType == BulletType::Poison)
 		nowScene->obm.AddObject(new PoisonBullet(pos, theta, owner->ability.attackPower, 200, owner->team));
+
+	if (bulletType == BulletType::Penetration)
+		nowScene->obm.AddObject(new PenetrationBullet(pos, theta, owner->ability.attackPower, 200, owner->team));
 }

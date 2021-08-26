@@ -27,7 +27,11 @@ void Item::OnCollision(Collider& coli)
 {
 	if (coli.tag == L"ally")
 	{
-		static_cast<Player*>(coli.obj)->ability.hp++;
+		if (static_cast<Player*>(coli.obj)->ability.hp < static_cast<Player*>(coli.obj)->ability.maxHp)
+			static_cast<Player*>(coli.obj)->ability.hp++;
+		else
+			nowScene->AddScore(1000);
+
 		destroy = true;
 	}
 }

@@ -48,6 +48,7 @@ void ShotgunKin::ImageSettings()
 	enemySprites[EnemyImage::WALK_RIGHT].LoadAll(filePath + L"Walk/Right");
 	enemySprites[EnemyImage::WALK_UP].LoadAll(filePath + L"Walk/Up");
 
+	enemySprites[EnemyImage::DIE].LoadAll(filePath + L"Die", 0.1f, false);
 	enemySprites[EnemyImage::HIT].LoadAll(filePath + L"Hit", 0.1f, false);
 }
 

@@ -15,6 +15,7 @@ public:
 	std::random_device rd;
 
 	std::wstring curStage = L"";
+	int stage = 0;
 
 	bool bossZoom = false;
 	bool gameScene = true;

@@ -1,18 +1,20 @@
 #include "Header.h"
 
-EnemyManager::EnemyManager(D3DXVECTOR2 pos, EnemyName name)
+EnemyManager::EnemyManager(D3DXVECTOR2 pos, EnemyName name, float spawnTime)
 {
 	this->pos = pos;
 	this->name = name;
+	std::default_random_engine rnd(nowScene->rd());
+	std::uniform_int_distribution<int> dis(0, nowScene->stage - 1);
+
+	this->spawnTime = spawnTime - dis(rnd) * 0.1f;
 }
 
 void EnemyManager::Update(float deltaTime)
 {
-	if (name == EnemyName::SHOTGAT) return;
-
 	spawnTimer += deltaTime;
 
-	if (spawnTimer > 5.0f)
+	if (spawnTimer > spawnTime)
 	{
 		if (name == EnemyName::SHOTGAT)
 		{

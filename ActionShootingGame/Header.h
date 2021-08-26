@@ -57,6 +57,7 @@ struct MapGroup
 #include "CBullet.h"
 #include "BasicBullet.h"
 #include "PoisonBullet.h"
+#include "PenetrationBullet.h"
 #include "ShotgatBullet.h"
 
 #include "Unit.h"
@@ -70,9 +71,14 @@ struct MapGroup
 #include "Shotgat.h"
 #include "EnemyState.h"
 #include "EnemyManager.h"
+#include "Dog.h"
+
+#include "PlayerData.h"
 
 #include "CBoss.h"
 #include "GatlingGull.h"
+#include "Gorgun.h"
+#include "HighPriest.h"
 #include "BossState.h"
 
 #include "CEffect.h"
@@ -86,7 +92,13 @@ struct MapGroup
 #include "BossUI.h"
 #include "Fade.h"
 #include "Font.h"
+#include "Ranking.h"
 #include "Minimap.h"
+
+#include "GameOver.h"
+#include "CalcPage.h"
+#include "RankingPage.h"
+#include "HelpPage.h"
 
 #include "Item.h"
 
@@ -100,10 +112,11 @@ struct MapGroup
 
 #include "Scene.h"
 extern Scene* nowScene;
+#include "MapToolScene.h"
 #include "MainScene.h"
 #include "GameScene.h"
 #include "GameScene2.h"
 #include "GameScene3.h"
-#include "MapToolScene.h"
+#include "RankingScene.h"
 
 #include "Game.h"

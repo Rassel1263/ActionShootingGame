@@ -1,16 +1,18 @@
 #pragma once
 
+enum class BulletType
+{
+	Basic,
+	Poison,
+	Penetration
+};
+
 class Unit;
 class CGun : public Object
 {
 public:
-	enum class BulletType
-	{
-		Basic,
-		Poison,
-	}bulletType;
-
 	Unit* owner = NULL;
+	BulletType bulletType = BulletType::Basic;
 
 	float startAngle = 0.0f, angle = 0.0f;
 	int bulletCnt = 1;

@@ -65,6 +65,7 @@ void Shotgat::Die()
 	{
 		nowScene->obm.AddObject(new CEffect(L"ShotgatDie", pos + D3DXVECTOR2(0, 20), 0.05f, D3DXVECTOR2(0.5f, 0.5f)));
 		nowScene->AddScore(rand() % 200 + 100);
+		nowScene->player->PlusExp(2.5);
 		destroy = true;
 	}
 }

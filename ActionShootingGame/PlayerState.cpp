@@ -13,6 +13,12 @@ void PlayerIdle::EnterState(Player* obj)
 
 void PlayerIdle::UpdateState(Player* obj, float deltaTime)
 {
+	if (obj->ability.hp <= 0)
+	{
+		obj->SetState(PlayerDie::GetInstance());
+		return;
+	}
+
 	if (obj->Move(deltaTime))
 	{
 		obj->SetState(PlayerWalk::GetInstance());
@@ -44,6 +50,18 @@ void PlayerWalk::EnterState(Player* obj)
 
 void PlayerWalk::UpdateState(Player* obj, float deltaTime)
 {
+	if (obj->ability.hp <= 0)
+	{
+		obj->SetState(PlayerDie::GetInstance());
+		return;
+	}
+
+	if (Input::GetInstance().KeyPress(VK_LBUTTON))
+	{
+		obj->SetState(PlayerShoot::GetInstance());
+		return;
+	}
+
 	if (Input::GetInstance().KeyDown(VK_RBUTTON))
 	{
 		if (obj->rollTime <= 0.0f)
@@ -58,6 +76,12 @@ void PlayerWalk::UpdateState(Player* obj, float deltaTime)
 	if (!obj->Move(deltaTime))
 	{
 		obj->SetState(PlayerIdle ::GetInstance());
+		return;
+	}
+
+	if (obj->bFall)
+	{
+		obj->SetState(PlayerFall::GetInstance());
 		return;
 	}
 
@@ -80,6 +104,7 @@ PlayerDodgeRoll* PlayerDodgeRoll::GetInstance()
 
 void PlayerDodgeRoll::EnterState(Player* obj)
 {
+
 	obj->behavior = Player::PlayerBehavior::ROLL;
 
 	holdWeapon = obj->holdWeapon;
@@ -97,6 +122,12 @@ void PlayerDodgeRoll::EnterState(Player* obj)
 
 void PlayerDodgeRoll::UpdateState(Player* obj, float deltaTime)
 {
+	if (obj->ability.hp <= 0)
+	{
+		obj->SetState(PlayerDie::GetInstance());
+		return;
+	}
+
 	if (obj->GetNowSprite().scene > 4)
 		obj->bCollider = true;
 
@@ -111,7 +142,72 @@ void PlayerDodgeRoll::ExitState(Player* obj)
 {
 	obj->holdWeapon = holdWeapon;
 	obj->rollTime = obj->rollCoolTime;
-	holdWeapon = false;
+	holdWeapon = true;
+}
+
+
+PlayerFall* PlayerFall::GetInstance()
+{
+	static PlayerFall instance;
+	return &instance;
+}
+
+void PlayerFall::EnterState(Player* obj)
+{
+	obj->behavior = Player::PlayerBehavior::FALL;
+
+	obj->holdWeapon = false;
+	obj->bCollider = false;
+
+	obj->SetNotHoldGunPlayerDir({});
+	obj->GetNowSprite().Reset();
+}
+
+void PlayerFall::UpdateState(Player* obj, float deltaTime)
+{
+	if (!obj->GetNowSprite().bAnimation)
+	{
+		obj->SetState(PlayerIdle::GetInstance());
+		return;
+	}
+}
+
+void PlayerFall::ExitState(Player* obj)
+{
+	obj->holdWeapon = true;
+	obj->bCollider = true;
+	obj->bFall = false;
+	obj->pos = obj->spawnPos;
+	obj->Hit();
+}
+
+PlayerDie* PlayerDie::GetInstance()
+{
+	static PlayerDie instance;
+	return &instance;
+}
+
+void PlayerDie::EnterState(Player* obj)
+{
+	Game::GetInstance().timeScale = 0.0f;
+	obj->behavior = Player::PlayerBehavior::DIE;
+
+	obj->holdWeapon = false;
+
+	obj->playerDir = Player::PlayerDir::DIE;
+}
+
+void PlayerDie::UpdateState(Player* obj, float deltaTime)
+{
+	if(!obj->GetNowSprite().bAnimation)
+	{
+		nowScene->obm.AddObject(new GameOver());
+		return;
+	}
+}
+
+void PlayerDie::ExitState(Player* obj)
+{
 }
 
 PlayerShoot* PlayerShoot::GetInstance()
@@ -128,6 +224,8 @@ void PlayerShoot::EnterState(Player* obj)
 
 void PlayerShoot::UpdateState(Player* obj, float deltaTime)
 {
+	obj->Move(deltaTime);
+
 	timer += deltaTime;
 
 	if (timer > obj->ability.attackSpeed / 2.0f)

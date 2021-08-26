@@ -30,5 +30,4 @@ void PoisonBullet::OnCollision(Collider& coli)
 
 	if (coli.tag != team)
 		static_cast<Unit*>(coli.obj)->poison = true;
-
 }

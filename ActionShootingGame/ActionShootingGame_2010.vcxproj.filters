@@ -86,6 +86,9 @@
     <Filter Include="MainScene">
       <UniqueIdentifier>{3ef939b7-7b11-4f52-8d4b-79c838af2ccf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="RankingScene">
+      <UniqueIdentifier>{1549de5c-a394-443a-b98d-c7b5c1f62534}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -106,7 +109,9 @@
     <None Include="Assets\Shader\glowShader.fx">
       <Filter>Shader\fx</Filter>
     </None>
-    <None Include="Assets\Shader\whiteShader.fx" />
+    <None Include="Assets\Shader\whiteShader.fx">
+      <Filter>Shader\fx</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -271,6 +276,35 @@
       <Filter>MainScene</Filter>
     </ClCompile>
     <ClCompile Include="MainScene.cpp">
+      <Filter>MainScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Gorgun.cpp">
+      <Filter>GameScene\Object\Unit\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="HighPriest.cpp">
+      <Filter>GameScene\Object\Unit\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="PenetrationBullet.cpp">
+      <Filter>GameScene\Object\Unit\Weapon\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="Dog.cpp">
+      <Filter>GameScene\Object\Unit\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="RankingPage.cpp">
+      <Filter>MainScene</Filter>
+    </ClCompile>
+    <ClCompile Include="RankingScene.cpp">
+      <Filter>RankingScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Ranking.cpp">
+      <Filter>RankingScene</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerData.cpp" />
+    <ClCompile Include="HelpPage.cpp">
+      <Filter>MainScene</Filter>
+    </ClCompile>
+    <ClCompile Include="CalcPage.cpp">
       <Filter>MainScene</Filter>
     </ClCompile>
   </ItemGroup>
@@ -441,6 +475,35 @@
       <Filter>MainScene</Filter>
     </ClInclude>
     <ClInclude Include="MainScene.h">
+      <Filter>MainScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Gorgun.h">
+      <Filter>GameScene\Object\Unit\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="HighPriest.h">
+      <Filter>GameScene\Object\Unit\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="PenetrationBullet.h">
+      <Filter>GameScene\Object\Unit\Weapon\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h" />
+    <ClInclude Include="Dog.h">
+      <Filter>GameScene\Object\Unit\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="RankingPage.h">
+      <Filter>MainScene</Filter>
+    </ClInclude>
+    <ClInclude Include="RankingScene.h">
+      <Filter>RankingScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Ranking.h">
+      <Filter>RankingScene</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerData.h" />
+    <ClInclude Include="HelpPage.h">
+      <Filter>MainScene</Filter>
+    </ClInclude>
+    <ClInclude Include="CalcPage.h">
       <Filter>MainScene</Filter>
     </ClInclude>
   </ItemGroup>

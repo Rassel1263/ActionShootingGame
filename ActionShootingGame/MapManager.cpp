@@ -86,7 +86,7 @@ void MapManager::Render()
 void MapManager::BlockCheck(std::string mapString, RenderInfo ri)
 {
 	if (nowScene->gameScene)
-		if (mapString == "14" || mapString == "16" || mapString == "17" || mapString == "18")
+		if (mapString == "14" || mapString == "16" || mapString == "17" || mapString == "18" || mapString == "19")
 			return;
 
 	sprites.at(std::stoi(mapString)).Render(ri);
@@ -110,16 +110,16 @@ void MapManager::Collocate()
 				nowScene->obm.AddObject(nowScene->player = new Player(D3DXVECTOR2(x * 18, y * 18)));
 
 			if (mapString == "16")
-				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), EnemyName::BULLET_KIM));
+				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), EnemyName::BULLET_KIM, 7.0f));
 
 			if (mapString == "17")
-				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), EnemyName::SHOTGUN_KIN));
+				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), EnemyName::SHOTGUN_KIN, 9.0f));
 
 			if (mapString == "18")
-				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), EnemyName::BANBULLET_KIN));
+				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), EnemyName::BANBULLET_KIN, 11.0f));
 
 			if (mapString == "19")
-				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), EnemyName::SHOTGAT));
+				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), EnemyName::SHOTGAT, 5.0f));
 		}
 	}
 }

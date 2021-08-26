@@ -1,6 +1,6 @@
 #include "Header.h"
 
-Font::Font(std::wstring fontName, D3DXVECTOR2 pos, float& num, D3DXVECTOR2 scale, float tracking) 
+Font::Font(std::wstring fontName, D3DXVECTOR2 pos, float& num, D3DXVECTOR2 scale, float tracking, int layer) 
 	: num(num)
 {
 	this->num = num;
@@ -19,6 +19,8 @@ Font::Font(std::wstring fontName, D3DXVECTOR2 pos, float& num, D3DXVECTOR2 scale
 		fontSpr.at(i).LoadAll(filePath + L"/" + strNum.substr(i, 1) + L".png");
 		fontSpr.at(i).bCamera = false;
 	}
+
+	this->layer = layer;
 }
 
 void Font::Update(float deltaTime)
@@ -32,6 +34,8 @@ void Font::Update(float deltaTime)
 		fontSpr.at(i).LoadAll(filePath + L"/" + strNum.substr(i, 1) + L".png");
 		fontSpr.at(i).bCamera = false;
 	}
+
+	layer = 1050;
 }
 
 void Font::Render()

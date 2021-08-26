@@ -51,6 +51,8 @@ void CBullet::CheckPos(D3DXVECTOR2 moveDir)
 
 void CBullet::Update(float deltaTime)
 {
+	layer = -pos.y + 1000;
+
 	MoveBullet(deltaTime);
 
 	bulletSpr.Update(deltaTime);

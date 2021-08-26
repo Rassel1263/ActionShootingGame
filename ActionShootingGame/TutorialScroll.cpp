@@ -10,7 +10,9 @@ TutorialScroll::TutorialScroll()
 	paint.bCamera = false;
 	paint.color.a = 0.0f;
 
-	layer = 1;
+	layer = 5;
+
+	layer = 1060;
 }
 
 void TutorialScroll::Update(float deltaTime)

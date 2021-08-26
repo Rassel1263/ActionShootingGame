@@ -2,8 +2,9 @@
 
 GatlingGull::GatlingGull(D3DXVECTOR2 pos) : CBoss(pos)
 {
+	bossIndex = 1;
 	ImageSettings();
-	SetUnitInfo(15, 30, 1, 0.2f, true, L"enemy");
+	SetUnitInfo(100, 30, 1, 0.2f, false, L"enemy");
 	CreateCollider(D3DXVECTOR2(-15, 25), D3DXVECTOR2(15, 65));
 	patternTime = 8.0f;
 
@@ -21,12 +22,22 @@ void GatlingGull::Update(float deltaTime)
 
 void GatlingGull::Render()
 {
-	CBoss::Render();
+	renderInfo.pos = pos;
+	shadow.Render(RenderInfo{ D3DXVECTOR2(pos.x, pos.y + 25)});
+
+	if (bHit)
+		whiteShader->Render(whiteShader, GetNowSprite(), renderInfo);
+	else if (poison)
+		poisonShader->Render(poisonShader, GetNowSprite(), renderInfo, D3DXVECTOR4(0.25f, 0.35f, 0.2f, 0.0f));
+	else
+		GetNowSprite().Render(renderInfo);
+
+	Unit::Render();
 }
 
 void GatlingGull::ImageSettings()
 {
-	std::wstring filePath = L"Assets/Sprites/Unit/Boss/";
+	std::wstring filePath = L"Assets/Sprites/Unit/Boss/GangGull/";
 
 	bossSprites[BossImage::IDLE_DIR_0].LoadAll(filePath + L"Idle/0.png");
 	bossSprites[BossImage::IDLE_DIR_45].LoadAll(filePath + L"Idle/45.png");
@@ -40,7 +51,7 @@ void GatlingGull::ImageSettings()
 	bossSprites[BossImage::WALK_DIR_270].LoadAll(filePath + L"Walk/270");
 	bossSprites[BossImage::WALK_DIR_315].LoadAll(filePath + L"Walk/315");
 
-	bossSprites[BossImage::ATTACK].LoadAll(filePath + L"Attack/Attack", 0.05f);
+	bossSprites[BossImage::PATTERN3].LoadAll(filePath + L"Attack/Attack", 0.05f);
 	bossSprites[BossImage::DIE].LoadAll(filePath + L"Die", 0.1f, false);
 }
 
@@ -124,15 +135,15 @@ void GatlingGull::SetPattern(int index)
 {
 	if (index == 1)
 	{
-		patternTime = 8.0f;
+		patternTime = 5.0f;
 		ability.attackSpeed = 0.2f;
 		behavior = CBoss::BossBehavior::IDLE;
 	}
 
 	if (index == 2)
 	{
-		patternTime = 8.0f;
-		ability.attackSpeed = 3.0f;
+		patternTime = 4.0f;
+		ability.attackSpeed = 1.0f;
 		behavior = CBoss::BossBehavior::IDLE;
 	}
 	if (index == 3)
@@ -142,5 +153,45 @@ void GatlingGull::SetPattern(int index)
 		behavior = CBoss::BossBehavior::ATTACK;
 	}
 
+	restTime = 1.0f;
+}
+
+void GatlingGull::SetBossImage()
+{
+	D3DXVECTOR2 dir = GetDirectionFromPlayer();
+
+	if (behavior == BossBehavior::IDLE)
+	{
+		if (abs(dir.x) > 0.4)
+		{
+			if (dir.y > 0.4) bossImage = BossImage::IDLE_DIR_45;
+			else if (dir.y < -0.4) bossImage = BossImage::IDLE_DIR_315;
+			else bossImage = BossImage::IDLE_DIR_0;
+
+			(dir.x > 0) ? renderInfo.scale.x = 1 : renderInfo.scale.x = -1;
+		}
+		else if (abs(dir.x <= 0.4))
+			(dir.y > 0) ? bossImage = BossImage::IDLE_DIR_90 : bossImage = BossImage::IDLE_DIR_270;
+	}
+
+	if (behavior == BossBehavior::WALK)
+	{
+		if (abs(dir.x) > 0.4)
+		{
+			if (dir.y > 0.4) bossImage = BossImage::WALK_DIR_45;
+			else if (dir.y < -0.4) bossImage = BossImage::WALK_DIR_315;
+			else bossImage = BossImage::WALK_DIR_0;
+
+			(dir.x > 0) ? renderInfo.scale.x = 1 : renderInfo.scale.x = -1;
+		}
+		else if (abs(dir.x <= 0.4))
+			(dir.y > 0) ? bossImage = BossImage::WALK_DIR_90 : bossImage = BossImage::WALK_DIR_270;
+	}
+
+	if (behavior == BossBehavior::ATTACK)
+		bossImage = BossImage::PATTERN3;
+
+	if (behavior == BossBehavior::DIE)
+		bossImage = BossImage::DIE;
 }
 

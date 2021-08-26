@@ -8,7 +8,7 @@ void MapToolScene::Init()
 	gameScene = false;
 	obm.AddObject(new MapToolMouse());
 
-	obm.AddObject(mapManager = new MapManager(curStage + L"room1/map00", curStage + L"room1/map01"));
+	obm.AddObject(mapManager = new MapManager(curStage + L"room2/map00", curStage + L"room2/map01"));
 
 	obm.AddObject(new MapToolBlock(L"00", D3DXVECTOR2(-218, 0)));
 	obm.AddObject(new MapToolBlock(L"01", D3DXVECTOR2(-200, 0)));

@@ -13,5 +13,6 @@ public:
 	virtual bool Pattern2(float deltaTime) override;
 	virtual bool Pattern3(float deltaTime) override;
 	virtual void SetPattern(int index) override;
+	virtual void SetBossImage() override;
 };
 

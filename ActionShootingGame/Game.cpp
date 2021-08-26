@@ -89,10 +89,19 @@ void Game::Update(float deltaTime)
 
 	Camera::GetInstance().Update(deltaTime);
 
+	if (Input::GetInstance().KeyDown(VK_ESCAPE))
+	{
+		auto& pause = Game::GetInstance().pause;
+		pause = !pause;
+	}
+
 	unscaleTime = deltaTime;
 
 	if (nowScene)
-		nowScene->Update(deltaTime * timeScale);
+	{
+		if (Game::GetInstance().pause) return;
+			nowScene->Update(deltaTime * timeScale);
+	}
 }
 
 void Game::Render()

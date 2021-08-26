@@ -8,34 +8,37 @@ void Scene::Init()
 
 void Scene::Update(float deltaTime)
 {
-	if (destScore > 0.0f)
+	if (stage > 0 && stage < 4)
 	{
-		float tempNum = destScore;
-		destScore -= deltaTime * 500;
-
-		score += tempNum - destScore;
-	}
-
-	if (Input::GetInstance().KeyDown(VK_F1))
-	{
-		nowScene->player->god = !nowScene->player->god;
-	}
-
-	if (Input::GetInstance().KeyDown(VK_F2))
-	{
-		nowScene->player->LevelUp();
-	}
-
-	if (Input::GetInstance().KeyDown(VK_F3))
-	{
-		for (auto enemy : enemyVecs)
+		if (destScore > 0.0f)
 		{
-			if (enemy->pos.x > Camera::GetInstance().cameraPos.x - 240 &&
-				enemy->pos.x < Camera::GetInstance().cameraPos.x + 240 &&
-				enemy->pos.y > Camera::GetInstance().cameraPos.y - 135 &&
-				enemy->pos.y < Camera::GetInstance().cameraPos.y + 135)
+			float tempNum = destScore;
+			destScore -= deltaTime * 500;
+
+			score += tempNum - destScore;
+		}
+
+		if (Input::GetInstance().KeyDown(VK_F1))
+		{
+			nowScene->player->god = !nowScene->player->god;
+		}
+
+		if (Input::GetInstance().KeyDown(VK_F2))
+		{
+			nowScene->player->LevelUp();
+		}
+
+		if (Input::GetInstance().KeyDown(VK_F3))
+		{
+			for (auto enemy : enemyVecs)
 			{
-				enemy->Die();
+				if (enemy->pos.x > Camera::GetInstance().cameraPos.x - 240 &&
+					enemy->pos.x < Camera::GetInstance().cameraPos.x + 240 &&
+					enemy->pos.y > Camera::GetInstance().cameraPos.y - 135 &&
+					enemy->pos.y < Camera::GetInstance().cameraPos.y + 135)
+				{
+					enemy->Die();
+				}
 			}
 		}
 	}
@@ -53,14 +56,11 @@ void Scene::Update(float deltaTime)
 		Game::GetInstance().ChangeScecne(new GameScene3());
 
 
-	if (Input::GetInstance().KeyDown(VK_ESCAPE))
-	{
-		auto& pause = Game::GetInstance().pause;
-		pause = !pause;
-	}
+	if (Input::GetInstance().KeyDown(VK_F8))
+		Game::GetInstance().ChangeScecne(new RankingScene());
 
 
-	if (Game::GetInstance().pause) return;
+
 	obm.Collision();
 	obm.Update(deltaTime);
 }

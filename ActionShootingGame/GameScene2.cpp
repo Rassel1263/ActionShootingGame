@@ -2,9 +2,12 @@
 
 void GameScene2::Init()
 {
+	srand(time(NULL));
+
 	nextScene = new GameScene3();
 
 	curStage = L"GameScene2/";
+	stage = 2;
 	srand(time(NULL));
 
 	obm.AddObject(new Fade(false));
@@ -19,9 +22,9 @@ void GameScene2::Init()
 
 void GameScene2::Update(float deltaTime)
 {
-	if (!stageClear) gameTime -= deltaTime;
+	if (!stageClear && !nowScene->player->intro) gameTime -= deltaTime;
 
-	if (gameTime <= 170 && !spawnBoss)
+	if (gameTime <= 60 && !spawnBoss)
 	{
 		spawnBoss = true;
 		obm.AddObject(new CEffect(L"Spawn/before", player->spawnPos, 0.05f, D3DXVECTOR2(2, 2), [&]() { SpawnBoss(); }));
@@ -37,5 +40,5 @@ void GameScene2::Render()
 
 void GameScene2::SpawnBoss()
 {
-	obm.AddObject(new GatlingGull(player->spawnPos + D3DXVECTOR2(0, -50)));
+	obm.AddObject(new Gorgun(player->spawnPos + D3DXVECTOR2(0, -50)));
 }
