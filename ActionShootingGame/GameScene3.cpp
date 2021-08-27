@@ -15,6 +15,7 @@ void GameScene3::Init()
 	obm.AddObject(new Elevator(player->spawnPos, true));
 	obm.AddObject(new Font(L"Number", D3DXVECTOR2(-10, 110), gameTime, D3DXVECTOR2(1.6, 1.6), 15));
 	obm.AddObject(new Font(L"Number", D3DXVECTOR2(200, 110), score, D3DXVECTOR2(1.0, 1.0), 10));
+	obm.AddObject(new Minimap());
 	//obm.AddObject(new GatlingGull(D3DXVECTOR2(400, 200)));
 	//obm.AddObject(player = new Player(D3DXVECTO));
 	obm.AddObject(mouse = new Mouse());

@@ -6,10 +6,10 @@ Dog::Dog(D3DXVECTOR2 pos)
 	ri.pivot = { 0.5, 0 };
 
 	this->pos = pos;
-	
+
 	Collider::AABB aabb;
 	aabb.min = { -5, -5 };
-	aabb.max= { 5, 5 };
+	aabb.max = { 5, 5 };
 
 	bodies.push_back(Collider(this, L"dog", &aabb));
 }
@@ -20,6 +20,7 @@ void Dog::Update(float deltaTime)
 	D3DXVECTOR2 dir = { 0, 0 };
 
 	float minLen = 99000009.0f;
+
 	for (auto& enemy : nowScene->enemyVecs)
 	{
 		D3DXVECTOR2 distance = enemy->pos - pos;
@@ -36,13 +37,16 @@ void Dog::Update(float deltaTime)
 	{
 		dir = target->pos - pos;
 		D3DXVec2Normalize(&dir, &dir);
+
+		if (target->destroy)
+			target = NULL;
 	}
-	
-	if(target == NULL)
+	else
 	{
 		dir = nowScene->player->pos - pos;
 		D3DXVec2Normalize(&dir, &dir);
 	}
+
 
 	(dir.x > 0) ? ri.scale.x = 1 : ri.scale.x = -1;
 

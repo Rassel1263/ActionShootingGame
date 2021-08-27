@@ -1,6 +1,6 @@
 #include "Header.h"
 
-GatlingGull::GatlingGull(D3DXVECTOR2 pos) : CBoss(pos)
+GatlingGull::GatlingGull(D3DXVECTOR2 pos) : CBoss(pos, UnitName::GANGGULL)
 {
 	bossIndex = 1;
 	ImageSettings();

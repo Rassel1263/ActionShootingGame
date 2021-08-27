@@ -41,7 +41,7 @@ public:
 	float stopRange = 0.0f;
 	float restTimer = 0.0f;
 
-	CEnemy(D3DXVECTOR2 pos);
+	CEnemy(D3DXVECTOR2 pos, UnitName unitName);
 	virtual ~CEnemy();
 
 	virtual void Update(float deltaTime) override;

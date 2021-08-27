@@ -304,8 +304,11 @@
     <ClCompile Include="HelpPage.cpp">
       <Filter>MainScene</Filter>
     </ClCompile>
+    <ClCompile Include="MiniUnit.cpp">
+      <Filter>GameScene\Object\UI</Filter>
+    </ClCompile>
     <ClCompile Include="CalcPage.cpp">
-      <Filter>MainScene</Filter>
+      <Filter>GameScene\Object\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -503,8 +506,11 @@
     <ClInclude Include="HelpPage.h">
       <Filter>MainScene</Filter>
     </ClInclude>
+    <ClInclude Include="MiniUnit.h">
+      <Filter>GameScene\Object\UI</Filter>
+    </ClInclude>
     <ClInclude Include="CalcPage.h">
-      <Filter>MainScene</Filter>
+      <Filter>GameScene\Object\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

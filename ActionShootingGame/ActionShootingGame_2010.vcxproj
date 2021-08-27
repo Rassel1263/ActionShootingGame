@@ -427,6 +427,7 @@
     <ClCompile Include="MapToolScene.cpp" />
     <ClCompile Include="MapToolMouse.cpp" />
     <ClCompile Include="Minimap.cpp" />
+    <ClCompile Include="MiniUnit.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="PenetrationBullet.cpp" />
@@ -505,6 +506,7 @@
     <ClInclude Include="MapToolScene.h" />
     <ClInclude Include="MapToolMouse.h" />
     <ClInclude Include="Minimap.h" />
+    <ClInclude Include="MiniUnit.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="PenetrationBullet.h" />

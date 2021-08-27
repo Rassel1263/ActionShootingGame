@@ -50,10 +50,16 @@ void Scene::Update(float deltaTime)
 		Game::GetInstance().ChangeScecne(new GameScene());
 
 	if (Input::GetInstance().KeyDown(VK_F6))
+	{
 		Game::GetInstance().ChangeScecne(new GameScene2());
+		nowScene->player->SaveData();
+	}
 
 	if (Input::GetInstance().KeyDown(VK_F7))
+	{
 		Game::GetInstance().ChangeScecne(new GameScene3());
+		nowScene->player->SaveData();
+	}
 
 
 	if (Input::GetInstance().KeyDown(VK_F8))

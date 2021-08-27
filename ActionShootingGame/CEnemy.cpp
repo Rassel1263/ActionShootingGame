@@ -1,6 +1,6 @@
 #include "Header.h"
 
-CEnemy::CEnemy(D3DXVECTOR2 pos) : Unit(pos)
+CEnemy::CEnemy(D3DXVECTOR2 pos, UnitName unitName) : Unit(pos, unitName)
 {
 	nowScene->obm.AddObject(new CEffect(L"Spawn/after", pos, 0.05f));
 
@@ -14,6 +14,9 @@ CEnemy::~CEnemy()
 {
 	if (gun)
 		gun->destroy = true;
+
+	if (mini)
+		mini->destroy = true;
 
 	nowScene->SortEnemyVector(this);
 }

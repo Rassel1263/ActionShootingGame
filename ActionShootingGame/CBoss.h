@@ -45,8 +45,7 @@ public:
 	CState<CBoss>* nowState = NULL;
 	std::map<BossImage, Sprite> bossSprites;
 
-	CBoss(D3DXVECTOR2 pos);
-	virtual ~CBoss() {};
+	CBoss(D3DXVECTOR2 pos, UnitName unitName);
 
 	virtual void Update(float deltaTime) override;
 	virtual void Render() override;

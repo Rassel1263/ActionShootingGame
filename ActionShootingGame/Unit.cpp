@@ -1,14 +1,26 @@
 #include "Header.h"
 
-Unit::Unit(D3DXVECTOR2 pos)
+Unit::Unit(D3DXVECTOR2 pos, UnitName unitName)
 {
 	this->pos = pos;
+	this->unitName = unitName;
 	renderInfo.pivot = { 0.5, 0};
 	holdWeapon = true;
 
 	shadow.LoadAll(L"Assets/Sprites/Unit/shadow.png");
+	nowScene->obm.AddObject(mini = new MiniUnit(this, unitName));
 
 	layer = 1;
+}
+
+Unit::~Unit()
+{
+	if (gun)
+		gun->destroy = true;
+
+	if (mini)
+		mini->destroy = true;
+
 }
 
 void Unit::Update(float deltaTime)

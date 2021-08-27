@@ -1,6 +1,6 @@
 #include "Header.h"
 
-BanBulletKin::BanBulletKin(D3DXVECTOR2 pos) : CEnemy(pos)
+BanBulletKin::BanBulletKin(D3DXVECTOR2 pos) : CEnemy(pos, UnitName::BANBULLET_KIN)
 {
 	ImageSettings();
 	SetUnitInfo(25, 50, 1, 1, true, L"enemy");

@@ -1,6 +1,6 @@
 #include "Header.h"
 
-HighPriest::HighPriest(D3DXVECTOR2 pos) : CBoss(pos)
+HighPriest::HighPriest(D3DXVECTOR2 pos) : CBoss(pos, UnitName::HighPriest)
 {
 	bossIndex = 2;
 	ImageSettings();

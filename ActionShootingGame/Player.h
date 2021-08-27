@@ -73,5 +73,6 @@ public:
 	void Hit();
 	void Ultimate(float damage);
 	void SetState(CState<Player>* nextState);
+	void SaveData();
 };
 

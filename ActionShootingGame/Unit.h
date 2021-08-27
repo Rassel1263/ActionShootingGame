@@ -1,8 +1,21 @@
 #pragma once
 
+class MiniUnit;
 class Unit : public Object
 {
 public:
+	enum class UnitName
+	{
+		PLAYER,
+		BULLET_KIM,
+		BANBULLET_KIN,
+		SHOTGUN_KIN,
+		SHOTGAT,
+		GANGGULL,
+		Gorgun,
+		HighPriest
+	} unitName;
+
 	struct UnitAblity
 	{
 		float hp = 0;
@@ -13,6 +26,7 @@ public:
 	} ability;
 
 	CGun* gun = NULL;
+	MiniUnit* mini = NULL;
 
 	std::wstring team = L"";
 	bool bHit = false;
@@ -36,8 +50,8 @@ public:
 	Sprite shadow;
 
 
-	Unit(D3DXVECTOR2 pos);
-	virtual ~Unit() {};
+	Unit(D3DXVECTOR2 pos, UnitName unitName);
+	virtual ~Unit();
 
 	virtual void Update(float deltaTime) override;
 	virtual void Render() override;

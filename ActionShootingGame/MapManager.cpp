@@ -110,16 +110,16 @@ void MapManager::Collocate()
 				nowScene->obm.AddObject(nowScene->player = new Player(D3DXVECTOR2(x * 18, y * 18)));
 
 			if (mapString == "16")
-				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), EnemyName::BULLET_KIM, 7.0f));
+				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), Unit::UnitName::BULLET_KIM, 7.0f));
 
 			if (mapString == "17")
-				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), EnemyName::SHOTGUN_KIN, 9.0f));
+				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), Unit::UnitName::SHOTGUN_KIN, 9.0f));
 
 			if (mapString == "18")
-				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), EnemyName::BANBULLET_KIN, 11.0f));
+				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), Unit::UnitName::BANBULLET_KIN, 11.0f));
 
 			if (mapString == "19")
-				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), EnemyName::SHOTGAT, 5.0f));
+				nowScene->obm.AddObject(new EnemyManager(D3DXVECTOR2(x * 18, y * 18), Unit::UnitName::SHOTGAT, 5.0f));
 		}
 	}
 }

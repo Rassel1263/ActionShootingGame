@@ -1,6 +1,6 @@
 #include "Header.h"
 
-Gorgun::Gorgun(D3DXVECTOR2 pos) : CBoss(pos)
+Gorgun::Gorgun(D3DXVECTOR2 pos) : CBoss(pos, UnitName::Gorgun)
 {
 	bossIndex = 1;
 	ImageSettings();

@@ -1,7 +1,7 @@
 #include "Header.h"
 #include "Player.h"
 
-Player::Player(D3DXVECTOR2 pos) : Unit(pos)
+Player::Player(D3DXVECTOR2 pos) : Unit(pos, UnitName::PLAYER)
 {
 	this->spawnPos = pos;
 
@@ -405,5 +405,21 @@ void Player::SetState(CState<Player>* nextState)
 
 	nowState = nextState;
 	nowState->EnterState(this);
+}
+
+void Player::SaveData()
+{
+	PData data;
+	ability.hp = ability.maxHp;
+	data.ability = ability;
+	data.abilitySpr = playerUI->ablitySpr;
+	data.bullcnt = gun->bulletCnt;
+	data.bulletType = gun->bulletType;
+	data.exp = exp;
+	data.level = level;
+	data.shield = shield;
+	data.ultimateCoolTime = ultimateCoolTime;
+
+	PlayerData::GetInstance().SaveData(data);
 }
 

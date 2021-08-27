@@ -30,7 +30,9 @@ void GameScene::Update(float deltaTime)
 {
 	if (Input::GetInstance().KeyDown('G'))
 	{
-		obm.AddObject(new CalcPage());
+		CEnemy* enemy = NULL;
+		obm.AddObject(enemy = new Shotgat(D3DXVECTOR2(400, 200)));
+		enemyVecs.push_back(enemy);
 	}
 
 	if (tutorial)
@@ -40,7 +42,7 @@ void GameScene::Update(float deltaTime)
 		if (tutorialTimer >= 5.0f)
 		{
 			tutorialTimer = -999.0f;
-			obm.AddObject(new TutorialScroll());
+			//obm.AddObject(new TutorialScroll());
 		}
 	}
 	else

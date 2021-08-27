@@ -1,6 +1,6 @@
 #include "Header.h"
 
-Shotgat::Shotgat(D3DXVECTOR2 pos) : CEnemy(pos)
+Shotgat::Shotgat(D3DXVECTOR2 pos) : CEnemy(pos, UnitName::SHOTGAT)
 {
 	ImageSettings();
 	SetUnitInfo(5, 50, 1, 1, false, L"enemy");

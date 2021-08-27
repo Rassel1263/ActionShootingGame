@@ -1,6 +1,6 @@
 #include "Header.h"
 
-EnemyManager::EnemyManager(D3DXVECTOR2 pos, EnemyName name, float spawnTime)
+EnemyManager::EnemyManager(D3DXVECTOR2 pos, Unit::UnitName name, float spawnTime)
 {
 	this->pos = pos;
 	this->name = name;
@@ -16,7 +16,7 @@ void EnemyManager::Update(float deltaTime)
 
 	if (spawnTimer > spawnTime)
 	{
-		if (name == EnemyName::SHOTGAT)
+		if (name == Unit::UnitName::SHOTGAT)
 		{
 			std::random_device rd;
 			std::default_random_engine rnd(rd());
@@ -38,16 +38,16 @@ void EnemyManager::SpawnEnemy()
 {
 	CEnemy* enemy = NULL;
 
-	if (name == EnemyName::BULLET_KIM)
+	if (name == Unit::UnitName::BULLET_KIM)
 		nowScene->obm.AddObject(enemy = new BulletKim(pos));
 
-	if (name == EnemyName::SHOTGUN_KIN)
+	if (name == Unit::UnitName::SHOTGUN_KIN)
 		nowScene->obm.AddObject(enemy = new ShotgunKin(pos));
 
-	if(name == EnemyName::BANBULLET_KIN)
+	if(name == Unit::UnitName::BANBULLET_KIN)
 		nowScene->obm.AddObject(enemy = new BanBulletKin(pos));
 
-	if (name == EnemyName::SHOTGAT)
+	if (name == Unit::UnitName::SHOTGAT)
 		nowScene->obm.AddObject(enemy = new Shotgat(pos));
 
 	nowScene->enemyVecs.push_back(enemy);

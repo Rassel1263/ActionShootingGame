@@ -74,6 +74,7 @@ struct MapGroup
 #include "Dog.h"
 
 #include "PlayerData.h"
+#include "MiniUnit.h"
 
 #include "CBoss.h"
 #include "GatlingGull.h"

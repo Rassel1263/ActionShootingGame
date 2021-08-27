@@ -32,19 +32,7 @@ void CalcPage::Update(float deltaTime)
 		{
 			nowScene->score = score;
 			Game::GetInstance().ChangeScecne(nowScene->nextScene);
-			auto& p = nowScene->player;
-			p->ability.hp = p->ability.maxHp;
-			PData data;
-			data.ability = p->ability;
-			data.abilitySpr = p->playerUI->ablitySpr;
-			data.bullcnt = p->gun->bulletCnt;
-			data.bulletType = p->gun->bulletType;
-			data.exp = p->exp;
-			data.level = p->level;
-			data.shield = p->shield;
-			data.ultimateCoolTime = p->ultimateCoolTime;
-
-			PlayerData::GetInstance().SaveData(data);
+			nowScene->player->SaveData();
 		}
 	}
 }

@@ -1,6 +1,6 @@
 #include "Header.h"
 
-ShotgunKin::ShotgunKin(D3DXVECTOR2 pos) : CEnemy(pos)
+ShotgunKin::ShotgunKin(D3DXVECTOR2 pos) : CEnemy(pos, UnitName::SHOTGUN_KIN)
 {
 	type = ShotgunKinType(rand()% 2);
 	ImageSettings();

@@ -1,6 +1,6 @@
 #include "Header.h"
 
-BulletKim::BulletKim(D3DXVECTOR2 pos) : CEnemy(pos)
+BulletKim::BulletKim(D3DXVECTOR2 pos) : CEnemy(pos, UnitName::BULLET_KIM)
 {
 	ImageSettings();
 	SetUnitInfo(15, 50, 1, 1, true, L"enemy");

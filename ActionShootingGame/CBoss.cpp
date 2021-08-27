@@ -1,6 +1,6 @@
 #include "Header.h"
 
-CBoss::CBoss(D3DXVECTOR2 pos) : Unit(pos)
+CBoss::CBoss(D3DXVECTOR2 pos, UnitName unitName) : Unit(pos, unitName)
 {
 	bossImage = BossImage::IDLE_DIR_0;
 	behavior = BossBehavior::IDLE;
